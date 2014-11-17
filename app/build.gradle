@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 15
-    buildToolsVersion "21.1.1"
+    buildToolsVersion '19.1.0'
 
     defaultConfig {
         applicationId "uk.ac.ncl.cs.team16.lloydsbankingapp"
         minSdkVersion 15
-        targetSdkVersion 15
+        targetSdkVersion 19
         versionCode 1
         versionName "1.0"
     }
