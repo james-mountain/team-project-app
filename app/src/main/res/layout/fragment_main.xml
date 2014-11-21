@@ -1,7 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="uk.ac.ncl.cs.team16.lloydsbankingapp.MainFragment">
+    tools:context="uk.ac.ncl.cs.team16.lloydsbankingapp.MainFragment"
+    android:background="#006A4D">
 
     <Button
         android:layout_width="wrap_content"
@@ -11,5 +12,14 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="96dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_marginTop="28dp"
+        android:src="@drawable/horselogo"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
