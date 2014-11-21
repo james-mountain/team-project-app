@@ -1,0 +1,9 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <CheckBoxPreference
+        android:key="password_remember"
+        android:title="@string/pref_title_password_remember"
+        android:summary="@string/pref_description_password_remember"
+        android:defaultValue="false" />
+
+</PreferenceScreen>
