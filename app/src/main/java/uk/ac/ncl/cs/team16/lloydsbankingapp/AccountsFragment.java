@@ -64,7 +64,6 @@ public class AccountsFragment extends Fragment {
         dateTv.setText(df.format(c.getTime()));
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
