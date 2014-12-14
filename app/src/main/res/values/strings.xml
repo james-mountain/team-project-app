@@ -4,6 +4,8 @@
     <string name="app_name">Lloyds Banking App</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="welcome_message">Welcome, owner!</string>
+    <string name="current_balance">Current balance: </string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_drawer_accounts">Accounts</string>

@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 15
-    buildToolsVersion '19.1.0'
+    buildToolsVersion '21.1.1'
 
     defaultConfig {
         applicationId "uk.ac.ncl.cs.team16.lloydsbankingapp"
@@ -21,5 +21,5 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:support-v4:21.0.0'
+    compile 'com.android.support:support-v4:21.0.3'
 }
