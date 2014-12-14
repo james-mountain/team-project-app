@@ -1,35 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/lower_margin"
+    android:paddingBottom="@dimen/lower_margin"
+    android:paddingLeft="@dimen/lower_margin"
+    android:paddingRight="@dimen/lower_margin">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mr. Homer"
-        android:id="@+id/payee_name"
-        android:layout_alignParentLeft="true"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/top_transaction_layout"
+        android:layout_weight="10">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="24/10/2014"
-        android:id="@+id/transaction_date"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="$2500.01"
-        android:id="@+id/after_balance"
-        android:layout_below="@id/payee_name"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mr. Homer Agfdjoifl hgfjdhndfihodfj"
+            android:id="@+id/payee_name"
+            android:textSize="@dimen/text_size_large"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+16.20"
-        android:id="@+id/transaction_value"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/transaction_date"/>
-</RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="24/10/2014"
+            android:id="@+id/transaction_date"
+            android:textSize="@dimen/text_size_medium"
+            android:textColor="@android:color/darker_gray"
+            android:layout_below="@id/payee_name"
+            android:layout_gravity="bottom"
+
+            />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/bottom_transaction_layout"
+        android:layout_weight="20"
+        android:layout_gravity="right">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+16.20"
+            android:id="@+id/transaction_value"
+            android:textSize="@dimen/text_size_large"
+            android:layout_gravity="right"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="$2500.01"
+            android:id="@+id/after_balance"
+            android:textSize="@dimen/text_size_medium"
+            android:textColor="@android:color/darker_gray"
+            android:gravity="bottom"
+            android:layout_gravity="right"/>
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
