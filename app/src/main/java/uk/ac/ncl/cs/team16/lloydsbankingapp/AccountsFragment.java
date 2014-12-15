@@ -66,7 +66,7 @@ public class AccountsFragment extends Fragment {
         transactionList.add(new Transaction("I'm sending you money", "05/02/2014", "12.10", "-150.00"));
         transactionList.add(new Transaction("Will", "09/10/2014", "120.00", "-200.29"));
         transactionList.add(new Transaction("Michael", "12/10/2014", "10.00", "+250.29"));
-        transactionList.add(new Transaction("WM Morisson Supermarkets PLC", "20/01/2013", "-10.00", "+15.29"));
+        transactionList.add(new Transaction("WM Morrison Supermarkets PLC", "20/01/2013", "-10.00", "+15.29"));
     }
 
     class CustomAdapter extends ArrayAdapter<Transaction>{

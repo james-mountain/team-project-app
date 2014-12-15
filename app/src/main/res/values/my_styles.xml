@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="welcome_screen_style">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
+
+</resources>
