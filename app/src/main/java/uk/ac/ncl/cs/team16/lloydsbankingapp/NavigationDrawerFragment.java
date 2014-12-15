@@ -4,6 +4,7 @@ package uk.ac.ncl.cs.team16.lloydsbankingapp;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Context;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -19,7 +20,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -58,6 +62,8 @@ public class NavigationDrawerFragment extends Fragment {
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
 
+    private CustomAdapter customAdapter;
+
     public NavigationDrawerFragment() {
     }
 
@@ -89,6 +95,8 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        customAdapter = new CustomAdapter(getActivity());
+
         mDrawerListView = (ListView) inflater.inflate(
                 R.layout.fragment_navigation_drawer, container, false);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -97,20 +105,7 @@ public class NavigationDrawerFragment extends Fragment {
                 selectItem(position);
             }
         });
-        mDrawerListView.setAdapter(new ArrayAdapter<String>(
-                getActionBar().getThemedContext(),
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
-                new String[]{
-                        getString(R.string.title_drawer_accounts),
-                        getString(R.string.title_drawer_review_payments),
-                        getString(R.string.title_drawer_transfer),
-                        getString(R.string.title_drawer_find_atm),
-                        getString(R.string.title_drawer_dictionary),
-                        getString(R.string.title_drawer_help),
-
-
-                }));
+        mDrawerListView.setAdapter(customAdapter);
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
     }
@@ -283,5 +278,52 @@ public class NavigationDrawerFragment extends Fragment {
          * Called when an item in the navigation drawer is selected.
          */
         void onNavigationDrawerItemSelected(int position);
+    }
+}
+
+class CustomAdapter extends BaseAdapter{
+
+    private Context context;
+    String[] navDrawerElements;
+    int[] icons= {R.drawable.male80_2, R.drawable.make_payment_2, R.drawable.transfer_2,
+            R.drawable.map_2, R.drawable.dictionary_2, R.drawable.help_2};
+
+    CustomAdapter(Context context){
+        navDrawerElements = context.getResources().getStringArray(R.array.nav_drawer_elements);
+        this.context = context;
+    }
+
+    @Override
+    public int getCount() {
+        return navDrawerElements.length;
+    }
+
+    @Override
+    public Object getItem(int i) {
+        return navDrawerElements[i];
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return i;
+    }
+
+    @Override
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        View row = null;
+        if(view==null){
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            row = inflater.inflate(R.layout.navdrawer_row, viewGroup, false);
+        }
+        else{
+            row = view;
+        }
+
+        TextView titleTV = (TextView) row.findViewById(R.id.nav_drawer_tv);
+        ImageView titleIV = (ImageView) row.findViewById(R.id.nav_drawer_iv);
+
+        titleTV.setText(navDrawerElements[i]);
+        titleIV.setImageResource(icons[i]);
+        return row;
     }
 }
