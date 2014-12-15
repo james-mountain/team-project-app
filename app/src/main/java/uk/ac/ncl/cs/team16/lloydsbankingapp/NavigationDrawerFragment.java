@@ -288,6 +288,9 @@ class CustomAdapter extends BaseAdapter{
     int[] icons= {R.drawable.male80_2, R.drawable.make_payment_2, R.drawable.transfer_2,
             R.drawable.map_2, R.drawable.dictionary_2, R.drawable.help_2};
 
+//    int[] icons = {R.drawable.male80_2, R.drawable.male80_2, R.drawable.male80_2,
+//            R.drawable.male80_2, R.drawable.male80_2, R.drawable.male80_2};
+
     CustomAdapter(Context context){
         navDrawerElements = context.getResources().getStringArray(R.array.nav_drawer_elements);
         this.context = context;
