@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:padding="4dp"
+    android:padding="@dimen/half_margin"
     android:background="@drawable/nav_drawer_selector">
 
     <ImageView

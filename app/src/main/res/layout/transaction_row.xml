@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:text="Mr. Homer Agfdjoifl hgfjdhndfihodfj"
             android:id="@+id/payee_name"
-            android:textSize="@dimen/text_size_large"
+            android:textSize="@dimen/text_size_medium"
             android:layout_marginBottom="@dimen/half_margin"/>
 
         <TextView
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:text="+16.20"
             android:id="@+id/transaction_value"
-            android:textSize="@dimen/text_size_large"
+            android:textSize="@dimen/text_size_medium"
             android:layout_gravity="right"
             android:layout_marginBottom="@dimen/half_margin"
             />
