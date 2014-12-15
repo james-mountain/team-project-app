@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:padding="4dp">
+    android:padding="4dp"
+    android:background="@drawable/nav_drawer_selector">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -10,11 +11,11 @@
         android:id="@+id/nav_drawer_iv"/>
 
     <TextView
-        android:layout_margin="@dimen/half_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/nav_drawer_tv"
         android:text="gdfsijdfiodfg"
         style="@style/nav_drawer_style"
-        android:gravity="center"/>
+        android:layout_gravity="center_vertical"/>
 </LinearLayout>
