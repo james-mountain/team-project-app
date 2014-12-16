@@ -11,11 +11,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:id="@+id/welcome_layout"
-        android:background="@color/lloyds_green"
+        android:background="@drawable/congruent_pentagon"
         android:clickable="false"
 >
-
-
 
         <LinearLayout
             android:orientation="vertical"
