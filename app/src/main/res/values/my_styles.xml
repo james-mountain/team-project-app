@@ -10,4 +10,8 @@
         <item name="android:textSize">@dimen/text_size_medium</item>
     </style>
 
+    <style name="listview_style">
+        <item name="android:background">@drawable/listview_selector</item>
+    </style>
+
 </resources>

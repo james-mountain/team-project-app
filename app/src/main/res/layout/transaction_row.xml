@@ -5,7 +5,8 @@
     android:paddingTop="@dimen/lower_margin"
     android:paddingBottom="@dimen/lower_margin"
     android:paddingLeft="@dimen/lower_margin"
-    android:paddingRight="@dimen/lower_margin">
+    android:paddingRight="@dimen/lower_margin"
+    style="@style/listview_style">
 
     <LinearLayout
         android:orientation="vertical"
