@@ -28,5 +28,11 @@
     </string-array>
 
     <string name="transfer_from">From</string>
+    <string name="transfer_to">To</string>
+    <string name="transfer_name">Name</string>
+    <string name="transfer_sort">Sort code</string>
+    <string name="transfer_acc">Account no.</string>
+    <string name="transfer_amount">Amount</string>
+    <string name="transfer_message">Message</string>
 
 </resources>

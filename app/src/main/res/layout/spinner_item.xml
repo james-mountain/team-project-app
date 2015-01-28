@@ -9,3 +9,4 @@
     android:textColor="@color/black"
     android:padding="@dimen/half_margin"
     />
+

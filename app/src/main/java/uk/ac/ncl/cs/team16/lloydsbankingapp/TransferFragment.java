@@ -14,7 +14,7 @@ import android.widget.Spinner;
 public class TransferFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-    private Spinner accountChoice;
+    private Spinner accountFromChoice, accountToChoice;
     private String accountNames[] = {"Savers account 9000", "Student spender's"};
     public TransferFragment() {
         // Required empty public constructor
@@ -29,12 +29,12 @@ public class TransferFragment extends Fragment {
 
 
 
-        accountChoice = (Spinner) v.findViewById(R.id.account_choice);
+        accountFromChoice = (Spinner) v.findViewById(R.id.account_from_choice);
 
         ArrayAdapter<String> aa = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.spinner_item, accountNames);
         aa.setDropDownViewResource(R.layout.spinner_item);
 
-        accountChoice.setAdapter(aa);
+        accountFromChoice.setAdapter(aa);
 
         return v;
     }
