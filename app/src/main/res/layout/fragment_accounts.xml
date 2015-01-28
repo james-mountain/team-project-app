@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     tools:context="uk.ac.ncl.cs.team16.lloydsbankingapp.AccountsFragment"
     android:orientation="vertical"
->
+    >
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         android:id="@+id/welcome_layout"
         android:background="@drawable/congruent_pentagon"
         android:clickable="false"
->
+        >
 
         <LinearLayout
             android:orientation="vertical"

@@ -18,7 +18,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
 
-
     <string-array name="nav_drawer_elements">
         <item>Accounts</item>
         <item>Review Payments</item>
@@ -27,5 +26,7 @@
         <item>Dictionary &amp; Terms</item>
         <item>Help &amp; Guide</item>
     </string-array>
+
+    <string name="transfer_from">From</string>
 
 </resources>

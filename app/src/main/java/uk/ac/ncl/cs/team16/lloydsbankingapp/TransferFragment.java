@@ -7,13 +7,15 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 
 public class TransferFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-
+    private Spinner accountChoice;
+    private String accountNames[] = {"Savers account 9000", "Student spender's"};
     public TransferFragment() {
         // Required empty public constructor
     }
@@ -22,8 +24,19 @@ public class TransferFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_transfer, container, false);
+
+        View v = inflater.inflate(R.layout.fragment_transfer, container, false);
+
+
+
+        accountChoice = (Spinner) v.findViewById(R.id.account_choice);
+
+        ArrayAdapter<String> aa = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.spinner_item, accountNames);
+        aa.setDropDownViewResource(R.layout.spinner_item);
+
+        accountChoice.setAdapter(aa);
+
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
