@@ -1,6 +1,7 @@
 package uk.ac.ncl.cs.team16.lloydsbankingapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.database.DataSetObserver;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,9 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -56,7 +59,51 @@ public class AccountsFragment extends Fragment {
         lv = (ListView) v.findViewById(R.id.transaction_listview);
         lv.setAdapter(new CustomAdapter());
         setupWelcomeScreen(v);
+        setupSpinner();
+
         return v;
+    }
+
+
+    private void setupSpinner() {
+        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActivity().getActionBar().setDisplayShowCustomEnabled(true);
+
+        LayoutInflater inflator = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View vi = inflator.inflate(R.layout.spinner_layout, null);
+
+        Spinner s = (Spinner) vi.findViewById(R.id.spin);
+
+
+        /******* THIS ARRAYLIST SHOULD BE REMOVED AND REPLACED BY ONE PARSED FROM JSON ************/
+        ArrayList<String> spinnerlist = new ArrayList<String>();
+        spinnerlist.add("Savers 9000");
+        spinnerlist.add("Student spender's");
+
+        /********************************************************************************************/
+
+        ArrayAdapter<String> spinneradapter = new ArrayAdapter<String>(getActivity(), R.layout.actionbar_spinner_item, spinnerlist);
+
+        s.setAdapter(spinneradapter);
+
+        getActivity().getActionBar().setCustomView(vi);
+
+        spinneradapter.notifyDataSetChanged();
+
+
+
+        s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
     }
 
     private void addToList() {
@@ -120,6 +167,9 @@ public class AccountsFragment extends Fragment {
 
     @Override
     public void onDetach() {
+
+        getActivity().getActionBar().setDisplayHomeAsUpEnabled(false);
+        getActivity().getActionBar().setDisplayShowCustomEnabled(false);
         super.onDetach();
         mListener = null;
     }

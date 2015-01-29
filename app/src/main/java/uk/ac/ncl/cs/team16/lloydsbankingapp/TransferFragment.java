@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 
+
 public class TransferFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
@@ -25,7 +26,10 @@ public class TransferFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
+
         View v = inflater.inflate(R.layout.fragment_transfer, container, false);
+
 
 
 
@@ -38,6 +42,9 @@ public class TransferFragment extends Fragment {
 
         return v;
     }
+
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

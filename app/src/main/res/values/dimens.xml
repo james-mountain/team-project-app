@@ -10,5 +10,6 @@
     <dimen name="lower_margin">4dp</dimen>
     <dimen name="text_size_large">22dp</dimen>
     <dimen name="label_width">100dp</dimen>
+    <dimen name="text_size_small">16sp</dimen>
 
 </resources>
