@@ -17,6 +17,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="uk.ac.ncl.cs.team16.lloydsbankingapp.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
             android:name="uk.ac.ncl.cs.team16.lloydsbankingapp.HomeActivity"
             android:label="@string/title_activity_home" >
         </activity>

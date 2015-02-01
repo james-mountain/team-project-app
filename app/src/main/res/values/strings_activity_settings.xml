@@ -1,0 +1,9 @@
+<resources>
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_password_remember">Remember password</string>
+    <string name="pref_description_password_remember">Remember password for later (SECURITY RISK) </string>
+
+</resources>
