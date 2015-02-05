@@ -32,7 +32,8 @@
         android:id="@+id/passwordInput"
         android:hint="Enter your password"
         android:layout_below="@+id/describeInputPassword"
-        android:layout_alignLeft="@+id/describeInputPassword" />
+        android:layout_alignLeft="@+id/describeInputPassword"
+        android:layout_alignParentRight="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -42,7 +43,8 @@
         android:id="@+id/idInput"
         android:hint="Enter your username"
         android:layout_below="@+id/describeInputID"
-        android:layout_alignLeft="@+id/describeInputID" />
+        android:layout_alignLeft="@+id/describeInputID"
+        android:layout_alignParentRight="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -62,9 +64,9 @@
         android:text="Login"
         android:id="@+id/pageDescription"
         android:textColor="#ffffffff"
-        android:layout_alignBaseline="@+id/describeInputID"
-        android:layout_alignBottom="@+id/describeInputID"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/companyName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp" />
 
     <TextView
         android:layout_width="wrap_content"
