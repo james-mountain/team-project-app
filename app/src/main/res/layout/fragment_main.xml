@@ -20,7 +20,9 @@
         android:layout_marginTop="28dp"
         android:src="@drawable/horselogo"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:minWidth="100dp"
+        android:minHeight="100dp"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -28,10 +30,9 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/passwordInput"
-        android:hint="password"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true" />
+        android:hint="Enter your password"
+        android:layout_below="@+id/describeInputPassword"
+        android:layout_alignLeft="@+id/describeInputPassword" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -39,10 +40,48 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/idInput"
-        android:hint="User ID"
+        android:hint="Enter your username"
+        android:layout_below="@+id/describeInputID"
+        android:layout_alignLeft="@+id/describeInputID" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="LLOYDS BANK"
+        android:id="@+id/companyName"
         android:layout_below="@+id/imageView"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="71dp"
-        android:layout_alignParentRight="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffffffff"
+        android:textSize="28dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Login"
+        android:id="@+id/pageDescription"
+        android:textColor="#ffffffff"
+        android:layout_alignBaseline="@+id/describeInputID"
+        android:layout_alignBottom="@+id/describeInputID"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="User ID"
+        android:id="@+id/describeInputID"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/companyName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Password"
+        android:id="@+id/describeInputPassword"
+        android:layout_below="@+id/idInput"
+        android:layout_alignLeft="@+id/idInput" />
 
 </RelativeLayout>
