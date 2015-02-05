@@ -5,7 +5,7 @@
     android:background="#0000ffbb">
 
     <Button
-        android:layout_width="265dp"
+        android:layout_width="263dp"
         android:layout_height="wrap_content"
         android:text="Login"
         android:id="@+id/login_button"
