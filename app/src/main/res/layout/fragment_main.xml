@@ -5,14 +5,15 @@
     android:background="#0000ffbb">
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="265dp"
         android:layout_height="wrap_content"
         android:text="Login"
         android:id="@+id/login_button"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="96dp"
-        android:background="@drawable/green_button" />
+        android:background="@drawable/green_button"
+        android:layout_alignLeft="@+id/passwordInput" />
 
     <ImageView
         android:layout_width="wrap_content"
