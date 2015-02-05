@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="uk.ac.ncl.cs.team16.lloydsbankingapp.MainFragment"
-    android:background="#006A4D">
+    android:background="#0000ffbb">
 
     <Button
         android:layout_width="wrap_content"
@@ -11,7 +11,8 @@
         android:id="@+id/login_button"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="96dp" />
+        android:layout_marginBottom="96dp"
+        android:background="@drawable/green_button" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -33,7 +34,7 @@
         android:hint="Enter your password"
         android:layout_below="@+id/describeInputPassword"
         android:layout_alignLeft="@+id/describeInputPassword"
-        android:layout_alignParentRight="true" />
+        android:layout_alignRight="@+id/idInput" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -44,7 +45,7 @@
         android:hint="Enter your username"
         android:layout_below="@+id/describeInputID"
         android:layout_alignLeft="@+id/describeInputID"
-        android:layout_alignParentRight="true" />
+        android:layout_alignRight="@+id/companyName" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -54,8 +55,8 @@
         android:id="@+id/companyName"
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
-        android:textColor="#ffffffff"
-        android:textSize="28dp" />
+        android:textSize="28dp"
+        android:textColor="@color/lloyds_green" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -63,7 +64,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Login"
         android:id="@+id/pageDescription"
-        android:textColor="#ffffffff"
+        android:textColor="@color/lloyds_green"
         android:layout_below="@+id/companyName"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="29dp" />
