@@ -26,7 +26,7 @@
         android:minHeight="100dp"/>
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="10"
@@ -37,15 +37,15 @@
         android:layout_alignRight="@+id/idInput" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:ems="10"
         android:id="@+id/idInput"
         android:hint="Enter your username"
         android:layout_below="@+id/describeInputID"
-        android:layout_alignLeft="@+id/describeInputID"
-        android:layout_alignRight="@+id/companyName" />
+        android:layout_alignLeft="@+id/describeInputPassword"
+        android:layout_marginRight="50dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -85,6 +85,6 @@
         android:text="Password"
         android:id="@+id/describeInputPassword"
         android:layout_below="@+id/idInput"
-        android:layout_alignLeft="@+id/idInput" />
+        android:layout_alignLeft="@+id/describeInputID" />
 
 </RelativeLayout>
