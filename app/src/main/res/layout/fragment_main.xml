@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="uk.ac.ncl.cs.team16.lloydsbankingapp.MainFragment"
-    android:background="@color/login_background">
+    android:background="@color/almost_white">
 
     <Button
         android:layout_width="@dimen/login_widget_width"
@@ -12,9 +12,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="96dp"
-        android:background="@drawable/green_button"
         android:layout_alignLeft="@+id/passwordInput"
-        android:textColor="@color/white" />
+        style="@style/button_style"/>
 
     <ImageView
         android:layout_width="wrap_content"

@@ -59,6 +59,7 @@
         android:id="@+id/transaction_listview"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="0dp"
-        android:layout_below="@+id/welcome_layout"/>
+        android:layout_below="@+id/welcome_layout"
+        android:background="@color/almost_white"/>
 
 </RelativeLayout>

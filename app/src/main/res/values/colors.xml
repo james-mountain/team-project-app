@@ -6,6 +6,5 @@
     <color name="lighter_green">#ff20b58c</color>
     <color name="action_bar_black">#ff222222</color>
     <color name="lighter_black">#ff545454</color>
-    <color name="almost_white">#fffafafa</color>
-    <color name="login_background">#0000ffbb</color>
+    <color name="almost_white">#fff1f1f1</color>
 </resources>
