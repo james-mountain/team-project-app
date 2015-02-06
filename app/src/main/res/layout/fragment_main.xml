@@ -1,19 +1,9 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="uk.ac.ncl.cs.team16.lloydsbankingapp.MainFragment"
-    android:background="@color/almost_white">
-
-    <Button
-        android:layout_width="@dimen/login_widget_width"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:id="@+id/login_button"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="96dp"
-        android:layout_alignLeft="@+id/passwordInput"
-        style="@style/button_style"/>
+    android:background="@color/almost_white"
+    android:orientation="vertical">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -21,32 +11,10 @@
         android:id="@+id/imageView"
         android:layout_marginTop="28dp"
         android:src="@drawable/horselogo"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:minWidth="100dp"
-        android:minHeight="100dp"/>
-
-    <EditText
-        android:layout_width="@dimen/login_widget_width"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/passwordInput"
-        android:hint="Enter your password"
-        android:layout_below="@+id/describeInputPassword"
-        android:layout_alignLeft="@+id/describeInputPassword"
-        android:layout_alignRight="@+id/idInput" />
-
-    <EditText
-        android:layout_width="@dimen/login_widget_width"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/idInput"
-        android:hint="Enter your username"
-        android:layout_below="@+id/describeInputID"
-        android:layout_alignLeft="@+id/describeInputPassword"
-        android:layout_marginRight="50dp" />
+        android:minHeight="100dp"
+        android:layout_gravity="center_horizontal" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -54,10 +22,10 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="LLOYDS BANK"
         android:id="@+id/companyName"
-        android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
         android:textSize="28dp"
-        android:textColor="@color/lloyds_green" />
+        android:textColor="@color/lloyds_green"
+        android:layout_gravity="center_horizontal" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -66,9 +34,9 @@
         android:text="Login"
         android:id="@+id/pageDescription"
         android:textColor="@color/lloyds_green"
-        android:layout_below="@+id/companyName"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="29dp" />
+        android:layout_marginTop="29dp"
+        android:layout_gravity="center_horizontal" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -76,16 +44,45 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="User ID"
         android:id="@+id/describeInputID"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/companyName" />
+        android:textSize="@dimen/text_size_medium"
+        android:layout_marginLeft="@dimen/login_widget_marginLeft"
+        android:layout_marginTop="60dp" />
+
+    <EditText
+        android:layout_width="@dimen/login_widget_width"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/idInput"
+        android:hint="Enter your username"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Password"
+        android:layout_marginLeft="@dimen/login_widget_marginLeft"
         android:id="@+id/describeInputPassword"
-        android:layout_below="@+id/idInput"
-        android:layout_alignLeft="@+id/describeInputID" />
+        android:textSize="@dimen/text_size_medium" />
 
-</RelativeLayout>
+    <EditText
+        android:layout_width="@dimen/login_widget_width"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/passwordInput"
+        android:hint="Enter your password"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="15dp"/>
+
+    <Button
+        android:layout_width="@dimen/login_widget_width"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:id="@+id/login_button"
+        style="@style/button_style"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>
