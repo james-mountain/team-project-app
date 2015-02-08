@@ -1,17 +1,19 @@
+/**
+ * Supply login information to access the restricted part of the app
+ * @author Shawkat Al-Baghdadi, Aleksander Antoniewicz
+ * @version 1.0
+ */
 package uk.ac.ncl.cs.team16.lloydsbankingapp;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 
 public class MainFragment extends Fragment {
@@ -28,7 +30,10 @@ public class MainFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_main, container, false);
         loginButton = (Button) v.findViewById(R.id.login_button);
+
+        //separate the listeners from onCreateView
         listeners();
+
         return v;
     }
 

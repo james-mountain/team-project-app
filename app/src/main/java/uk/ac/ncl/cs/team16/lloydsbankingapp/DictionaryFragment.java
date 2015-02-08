@@ -1,3 +1,10 @@
+/**
+ * Display the dictionary
+ * @author James Mountain, Aleksander Antoniewicz
+ * @version 0.9
+ *
+ */
+
 package uk.ac.ncl.cs.team16.lloydsbankingapp;
 
 import android.app.Activity;
@@ -103,12 +110,6 @@ public class DictionaryFragment extends Fragment {
         return dictionaryView;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
     public void onAttach(Activity activity) {

@@ -1,7 +1,10 @@
 package uk.ac.ncl.cs.team16.lloydsbankingapp;
 
 /**
- * Created by James Mountain on 29/01/2015.
+ * Date: 29/01/2015
+ * @author James Mountain
+ * @version 1.0
+ *
  */
 public class DictionaryEntry {
     private String entryName;

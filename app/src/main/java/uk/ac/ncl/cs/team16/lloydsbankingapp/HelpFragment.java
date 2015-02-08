@@ -1,3 +1,10 @@
+/**
+ * Display help information about the application
+ * @author Aleksander Antoniewicz
+ * @version 1.0
+ *
+ */
+
 package uk.ac.ncl.cs.team16.lloydsbankingapp;
 
 import android.app.Activity;
@@ -31,12 +38,6 @@ public class HelpFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_help, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
     public void onAttach(Activity activity) {

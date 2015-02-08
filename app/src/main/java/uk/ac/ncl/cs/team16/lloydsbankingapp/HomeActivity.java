@@ -1,3 +1,9 @@
+/**
+ * Display a proper fragment depending on the user choice in the nav drawer
+ * @author Aleksander Antoniewicz
+ * @version 1.0
+ */
+
 package uk.ac.ncl.cs.team16.lloydsbankingapp;
 
 import android.app.Activity;
@@ -41,7 +47,9 @@ public class HomeActivity extends Activity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
+
         // update the main content by replacing fragments
+        //THIS IS A CAVEMAN APPROACH AND SHALL BE CHANGED BEFORE FINAL SUBMISSION TO NESS
         Fragment fragment = null;
         FragmentManager fragmentManager = getFragmentManager();
         switch (position){
@@ -84,28 +92,6 @@ public class HomeActivity extends Activity
                 .commit();
     }
 
-//    public void onSectionAttached(int number) {
-//        switch (number) {
-//            case 1:
-//                mTitle = getString(R.string.title_drawer_accounts);
-//                break;
-//            case 2:
-//                mTitle = getString(R.string.title_drawer_review_payments);
-//                break;
-//            case 3:
-//                mTitle = getString(R.string.title_drawer_transfer);
-//                break;
-//            case 4:
-//                mTitle = getString(R.string.title_drawer_find_atm);
-//                break;
-//            case 5:
-//                mTitle = getString(R.string.title_drawer_dictionary);
-//                break;
-//            case 6:
-//                mTitle = getString(R.string.title_drawer_help);
-//                break;
-//        }
-//    }
 
     public void restoreActionBar() {
         ActionBar actionBar = getActionBar();

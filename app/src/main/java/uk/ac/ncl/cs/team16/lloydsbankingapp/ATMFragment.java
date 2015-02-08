@@ -1,3 +1,11 @@
+/**
+ * Enable user to search for a branch or ATM based on Google Maps and current locations
+ *
+ * @author Aleksander Antoniewicz
+ * @version 0.1
+ *
+ */
+
 package uk.ac.ncl.cs.team16.lloydsbankingapp;
 
 import android.app.Activity;
@@ -27,12 +35,6 @@ public class ATMFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_atm, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
     public void onAttach(Activity activity) {

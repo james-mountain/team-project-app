@@ -1,3 +1,9 @@
+/**
+ * Define the behaviour of the navigation drawer
+ * @author Aleksander Antoniewicz
+ * @version 1.0
+ */
+
 package uk.ac.ncl.cs.team16.lloydsbankingapp;
 
 
@@ -19,18 +25,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-/**
- * Fragment used for managing interactions for and presentation of a navigation drawer.
- * See the <a href="https://developer.android.com/design/patterns/navigation-drawer.html#Interaction">
- * design guidelines</a> for a complete explanation of the behaviors implemented here.
- */
+
 public class NavigationDrawerFragment extends Fragment {
      /**
      * Remember the position of the selected item.
@@ -280,6 +281,13 @@ public class NavigationDrawerFragment extends Fragment {
     }
 }
 
+
+/**
+ * Custom navigation drawer listview adapter
+ * @author Aleksander Antoniewicz
+ * @version 1.0
+ *
+ */
 class CustomAdapter extends BaseAdapter{
 
     private Context context;
