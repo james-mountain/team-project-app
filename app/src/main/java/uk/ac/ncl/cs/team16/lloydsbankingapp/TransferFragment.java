@@ -1,3 +1,9 @@
+/**
+ * Transfer funds to another account
+ * @author Aleksander Antoniewicz
+ * @version 0.5
+ */
+
 package uk.ac.ncl.cs.team16.lloydsbankingapp;
 
 import android.app.Activity;
@@ -16,6 +22,8 @@ public class TransferFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private Spinner accountFromChoice, accountToChoice;
+
+    //Temporary account options array
     private String accountNames[] = {"Savers account 9000", "Student spender's"};
     public TransferFragment() {
         // Required empty public constructor
@@ -26,13 +34,10 @@ public class TransferFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
-
         View v = inflater.inflate(R.layout.fragment_transfer, container, false);
 
 
-
-
+        //setup the spinners
         accountFromChoice = (Spinner) v.findViewById(R.id.account_from_choice);
 
         ArrayAdapter<String> aa = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.spinner_item, accountNames);
