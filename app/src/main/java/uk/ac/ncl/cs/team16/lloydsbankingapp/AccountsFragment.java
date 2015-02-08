@@ -1,8 +1,14 @@
+/**
+ * Displays information about accounts and their history.
+ * @author Aleksander Antoniewicz
+ * @version 1.0
+ *
+ */
+
 package uk.ac.ncl.cs.team16.lloydsbankingapp;
 
 import android.app.Activity;
 import android.content.Context;
-import android.database.DataSetObserver;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -12,12 +18,10 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
 
 import java.lang.reflect.Field;
 import java.text.DateFormat;
@@ -32,9 +36,15 @@ public class AccountsFragment extends Fragment {
 
     private ListView lv;
     private OnFragmentInteractionListener mListener;
+
+    //account owner name
     private String name = "John";
+
+    //temp balance var
     private int balance = 120;
     private GregorianCalendar c;
+
+    //temporarily one transaction list
     private List<Transaction> transactionList;
 
 
@@ -46,18 +56,17 @@ public class AccountsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 
         transactionList = new ArrayList<Transaction>();
         addToList();
         setupMenu();
-
 
         c = new GregorianCalendar();
 
         View v = inflater.inflate(R.layout.fragment_accounts, container, false);
         lv = (ListView) v.findViewById(R.id.transaction_listview);
         lv.setAdapter(new CustomAdapter());
+
         setupWelcomeScreen(v);
         setupSpinner();
 
@@ -65,6 +74,9 @@ public class AccountsFragment extends Fragment {
     }
 
 
+    /**
+     * Set the spinner in the actionbar
+     */
     private void setupSpinner() {
         getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
         getActivity().getActionBar().setDisplayShowCustomEnabled(true);
@@ -106,6 +118,10 @@ public class AccountsFragment extends Fragment {
 
     }
 
+
+    /**
+     * Add the transaction to a list (works for the mockup only)
+     */
     private void addToList() {
         transactionList.add(new Transaction("Homer Simpson Industry Co. Ltd.", "26/10/2014", "1245.10", "+20.00"));
         transactionList.add(new Transaction("Alor Anfosdijgnhnjmpd", "26/11/2014", "20.00", "-20.00"));
@@ -116,6 +132,12 @@ public class AccountsFragment extends Fragment {
         transactionList.add(new Transaction("WM Morrison Supermarkets PLC", "20/01/2013", "-10.00", "+15.29"));
     }
 
+
+    /**
+     * Custom adapter for the listview of transactions
+     * @author Aleksander Antoniewicz
+     * @version 1.0
+     */
     class CustomAdapter extends ArrayAdapter<Transaction>{
         CustomAdapter(){
             super(getActivity(), R.layout.transaction_row, R.id.payee_name, transactionList);
@@ -136,6 +158,11 @@ public class AccountsFragment extends Fragment {
         }
     }
 
+
+    /**
+     * Setup the green welcome screen
+     * @param v Accounts fragment xml file
+     */
     private void setupWelcomeScreen(View v) {
         TextView welcomeTV, balanceTV, dateTv;
         welcomeTV = (TextView) v.findViewById(R.id.welcome_tv);
@@ -148,11 +175,7 @@ public class AccountsFragment extends Fragment {
         dateTv.setText(df.format(c.getTime()));
     }
 
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
+
 
     @Override
     public void onAttach(Activity activity) {
@@ -165,28 +188,34 @@ public class AccountsFragment extends Fragment {
         }
     }
 
+
+
     @Override
     public void onDetach() {
 
+        //Remove the spinner from the actionbar
         getActivity().getActionBar().setDisplayHomeAsUpEnabled(false);
         getActivity().getActionBar().setDisplayShowCustomEnabled(false);
         super.onDetach();
         mListener = null;
     }
 
-            public void setupMenu() {
-            try {
-                ViewConfiguration config = ViewConfiguration.get(getActivity());
-                Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
-                if (menuKeyField != null) {
-                    menuKeyField.setAccessible(true);
-                    menuKeyField.setBoolean(config, false);
-                }
-            } catch (Exception ex) {
-                // Ignore
+    /**
+     * To setup the menu?
+     */
+    public void setupMenu() {
+        try {
+            ViewConfiguration config = ViewConfiguration.get(getActivity());
+            Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+            if (menuKeyField != null) {
+                menuKeyField.setAccessible(true);
+                menuKeyField.setBoolean(config, false);
             }
+        } catch (Exception ex) {
+            // Ignore
         }
-
+    }
+    //
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
