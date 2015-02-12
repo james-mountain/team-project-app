@@ -37,23 +37,28 @@ public class DictionaryFragment extends Fragment {
         // Required empty public constructor
     }
 
+    /*
+    Creates a HashMap that will get used by the adapter to bring all the entries into the ListView.
+     */
     private List<Map<String,String>> rebuildDictionary(String searchPattern) {
         List<Map<String, String>> dictionaryMapList = new ArrayList<Map<String, String>>();
         for (DictionaryEntry entry : dictionaryEntries) {
             Map<String, String> dictionaryMap = new HashMap<String, String>();
             String entryName = entry.getEntryName();
-            int searchLength = Math.min(searchPattern.length(), entryName.length());
-            if (!searchPattern.equals("")) {
+            int searchLength = Math.min(searchPattern.length(), entryName.length()); // Failure to define this can result in a null pointer exception
+            if (!searchPattern.equals("")) { // A dictionary search of sorts, like a RadixSort
                 if (!searchPattern.toLowerCase().equals(entryName.toLowerCase().substring(0, searchLength))) {
                     continue;
                 }
             }
 
+            // Some key fields for the adapter.
             dictionaryMap.put("name", entry.getEntryName());
             dictionaryMap.put("desc", entry.getEntryDescription());
             dictionaryMapList.add(dictionaryMap);
         }
 
+        // Finally sort the new list of maps, unfortunately we must use a comparator since the data structure is complex
         Collections.sort(dictionaryMapList, new Comparator<Map<String, String>>() {
             @Override
             public int compare(Map<String, String> map1, Map<String, String> map2) {
@@ -64,6 +69,10 @@ public class DictionaryFragment extends Fragment {
         return dictionaryMapList;
     }
 
+    // Some temp entries, backend data of the dictionary will be pulled in here, if the backend is going to be used with dictionary.
+    /*
+    Add all the entries to the list of entries to be used by the dictionary.
+     */
     private void populateDictionary() {
         dictionaryEntries.add(new DictionaryEntry("Interest", "Interest is a payment by the bank for your deposit."));
         dictionaryEntries.add(new DictionaryEntry("Overdraft", "An extra amount of available money below £0. This is not unlimited."));
@@ -79,12 +88,14 @@ public class DictionaryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View dictionaryView = inflater.inflate(R.layout.fragment_dictionary, container, false);
+        dictionarySearchResults = (ListView) dictionaryView.findViewById(R.id.dictionarySearchRes);// Set it to the entire dictionary list, initially
         dictionaryEntries = new ArrayList<DictionaryEntry>();
         populateDictionary();
 
-        dictionarySearchResults = (ListView) dictionaryView.findViewById(R.id.dictionarySearchRes);// Set it to the entire dictionary list, initially
+        // Some fixed assignments to be used with simple adapter
         final String[] resource = {"name", "desc"};
         final int[] location = {android.R.id.text1, android.R.id.text2};
+        // We use of a simple adapter because it can make use of the second text field for the entry description
         SimpleAdapter adapter = new SimpleAdapter(getActivity(), rebuildDictionary(""), android.R.layout.simple_list_item_2, resource, location);
         dictionarySearchResults.setAdapter(adapter);
 
@@ -92,18 +103,19 @@ public class DictionaryFragment extends Fragment {
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence cs, int i, int i2, int i3) {
-                // REQUIRED
+                // This is a required override, but isn't used
             }
 
             @Override
             public void onTextChanged(CharSequence cs, int i, int i2, int i3) {
+                // Here we actually do the rebuilding of the list, the rebuild dictionary method is called and it regenerates the map to be used with the adapter.
                 SimpleAdapter searchAdapter = new SimpleAdapter(getActivity(), rebuildDictionary(searchBar.getText().toString()), android.R.layout.simple_list_item_2, resource, location);
                 dictionarySearchResults.setAdapter(searchAdapter);
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-                //ALSO REQUIRED
+                // This is a required override, but isn't used
             }
         });
 
