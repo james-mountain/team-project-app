@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/lower_margin"
+    android:paddingBottom="@dimen/lower_margin"
+    android:paddingLeft="@dimen/lower_margin"
+    android:paddingRight="@dimen/lower_margin"
+    style="@style/listview_style">
+
+    <FrameLayout
+        android:layout_width="45dp"
+        android:layout_height="fill_parent"
+        android:id="@+id/paymentNumber"
+        android:layout_marginLeft="@dimen/half_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:id="@+id/paymentNumberText"
+            android:textSize="@dimen/text_size_medium"
+            android:textColor="@android:color/darker_gray" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="220dp"
+        android:layout_height="60dp"
+        android:id="@+id/payee">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="John Smith"
+            android:textSize="@dimen/text_size_medium"
+            android:layout_marginBottom="@dimen/half_margin"
+            android:id="@+id/payeeText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1/1/13"
+            android:textSize="@dimen/text_size_medium"
+            android:textColor="@android:color/darker_gray"
+            android:id="@+id/payeeDateText"
+            android:layout_below="@id/payeeText"
+            android:layout_gravity="bottom" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/paymentAmount">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="£20.00"
+            android:id="@+id/paymentAmountText"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/half_margin"
+            android:textSize="@dimen/text_size_large" />
+    </FrameLayout>
+</LinearLayout>
