@@ -4,7 +4,7 @@
  * @version 1.0
  */
 
-package uk.ac.ncl.cs.team16.lloydsbankingapp;
+package uk.ac.ncl.cs.team16.lloydsbankingapp.Activities;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -19,6 +19,8 @@ import android.preference.PreferenceManager;
 
 
 import java.util.List;
+
+import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 
 
 public class SettingsActivity extends PreferenceActivity {

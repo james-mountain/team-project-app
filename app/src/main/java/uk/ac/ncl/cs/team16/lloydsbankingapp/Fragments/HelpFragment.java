@@ -1,12 +1,11 @@
 /**
- * Enable user to search for a branch or ATM based on Google Maps and current locations
- *
+ * Display help information about the application
  * @author Aleksander Antoniewicz
- * @version 0.1
+ * @version 1.0
  *
  */
 
-package uk.ac.ncl.cs.team16.lloydsbankingapp;
+package uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments;
 
 import android.app.Activity;
 import android.net.Uri;
@@ -16,13 +15,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 
 
-public class ATMFragment extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {@link HelpFragment.OnFragmentInteractionListener} interface
+ * to handle interaction events.
+ */
+public class HelpFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public ATMFragment() {
+    public HelpFragment() {
         // Required empty public constructor
     }
 
@@ -31,8 +37,7 @@ public class ATMFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        setRetainInstance(true);
-        return inflater.inflate(R.layout.fragment_atm, container, false);
+        return inflater.inflate(R.layout.fragment_help, container, false);
     }
 
 
@@ -52,6 +57,7 @@ public class ATMFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name

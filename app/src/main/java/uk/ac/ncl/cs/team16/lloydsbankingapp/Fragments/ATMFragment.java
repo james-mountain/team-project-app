@@ -1,10 +1,12 @@
 /**
- * Transfer funds to another account
+ * Enable user to search for a branch or ATM based on Google Maps and current locations
+ *
  * @author Aleksander Antoniewicz
- * @version 0.5
+ * @version 0.1
+ *
  */
 
-package uk.ac.ncl.cs.team16.lloydsbankingapp;
+package uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments;
 
 import android.app.Activity;
 import android.net.Uri;
@@ -13,19 +15,15 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+
+import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 
 
-
-public class TransferFragment extends Fragment {
+public class ATMFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-    private Spinner accountFromChoice, accountToChoice;
 
-    //Temporary account options array
-    private String accountNames[] = {"Savers account 9000", "Student spender's"};
-    public TransferFragment() {
+    public ATMFragment() {
         // Required empty public constructor
     }
 
@@ -33,30 +31,11 @@ public class TransferFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View v = inflater.inflate(R.layout.fragment_transfer, container, false);
-
-
-        //setup the spinners
-        accountFromChoice = (Spinner) v.findViewById(R.id.account_from_choice);
-
-        ArrayAdapter<String> aa = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.spinner_item, accountNames);
-        aa.setDropDownViewResource(R.layout.spinner_item);
-
-        accountFromChoice.setAdapter(aa);
-
-        return v;
+        // Inflate the layout for this fragment
+        setRetainInstance(true);
+        return inflater.inflate(R.layout.fragment_atm, container, false);
     }
 
-
-
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
     public void onAttach(Activity activity) {
@@ -74,7 +53,6 @@ public class TransferFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name

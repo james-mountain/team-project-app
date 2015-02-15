@@ -4,7 +4,7 @@
  * @version 1.0
  */
 
-package uk.ac.ncl.cs.team16.lloydsbankingapp;
+package uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments;
 
 
 import android.app.Activity;
@@ -30,6 +30,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 
 
 public class NavigationDrawerFragment extends Fragment {
