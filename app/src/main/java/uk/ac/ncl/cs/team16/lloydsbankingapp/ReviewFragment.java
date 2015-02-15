@@ -1,6 +1,6 @@
 /**
- * Review payments. Nobody knows what to put here.
- * @author Aleksander Antoniewicz
+ * Review payments. Maybe we have a vague idea!
+ * @author Aleksander Antoniewicz, James Mountain
  * @version 0.0.0.0.1
  */
 
@@ -14,8 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TabHost;
 import android.widget.TextView;
 
 import java.text.DateFormat;
@@ -40,12 +40,19 @@ public class ReviewFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View reviewView = inflater.inflate(R.layout.fragment_review, container, false); // This will work by using a spinner to inflate different fragments
-        ListView paymentsListView = (ListView) reviewView.findViewById(R.id.reviewList);
+        ListView paymentsListView = (ListView) reviewView.findViewById(R.id.payeeListView);
+        TabHost tabHost = (TabHost) reviewView.findViewById(R.id.tabHost);
+        tabHost.setup();
+        tabHost.addTab(tabHost.newTabSpec("payees").setIndicator("Payees").setContent(R.id.payeeTab));
+        tabHost.addTab(tabHost.newTabSpec("standingorders").setIndicator("Standing Orders").setContent(R.id.standingTab));
+        tabHost.addTab(tabHost.newTabSpec("directdebits").setIndicator("Direct Debits").setContent(R.id.debitTab));
 
         payments = new ArrayList<Payment>();
         payments.add(new Payment(342, "Rob Robertson", new GregorianCalendar(2010, 05, 10), "33.00"));
         payments.add(new Payment(20, "Thomas Tommyson", new GregorianCalendar(2013, 03, 16), "11.57"));
         paymentsListView.setAdapter(new PaymentAdapter());
+
+        tabHost.setCurrentTab(0);
         return reviewView;
     }
 
