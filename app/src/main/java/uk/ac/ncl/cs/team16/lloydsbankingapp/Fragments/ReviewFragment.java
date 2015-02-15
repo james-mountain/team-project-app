@@ -4,7 +4,7 @@
  * @version 0.0.0.0.1
  */
 
-package uk.ac.ncl.cs.team16.lloydsbankingapp;
+package uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments;
 
 import android.app.Activity;
 import android.net.Uri;
@@ -23,6 +23,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
+
+import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Payment;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 
 
 public class ReviewFragment extends Fragment {

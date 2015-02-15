@@ -5,7 +5,7 @@
  *
  */
 
-package uk.ac.ncl.cs.team16.lloydsbankingapp;
+package uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments;
 
 import android.app.Activity;
 import android.content.Context;
@@ -30,6 +30,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
+
+import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Transaction;
 
 
 public class AccountsFragment extends Fragment {

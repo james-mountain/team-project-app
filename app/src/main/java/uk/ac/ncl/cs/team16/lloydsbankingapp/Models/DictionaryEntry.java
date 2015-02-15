@@ -1,4 +1,4 @@
-package uk.ac.ncl.cs.team16.lloydsbankingapp;
+package uk.ac.ncl.cs.team16.lloydsbankingapp.Models;
 
 /**
  * Date: 29/01/2015

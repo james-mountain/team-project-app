@@ -5,7 +5,7 @@
  *
  */
 
-package uk.ac.ncl.cs.team16.lloydsbankingapp;
+package uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments;
 
 import android.app.Activity;
 import android.net.Uri;
@@ -26,6 +26,9 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.DictionaryEntry;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 
 public class DictionaryFragment extends Fragment {
 

@@ -1,11 +1,11 @@
-package uk.ac.ncl.cs.team16.lloydsbankingapp;
+package uk.ac.ncl.cs.team16.lloydsbankingapp.Activities;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+
+import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.MainFragment;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 
 public class MainActivity extends Activity implements MainFragment.OnFragmentInteractionListener{
 
