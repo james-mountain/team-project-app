@@ -13,5 +13,6 @@
     <dimen name="text_size_small">16sp</dimen>
     <dimen name="login_widget_width">260dp</dimen>
     <dimen name="login_widget_marginLeft">60dp</dimen>
+    <dimen name="login_widget_marginTop">20dp</dimen>
 
 </resources>

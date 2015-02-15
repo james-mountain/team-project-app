@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="40dp"
         android:src="@drawable/horselogo"
         android:layout_centerHorizontal="true"
         android:minWidth="100dp"
@@ -23,7 +23,7 @@
         android:text="LLOYDS BANK"
         android:id="@+id/companyName"
         android:layout_centerHorizontal="true"
-        android:textSize="28dp"
+        android:textSize="32dp"
         android:textColor="@color/lloyds_green"
         android:layout_gravity="center_horizontal" />
 
@@ -32,21 +32,12 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Login"
+        android:textSize="26dp"
         android:id="@+id/pageDescription"
         android:textColor="@color/lloyds_green"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="45dp"
         android:layout_gravity="center_horizontal" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="User ID"
-        android:id="@+id/describeInputID"
-        android:textSize="@dimen/text_size_medium"
-        android:layout_marginLeft="@dimen/login_widget_marginLeft"
-        android:layout_marginTop="60dp" />
 
     <EditText
         android:layout_width="@dimen/login_widget_width"
@@ -54,18 +45,9 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/idInput"
-        android:hint="Enter your username"
+        android:hint="Enter your user ID"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Password"
-        android:layout_marginLeft="@dimen/login_widget_marginLeft"
-        android:id="@+id/describeInputPassword"
-        android:textSize="@dimen/text_size_medium" />
+        android:layout_marginTop="45dp" />
 
     <EditText
         android:layout_width="@dimen/login_widget_width"
@@ -75,7 +57,7 @@
         android:id="@+id/passwordInput"
         android:hint="Enter your password"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="15dp"/>
+        android:layout_marginTop="@dimen/login_widget_marginTop" />
 
     <Button
         android:layout_width="@dimen/login_widget_width"
@@ -83,6 +65,7 @@
         android:text="Login"
         android:id="@+id/login_button"
         style="@style/button_style"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/login_widget_marginTop" />
 
 </LinearLayout>
