@@ -1,10 +1,12 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.HelpFragment">
+    tools:context="uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.HelpFragment"
+    android:orientation="vertical" >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="HELP" />
 
-</FrameLayout>
+
+
+</LinearLayout>
