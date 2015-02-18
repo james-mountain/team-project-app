@@ -27,6 +27,8 @@ import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 public class HelpFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
+    private String[] helpOptions = {"How to reset online login credentials", "How to log out of you account",
+            "Leave feedback"};
 
     public HelpFragment() {
         // Required empty public constructor
