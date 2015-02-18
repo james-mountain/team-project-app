@@ -1,74 +1,80 @@
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_centerVertical="true"
     tools:context="uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.MainFragment"
-    android:background="@color/almost_white"
-    android:orientation="vertical">
+    android:background="@color/almost_white">
 
-    <ImageView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/horselogo"
-        android:layout_centerHorizontal="true"
-        android:minWidth="100dp"
-        android:minHeight="100dp"
-        android:layout_gravity="center_horizontal" />
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="LLOYDS BANK"
-        android:id="@+id/companyName"
-        android:layout_centerHorizontal="true"
-        android:textSize="32dp"
-        android:textColor="@color/lloyds_green"
-        android:layout_gravity="center_horizontal" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:src="@drawable/horselogo"
+            android:layout_centerHorizontal="true"
+            android:minWidth="100dp"
+            android:minHeight="100dp"
+            android:layout_gravity="center_horizontal" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Login"
-        android:textSize="26dp"
-        android:id="@+id/pageDescription"
-        android:textColor="@color/lloyds_green"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp"
-        android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="LLOYDS BANK"
+            android:id="@+id/companyName"
+            android:layout_centerHorizontal="true"
+            android:textSize="32dp"
+            android:textColor="@color/lloyds_green"
+            android:layout_gravity="center_horizontal" />
 
-    <EditText
-        android:layout_width="@dimen/login_widget_width"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/idInput"
-        android:hint="Enter your user ID"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="45dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Login"
+            android:textSize="26dp"
+            android:id="@+id/pageDescription"
+            android:textColor="@color/lloyds_green"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="45dp"
+            android:layout_gravity="center_horizontal" />
 
-    <EditText
-        android:layout_width="@dimen/login_widget_width"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/passwordInput"
-        android:hint="Enter your password"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/login_widget_marginTop" />
+        <EditText
+            android:layout_width="@dimen/login_widget_width"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/idInput"
+            android:hint="Enter your user ID"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="45dp" />
 
-    <Button
-        android:layout_width="@dimen/login_widget_width"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:id="@+id/login_button"
-        style="@style/button_style"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/login_widget_marginTop" />
+        <EditText
+            android:layout_width="@dimen/login_widget_width"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/passwordInput"
+            android:hint="Enter your password"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/login_widget_marginTop" />
 
-</LinearLayout>
+        <Button
+            android:layout_width="@dimen/login_widget_width"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:id="@+id/login_button"
+            style="@style/button_style"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/login_widget_marginTop" />
+
+    </LinearLayout>
+
+</RelativeLayout>
