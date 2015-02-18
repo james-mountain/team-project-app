@@ -2,15 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:paddingTop="@dimen/lower_margin"
-    android:paddingBottom="@dimen/lower_margin"
-    android:paddingLeft="@dimen/lower_margin"
-    android:paddingRight="@dimen/lower_margin"
     style="@style/listview_style">
 
     <FrameLayout
         android:layout_width="72dp"
-        android:layout_height="42dp"
+        android:layout_height="72dp"
         android:id="@+id/paymentNumber">
 
         <TextView
@@ -22,34 +18,46 @@
             android:textColor="@android:color/darker_gray"
             android:layout_gravity="left|center_vertical"
             android:layout_marginLeft="16dp" />
+
     </FrameLayout>
 
     <FrameLayout
-        android:layout_width="200dp"
-        android:layout_height="42dp"
-        android:id="@+id/payee">
+        android:layout_width="190dp"
+        android:layout_height="72dp"
+        android:id="@+id/payeeframe">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="John Smith"
-            android:textSize="16sp"
-            android:id="@+id/payeeText" />
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/payee">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1/1/13"
-            android:textSize="14sp"
-            android:textColor="@android:color/darker_gray"
-            android:id="@+id/payeeDateText"
-            android:layout_below="@id/payeeText"
-            android:layout_gravity="bottom" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="John Smith"
+                android:textSize="16sp"
+                android:id="@+id/payeeText"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentTop="false"
+                android:paddingTop="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1/1/13"
+                android:textSize="14sp"
+                android:textColor="@android:color/darker_gray"
+                android:id="@+id/payeeDateText"
+                android:layout_gravity="bottom"
+                android:layout_below="@+id/payeeText"
+                android:layout_alignParentLeft="true"
+            />
+        </RelativeLayout>
     </FrameLayout>
 
     <FrameLayout
         android:layout_width="fill_parent"
-        android:layout_height="42dp"
+        android:layout_height="72dp"
         android:id="@+id/paymentAmount">
 
         <TextView
@@ -59,6 +67,7 @@
             android:id="@+id/paymentAmountText"
             android:layout_gravity="center_vertical|right"
             android:layout_marginRight="16dp"
-            android:textSize="20sp" />
+            android:textSize="19sp" />
     </FrameLayout>
+
 </LinearLayout>

@@ -16,24 +16,22 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.DictionaryEntry;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 
 public class DictionaryFragment extends Fragment {
 
-    private ListView dictionarySearchResults;
-    private List<DictionaryEntry> dictionaryEntries;
+    private final List<DictionaryEntry> dictionaryEntries = new ArrayList<DictionaryEntry>(); //This is a fixed set for now
     private OnFragmentInteractionListener mListener;
 
     public DictionaryFragment() {
@@ -41,12 +39,12 @@ public class DictionaryFragment extends Fragment {
     }
 
     /*
-    Creates a HashMap that will get used by the adapter to bring all the entries into the ListView.
+    Creates a List of DictionaryEntry that will get used by the adapter to bring all the entries into the ListView, according to search
      */
-    private List<Map<String,String>> rebuildDictionary(String searchPattern) {
-        List<Map<String, String>> dictionaryMapList = new ArrayList<Map<String, String>>();
+    private List<DictionaryEntry> rebuildDictionary(String searchPattern) {
+        List<DictionaryEntry> searchEntryResults = new ArrayList<DictionaryEntry>();
+
         for (DictionaryEntry entry : dictionaryEntries) {
-            Map<String, String> dictionaryMap = new HashMap<String, String>();
             String entryName = entry.getEntryName();
             int searchLength = Math.min(searchPattern.length(), entryName.length()); // Failure to define this can result in a null pointer exception
             if (!searchPattern.equals("")) { // A dictionary search of sorts, like a RadixSort
@@ -55,21 +53,18 @@ public class DictionaryFragment extends Fragment {
                 }
             }
 
-            // Some key fields for the adapter.
-            dictionaryMap.put("name", entry.getEntryName());
-            dictionaryMap.put("desc", entry.getEntryDescription());
-            dictionaryMapList.add(dictionaryMap);
+           searchEntryResults.add(entry);
         }
 
-        // Finally sort the new list of maps, unfortunately we must use a comparator since the data structure is complex
-        Collections.sort(dictionaryMapList, new Comparator<Map<String, String>>() {
+        // Finally sort the new list of entries, use comparator since there is no default sort
+        Collections.sort(searchEntryResults, new Comparator<DictionaryEntry>() {
             @Override
-            public int compare(Map<String, String> map1, Map<String, String> map2) {
-                return map1.get("name").compareTo(map2.get("name"));
+            public int compare(DictionaryEntry dictionaryEntry, DictionaryEntry dictionaryEntry2) {
+                return dictionaryEntry.getEntryName().compareTo(dictionaryEntry2.getEntryName());
             }
         });
 
-        return dictionaryMapList;
+        return searchEntryResults;
     }
 
     // Some temp entries, backend data of the dictionary will be pulled in here, if the backend is going to be used with dictionary.
@@ -91,16 +86,10 @@ public class DictionaryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View dictionaryView = inflater.inflate(R.layout.fragment_dictionary, container, false);
-        dictionarySearchResults = (ListView) dictionaryView.findViewById(R.id.dictionarySearchRes);// Set it to the entire dictionary list, initially
-        dictionaryEntries = new ArrayList<DictionaryEntry>();
+        final ListView dictionarySearchResults = (ListView) dictionaryView.findViewById(R.id.dictionarySearchRes);// Set it to the entire dictionary list, initially
         populateDictionary();
 
-        // Some fixed assignments to be used with simple adapter
-        final String[] resource = {"name", "desc"};
-        final int[] location = {android.R.id.text1, android.R.id.text2};
-        // We use of a simple adapter because it can make use of the second text field for the entry description
-        SimpleAdapter adapter = new SimpleAdapter(getActivity(), rebuildDictionary(""), android.R.layout.simple_list_item_2, resource, location);
-        dictionarySearchResults.setAdapter(adapter);
+        dictionarySearchResults.setAdapter(new DictionaryEntryAdapter(rebuildDictionary("")));
 
         final EditText searchBar = (EditText) dictionaryView.findViewById(R.id.dictionarySearchBar);
         searchBar.addTextChangedListener(new TextWatcher() {
@@ -112,8 +101,7 @@ public class DictionaryFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence cs, int i, int i2, int i3) {
                 // Here we actually do the rebuilding of the list, the rebuild dictionary method is called and it regenerates the map to be used with the adapter.
-                SimpleAdapter searchAdapter = new SimpleAdapter(getActivity(), rebuildDictionary(searchBar.getText().toString()), android.R.layout.simple_list_item_2, resource, location);
-                dictionarySearchResults.setAdapter(searchAdapter);
+                dictionarySearchResults.setAdapter(new DictionaryEntryAdapter(rebuildDictionary(searchBar.getText().toString())));
             }
 
             @Override
@@ -146,6 +134,26 @@ public class DictionaryFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
+    }
+
+    private class DictionaryEntryAdapter extends ArrayAdapter<DictionaryEntry> {
+        private List<DictionaryEntry> dictionaryEntrySet;
+
+        DictionaryEntryAdapter(List<DictionaryEntry> dictionaryEntrySet){
+            super(getActivity(), R.layout.dictionary_row, R.id.dictionaryEntryName, dictionaryEntrySet);
+            this.dictionaryEntrySet = dictionaryEntrySet;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View dictionaryEntryRow = super.getView(position, convertView, parent);
+            TextView dictionaryEntryText = (TextView) dictionaryEntryRow.findViewById(R.id.dictionaryEntryName);
+            TextView dictionaryEntryDescText = (TextView) dictionaryEntryRow.findViewById(R.id.dictionaryEntryDesc);
+
+            dictionaryEntryText.setText(dictionaryEntrySet.get(position).getEntryName());
+            dictionaryEntryDescText.setText(dictionaryEntrySet.get(position).getEntryDescription());
+            return dictionaryEntryRow;
+        }
     }
 
 }
