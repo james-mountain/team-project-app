@@ -8,6 +8,7 @@
 package uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -16,6 +17,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -26,6 +28,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import uk.ac.ncl.cs.team16.lloydsbankingapp.Activities.DictionaryEntryActivity;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.DictionaryEntry;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 
@@ -90,6 +93,20 @@ public class DictionaryFragment extends Fragment {
         populateDictionary();
 
         dictionarySearchResults.setAdapter(new DictionaryEntryAdapter(rebuildDictionary("")));
+        dictionarySearchResults.setOnItemClickListener(new ListView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent dictionaryEntryIntent = new Intent(getActivity(), DictionaryEntryActivity.class);
+
+                // Temp way to do this. Dictionary needs to be moved to a resource in the main activity ideally.
+
+                TextView entryTextView = (TextView) view.findViewById(R.id.dictionaryEntryName);
+                TextView entryDescView = (TextView) view.findViewById(R.id.dictionaryEntryDesc);
+                dictionaryEntryIntent.putExtra("entryName", entryTextView.getText());
+                dictionaryEntryIntent.putExtra("entryDesc", entryDescView.getText());
+                startActivity(dictionaryEntryIntent);
+            }
+        });
 
         final EditText searchBar = (EditText) dictionaryView.findViewById(R.id.dictionarySearchBar);
         searchBar.addTextChangedListener(new TextWatcher() {

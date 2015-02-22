@@ -24,6 +24,10 @@
             android:name=".Activities.HomeActivity"
             android:label="@string/title_activity_home" >
         </activity>
+        <activity
+            android:name=".Activities.DictionaryEntryActivity"
+            android:label="@string/title_activity_dictionary_entry" >
+        </activity>
     </application>
 
 </manifest>

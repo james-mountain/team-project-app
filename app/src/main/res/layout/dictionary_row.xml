@@ -36,7 +36,7 @@
                 android:layout_gravity="bottom"
                 android:layout_below="@+id/dictionaryEntryName"
                 android:layout_alignParentLeft="true"
-                android:ellipsize="middle"
+                android:ellipsize="end"
                 android:singleLine="true" />
         </RelativeLayout>
     </FrameLayout>
