@@ -4,7 +4,7 @@
  * @version 0.0.0.0.1
  */
 
-package uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments;
+package uk.ac.ncl.cs.team16.lloydsbankingapp.fragments;
 
 import android.app.Activity;
 import android.net.Uri;
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Payment;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.models.Payment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 
 

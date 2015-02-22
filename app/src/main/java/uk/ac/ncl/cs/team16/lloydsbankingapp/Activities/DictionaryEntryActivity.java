@@ -1,4 +1,4 @@
-package uk.ac.ncl.cs.team16.lloydsbankingapp.Activities;
+package uk.ac.ncl.cs.team16.lloydsbankingapp.activities;
 
 import android.app.Activity;
 import android.os.Bundle;

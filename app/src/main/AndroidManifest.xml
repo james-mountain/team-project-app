@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/CustomTheme">
         <activity
-            android:name=".Activities.MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,15 +17,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.SettingsActivity"
+            android:name=".activities.SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
         <activity
-            android:name=".Activities.HomeActivity"
+            android:name=".activities.HomeActivity"
             android:label="@string/title_activity_home" >
         </activity>
         <activity
-            android:name=".Activities.DictionaryEntryActivity"
+            android:name=".activities.DictionaryEntryActivity"
             android:label="@string/title_activity_dictionary_entry" >
         </activity>
     </application>
