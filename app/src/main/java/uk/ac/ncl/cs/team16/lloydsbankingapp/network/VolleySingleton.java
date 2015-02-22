@@ -6,7 +6,7 @@ import com.android.volley.toolbox.Volley;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.LbgApplication;
 
 /**
- * Created by Aleksander on 22/02/2015.
+ * To enable the app to use only one request que.
  */
 public class VolleySingleton {
 
