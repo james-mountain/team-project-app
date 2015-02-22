@@ -56,7 +56,7 @@ public class HomeActivity extends Activity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
 
-        // update the main content by replacing fragments
+        // update the main content by replacing Fragments
         //THIS IS A CAVEMAN APPROACH AND SHALL BE CHANGED BEFORE FINAL SUBMISSION TO NESS
         Fragment fragment = null;
         FragmentManager fragmentManager = getFragmentManager();

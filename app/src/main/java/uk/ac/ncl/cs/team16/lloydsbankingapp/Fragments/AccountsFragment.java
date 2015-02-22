@@ -21,7 +21,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 
 import java.lang.reflect.Field;
 import java.text.DateFormat;
@@ -33,6 +40,7 @@ import java.util.List;
 
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Transaction;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.network.VolleySingleton;
 
 
 public class AccountsFragment extends Fragment {
@@ -73,7 +81,31 @@ public class AccountsFragment extends Fragment {
         setupWelcomeScreen(v);
         setupSpinner();
 
+        setupRequest();
+
         return v;
+    }
+
+    private void setupRequest() {
+        RequestQueue requestQueue = VolleySingleton.getInstance().getRequestQueue();
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://php.net/", new Response.Listener<String>(){
+
+
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getActivity(), response, Toast.LENGTH_LONG).show();
+            }
+        },
+
+            new Response.ErrorListener(){
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        requestQueue.add(stringRequest);
     }
 
 
