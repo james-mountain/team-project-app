@@ -28,7 +28,12 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.lang.reflect.Field;
 import java.text.DateFormat;
@@ -57,6 +62,7 @@ public class AccountsFragment extends Fragment {
 
     //temporarily one transaction list
     private List<Transaction> transactionList;
+    private static final String URL = "http://csc2022api.sitedev9.co.uk/Account/Payee";
 
 
     public AccountsFragment() {
@@ -88,24 +94,21 @@ public class AccountsFragment extends Fragment {
 
     private void setupRequest() {
         RequestQueue requestQueue = VolleySingleton.getInstance().getRequestQueue();
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://php.net/", new Response.Listener<String>(){
-
+        JsonArrayRequest request = new JsonArrayRequest(URL, new Response.Listener<JSONArray>(){
 
             @Override
-            public void onResponse(String response) {
-                Toast.makeText(getActivity(), response, Toast.LENGTH_LONG).show();
+            public void onResponse(JSONArray response) {
+                Toast.makeText(getActivity(), response.toString(), Toast.LENGTH_LONG).show();
             }
-        },
 
-            new Response.ErrorListener(){
-
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_LONG).show();
+
             }
         });
 
-        requestQueue.add(stringRequest);
+        requestQueue.add(request);
     }
 
 
