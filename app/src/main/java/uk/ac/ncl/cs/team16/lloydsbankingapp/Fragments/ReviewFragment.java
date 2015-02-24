@@ -65,11 +65,33 @@ public class ReviewFragment extends Fragment {
         ListView standingListView = (ListView) reviewView.findViewById(R.id.standingListView);
         ListView debitListView = (ListView) reviewView.findViewById(R.id.debitListView);
 
-        TabHost tabHost = (TabHost) reviewView.findViewById(R.id.tabHost);
+        final TabHost tabHost = (TabHost) reviewView.findViewById(R.id.tabHost);
         tabHost.setup();
+        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String s) {
+                for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
+                    View tabWidgetChild = tabHost.getTabWidget().getChildAt(i);
+                    TextView tabWidgetChildText = (TextView) tabWidgetChild.findViewById(android.R.id.title);
+                    tabWidgetChild.setBackgroundColor(getResources().getColor(R.color.almost_white));
+                    tabWidgetChildText.setTextColor(getResources().getColor(android.R.color.darker_gray));
+                }
+
+                tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab()).setBackgroundColor(getResources().getColor(R.color.lloyds_green));
+            }
+        });
+
         tabHost.addTab(tabHost.newTabSpec("payees").setIndicator("Payees").setContent(R.id.payeeTab));
         tabHost.addTab(tabHost.newTabSpec("standingorders").setIndicator("Standing Orders").setContent(R.id.standingTab));
         tabHost.addTab(tabHost.newTabSpec("directdebits").setIndicator("Direct Debits").setContent(R.id.debitTab));
+
+        for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
+            View tabWidgetChild = tabHost.getTabWidget().getChildAt(i);
+            TextView tabWidgetChildText = (TextView) tabWidgetChild.findViewById(android.R.id.title);
+            tabWidgetChild.setBackgroundColor(getResources().getColor(R.color.almost_white));
+            tabWidgetChildText.setTextColor(getResources().getColor(android.R.color.darker_gray));
+        }
+        tabHost.getTabWidget().getChildAt(0).setBackgroundColor(getResources().getColor(R.color.lloyds_green));
 
         populatePaymentList();
 
