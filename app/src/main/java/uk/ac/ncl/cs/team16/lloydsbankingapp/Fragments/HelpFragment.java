@@ -5,7 +5,7 @@
  *
  */
 
-package uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments;
+package uk.ac.ncl.cs.team16.lloydsbankingapp.fragments;
 
 import android.app.Activity;
 import android.net.Uri;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.ExpandableListAdapter;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.models.ExpandableListAdapter;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 
 

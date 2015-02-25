@@ -4,7 +4,7 @@
  * @version 1.0
  */
 
-package uk.ac.ncl.cs.team16.lloydsbankingapp.Activities;
+package uk.ac.ncl.cs.team16.lloydsbankingapp.activities;
 
 import android.annotation.TargetApi;
 import android.content.Context;

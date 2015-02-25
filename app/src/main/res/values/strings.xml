@@ -8,6 +8,7 @@
     <string name="current_balance">Current balance: </string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_dictionary_entry">Dictionary Entry</string>
     <string name="title_drawer_accounts">Accounts</string>
     <string name="title_drawer_review_payments">Review Payments</string>
     <string name="title_drawer_transfer">Transfer Money</string>
