@@ -3,7 +3,7 @@
  * @author Shawkat Al-Baghdadi, Aleksander Antoniewicz
  * @version 1.0
  */
-package uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments;
+package uk.ac.ncl.cs.team16.lloydsbankingapp.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import uk.ac.ncl.cs.team16.lloydsbankingapp.Activities.HomeActivity;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.activities.HomeActivity;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 
 

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.HelpFragment"
+    tools:context="uk.ac.ncl.cs.team16.lloydsbankingapp.fragments.HelpFragment"
     android:orientation="vertical"
     android:background="@color/almost_white">
 
