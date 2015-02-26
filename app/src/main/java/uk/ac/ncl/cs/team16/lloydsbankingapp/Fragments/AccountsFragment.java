@@ -30,6 +30,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.lang.reflect.Field;
 import java.text.DateFormat;
@@ -94,7 +95,7 @@ public class AccountsFragment extends Fragment {
 
             @Override
             public void onResponse(JSONArray response) {
-                Toast.makeText(getActivity(), response.toString(), Toast.LENGTH_LONG).show();
+                parseResponse(response);
             }
 
         }, new Response.ErrorListener() {
@@ -105,6 +106,24 @@ public class AccountsFragment extends Fragment {
         });
 
         requestQueue.add(request);
+    }
+
+    private void parseResponse(JSONArray response) {
+        if(!(response == null || response.length() == 0)){
+            try{
+                JSONArray  array = response.getJSONArray(0);
+
+                for(int i=0; i<array.length(); i++){
+                    JSONObject o = array.getJSONObject(i);
+                }
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+
     }
 
 

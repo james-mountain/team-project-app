@@ -25,7 +25,7 @@ import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
+ * activities that contain this fragment must implement the
  * {@link HelpFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
