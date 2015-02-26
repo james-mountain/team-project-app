@@ -1,4 +1,4 @@
-package uk.ac.ncl.cs.team16.lloydsbankingapp.models;
+package uk.ac.ncl.cs.team16.lloydsbankingapp.Models;
 
 import java.util.Calendar;
 

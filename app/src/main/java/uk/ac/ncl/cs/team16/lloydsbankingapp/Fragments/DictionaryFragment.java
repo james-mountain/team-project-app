@@ -5,7 +5,7 @@
  *
  */
 
-package uk.ac.ncl.cs.team16.lloydsbankingapp.fragments;
+package uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -28,8 +28,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import uk.ac.ncl.cs.team16.lloydsbankingapp.activities.DictionaryEntryActivity;
-import uk.ac.ncl.cs.team16.lloydsbankingapp.models.DictionaryEntry;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.Activities.DictionaryEntryActivity;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.DictionaryEntry;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 
 public class DictionaryFragment extends Fragment {

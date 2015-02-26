@@ -5,7 +5,7 @@
  *
  */
 
-package uk.ac.ncl.cs.team16.lloydsbankingapp.fragments;
+package uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments;
 
 import android.app.Activity;
 import android.content.Context;
@@ -24,16 +24,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.lang.reflect.Field;
 import java.text.DateFormat;
@@ -45,7 +41,7 @@ import java.util.List;
 
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.VolleySingleton;
-import uk.ac.ncl.cs.team16.lloydsbankingapp.models.Transaction;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Transaction;
 
 
 public class AccountsFragment extends Fragment {

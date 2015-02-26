@@ -4,7 +4,7 @@
  * @version 1.0
  */
 
-package uk.ac.ncl.cs.team16.lloydsbankingapp.activities;
+package uk.ac.ncl.cs.team16.lloydsbankingapp.Activities;
 
 import android.app.Activity;
 import android.app.ActionBar;
@@ -17,13 +17,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 
-import uk.ac.ncl.cs.team16.lloydsbankingapp.fragments.ATMFragment;
-import uk.ac.ncl.cs.team16.lloydsbankingapp.fragments.AccountsFragment;
-import uk.ac.ncl.cs.team16.lloydsbankingapp.fragments.DictionaryFragment;
-import uk.ac.ncl.cs.team16.lloydsbankingapp.fragments.HelpFragment;
-import uk.ac.ncl.cs.team16.lloydsbankingapp.fragments.NavigationDrawerFragment;
-import uk.ac.ncl.cs.team16.lloydsbankingapp.fragments.ReviewFragment;
-import uk.ac.ncl.cs.team16.lloydsbankingapp.fragments.TransferFragment;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.ATMFragment;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.AccountsFragment;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.DictionaryFragment;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.HelpFragment;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.NavigationDrawerFragment;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.ReviewFragment;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.TransferFragment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 
 

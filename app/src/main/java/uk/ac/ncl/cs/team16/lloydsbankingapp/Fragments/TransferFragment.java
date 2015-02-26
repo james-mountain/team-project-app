@@ -4,7 +4,7 @@
  * @version 0.5
  */
 
-package uk.ac.ncl.cs.team16.lloydsbankingapp.fragments;
+package uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments;
 
 import android.app.Activity;
 import android.net.Uri;
