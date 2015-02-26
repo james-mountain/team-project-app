@@ -64,7 +64,10 @@ public class ReviewFragment extends Fragment {
             tabWidgetChildText.setTextColor(getResources().getColor(android.R.color.darker_gray));
         }
 
-        tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab()).setBackgroundColor(getResources().getColor(R.color.lloyds_green));
+        View tabWidgetChild = tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab());
+        TextView tabWidgetChildText = (TextView) tabWidgetChild.findViewById(android.R.id.title);
+        tabWidgetChild.setBackgroundColor(getResources().getColor(R.color.lloyds_green));
+        tabWidgetChildText.setTextColor(getResources().getColor(android.R.color.white));
     }
 
     @Override

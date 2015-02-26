@@ -1,12 +1,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.DictionaryFragment" >
+    tools:context="uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.DictionaryFragment"
+    android:background="@color/white">
 
     <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="48dp"
+        android:background="@android:color/darker_gray"
         android:id="@+id/relativeLayout">
 
         <TextView
@@ -16,6 +18,7 @@
             android:id="@+id/textView"
             android:layout_marginLeft="44dp"
             android:textSize="@dimen/text_size_medium"
+            android:textColor="@android:color/white"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true" />
 
@@ -23,6 +26,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:id="@+id/dictionarySearchBar"
+            android:textColor="@android:color/white"
             android:layout_marginLeft="25dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/textView" />
