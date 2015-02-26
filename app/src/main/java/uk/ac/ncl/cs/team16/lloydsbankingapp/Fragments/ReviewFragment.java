@@ -18,6 +18,16 @@ import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,34 +36,54 @@ import java.util.List;
 
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Payment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.network.VolleySingleton;
 
 
 public class ReviewFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-    private List<Payment> payeePayments;
-    private List<Payment> standingPayments;
-    private List<Payment> debitPayments;
+    private List<Payment> payeePayments = new ArrayList<Payment>();
+    private List<Payment> standingPayments = new ArrayList<Payment>();
+    private List<Payment> debitPayments = new ArrayList<Payment>();
+    private ListView paymentsListView;
+    private ListView standingListView;
+    private ListView debitListView;
+
+    private static final String reviewURLBase = "http://csc2022api.sitedev9.co.uk/Account/Payee";
 
     public ReviewFragment() {
         // Required empty public constructor
     }
 
     private void populatePaymentList() {
-        payeePayments = new ArrayList<Payment>();
-        payeePayments.add(new Payment(20, "Thomas Tommyson", new GregorianCalendar(2010, 03, 16), "11.57"));
-        payeePayments.add(new Payment(34, "Rob Robertson", new GregorianCalendar(2013, 05, 10), "33.00"));
-        payeePayments.add(new Payment(60, "Simon Simmonson", new GregorianCalendar(2014, 11, 03), "21.93"));
+        RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
+        JsonArrayRequest reviewArrayRequest = new JsonArrayRequest(reviewURLBase, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject payeeJSONObject = response.getJSONObject(i);
+                        String payeeID = payeeJSONObject.getString("PayeeID");
+                        String payeeName = payeeJSONObject.getString("PayeeName");
+                        String payeeAmount = payeeJSONObject.getString("LastPaymentAmount");
 
-        standingPayments = new ArrayList<Payment>();
-        standingPayments.add(new Payment(21, "Mr asdasda", new GregorianCalendar(2014, 01, 10), "3.90"));
-        standingPayments.add(new Payment(99, "Company 123", new GregorianCalendar(2015, 02, 12), "51.00"));
-        standingPayments.add(new Payment(34, "Mr fgsdhs", new GregorianCalendar(2011, 10, 03), "105.50"));
+                        payeePayments.add(new Payment(Integer.parseInt(payeeID), payeeName, new GregorianCalendar(2014, 01, 10), payeeAmount));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
 
-        debitPayments = new ArrayList<Payment>();
-        debitPayments.add(new Payment(121, "Electric Bill Company", new GregorianCalendar(2006, 07, 13), "99.31"));
-        debitPayments.add(new Payment(131, "Student Finance 9912", new GregorianCalendar(2014, 11, 25), "410.00"));
-        debitPayments.add(new Payment(159, "Newcastle University", new GregorianCalendar(2013, 06, 22), "899.99"));
+                paymentsListView.setAdapter(new PaymentAdapter(payeePayments, "Last: "));
+                standingListView.setAdapter(new PaymentAdapter(standingPayments, "Next: "));
+                debitListView.setAdapter(new PaymentAdapter(debitPayments, "Last: "));
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // oops
+            }
+        });
+        networkQueue.add(reviewArrayRequest);
     }
 
 
@@ -61,9 +91,9 @@ public class ReviewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View reviewView = inflater.inflate(R.layout.fragment_review, container, false);
-        ListView paymentsListView = (ListView) reviewView.findViewById(R.id.payeeListView); // I could implement these as a list, but is it worth it?
-        ListView standingListView = (ListView) reviewView.findViewById(R.id.standingListView);
-        ListView debitListView = (ListView) reviewView.findViewById(R.id.debitListView);
+        paymentsListView = (ListView) reviewView.findViewById(R.id.payeeListView); // I could implement these as a list, but is it worth it?
+        standingListView = (ListView) reviewView.findViewById(R.id.standingListView);
+        debitListView = (ListView) reviewView.findViewById(R.id.debitListView);
 
         TabHost tabHost = (TabHost) reviewView.findViewById(R.id.tabHost);
         tabHost.setup();
@@ -72,10 +102,6 @@ public class ReviewFragment extends Fragment {
         tabHost.addTab(tabHost.newTabSpec("directdebits").setIndicator("Direct Debits").setContent(R.id.debitTab));
 
         populatePaymentList();
-
-        paymentsListView.setAdapter(new PaymentAdapter(payeePayments, "Last: "));
-        standingListView.setAdapter(new PaymentAdapter(standingPayments, "Next: "));
-        debitListView.setAdapter(new PaymentAdapter(debitPayments, "Last: "));
 
         tabHost.setCurrentTab(0);
         return reviewView;
