@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Payment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
@@ -126,7 +127,7 @@ public class ReviewFragment extends Fragment {
     }
 
     private class PaymentAdapter extends ArrayAdapter<Payment> {
-        private List<Payment> paymentArray;
+        private final List<Payment> paymentArray;
         private String datePrefix = "";
 
         PaymentAdapter(List<Payment> paymentArray, String datePrefix){
@@ -141,7 +142,7 @@ public class ReviewFragment extends Fragment {
             TextView paymentNumberTextView = (TextView) paymentRow.findViewById(R.id.paymentNumberText);
             TextView payeeTextView = (TextView) paymentRow.findViewById(R.id.payeeText);
             TextView payeeDateTextView = (TextView) paymentRow.findViewById(R.id.payeeDateText);
-            DateFormat payeeDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            DateFormat payeeDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.UK);
             TextView paymentAmountText = (TextView) paymentRow.findViewById(R.id.paymentAmountText);
 
             paymentNumberTextView.setText("" + paymentArray.get(position).getPaymentNumber());

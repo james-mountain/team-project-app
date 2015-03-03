@@ -154,7 +154,7 @@ public class DictionaryFragment extends Fragment {
     }
 
     private class DictionaryEntryAdapter extends ArrayAdapter<DictionaryEntry> {
-        private List<DictionaryEntry> dictionaryEntrySet;
+        private final List<DictionaryEntry> dictionaryEntrySet;
 
         DictionaryEntryAdapter(List<DictionaryEntry> dictionaryEntrySet){
             super(getActivity(), R.layout.dictionary_row, R.id.dictionaryEntryName, dictionaryEntrySet);

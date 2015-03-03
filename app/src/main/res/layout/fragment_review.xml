@@ -26,7 +26,7 @@
                     android:id="@android:id/tabs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:showDividers="none"></TabWidget>
+                    android:showDividers="none" />
             </HorizontalScrollView>
 
             <FrameLayout
@@ -46,8 +46,6 @@
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:id="@+id/payeeListView"
-                        android:layout_centerHorizontal="true"
-                        android:layout_alignParentTop="true"
                         android:background="@color/almost_white" />
                 </LinearLayout>
 
@@ -62,8 +60,6 @@
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:id="@+id/standingListView"
-                        android:layout_centerHorizontal="true"
-                        android:layout_alignParentTop="true"
                         android:background="@color/almost_white" />
                 </LinearLayout>
 
@@ -77,8 +73,6 @@
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:id="@+id/debitListView"
-                        android:layout_centerHorizontal="true"
-                        android:layout_alignParentTop="true"
                         android:background="@color/almost_white" />
                 </LinearLayout>
             </FrameLayout>

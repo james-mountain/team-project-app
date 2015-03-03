@@ -30,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Transaction;
@@ -174,7 +175,7 @@ public class AccountsFragment extends Fragment {
 
         welcomeTV.setText("Welcome, " + name);
         balanceTV.setText("Current balance: £" + balance);
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.UK);
         dateTv.setText(df.format(c.getTime()));
     }
 

@@ -6,9 +6,9 @@
 
     <FrameLayout
         android:layout_width="fill_parent"
-        android:layout_height="72dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_height="@dimen/generic_listview_height"
+        android:layout_marginLeft="@dimen/generic_listview_padding"
+        android:layout_marginRight="@dimen/generic_listview_padding"
         android:id="@+id/payeeframe">
 
         <RelativeLayout
@@ -24,7 +24,7 @@
                 android:id="@+id/dictionaryEntryName"
                 android:layout_alignParentLeft="false"
                 android:layout_alignParentTop="false"
-                android:paddingTop="16dp"/>
+                android:paddingTop="@dimen/generic_listview_padding"/>
 
             <TextView
                 android:layout_width="wrap_content"
