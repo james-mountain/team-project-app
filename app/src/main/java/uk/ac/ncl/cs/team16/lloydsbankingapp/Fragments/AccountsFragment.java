@@ -81,6 +81,10 @@ public class AccountsFragment extends Fragment {
     /**
      * Set the spinner in the actionbar
      */
+
+    // TODO: The accounts associated with a login should be JSON requested as soon as login is complete
+    // TODO: Retrieve further requests from the selected account
+
     private void setupSpinner() {
         getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
         getActivity().getActionBar().setDisplayShowCustomEnabled(true);

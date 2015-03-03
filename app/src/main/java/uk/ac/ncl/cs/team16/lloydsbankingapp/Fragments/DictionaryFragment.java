@@ -74,6 +74,8 @@ public class DictionaryFragment extends Fragment {
     /*
     Add all the entries to the list of entries to be used by the dictionary.
      */
+
+    // TODO: Change this to accomodate new dictionary content that will be on the backend
     private void populateDictionary() {
         dictionaryEntries.add(new DictionaryEntry("Interest", "Interest is a payment by the bank for your deposit."));
         dictionaryEntries.add(new DictionaryEntry("Overdraft", "An extra amount of available money below £0. This is not unlimited."));

@@ -3,8 +3,6 @@
     android:layout_height="match_parent"
     tools:context="uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.ReviewFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <TabHost
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

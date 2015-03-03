@@ -40,6 +40,8 @@ public class ReviewFragment extends Fragment {
         // Required empty public constructor
     }
 
+    // TODO: API branch is working for payees only, API needs to implement a standing order
+    // TODO: and also debit payments as JSON returns.
     private void populatePaymentList() {
         payeePayments = new ArrayList<Payment>();
         payeePayments.add(new Payment(20, "Thomas Tommyson", new GregorianCalendar(2010, 03, 16), "11.57"));
@@ -70,6 +72,10 @@ public class ReviewFragment extends Fragment {
         tabWidgetChild.setBackgroundColor(getResources().getColor(R.color.lloyds_green));
         tabWidgetChildText.setTextColor(getResources().getColor(android.R.color.white));
     }
+
+    // TODO: Add new payee button. Will require a new activity.
+    // TODO: That payee activity will require JSON request too
+    // TODO: Probably need to add the account spinner, since multiple accounts have different payees
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

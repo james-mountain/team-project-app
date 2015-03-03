@@ -62,6 +62,8 @@ public class HelpFragment extends Fragment {
         listHeaders = new ArrayList<String>();
         listItems = new HashMap<String, List<String>>();
 
+        // TODO: Import some kind of help content or agree to some fixed content between web/app
+
         listHeaders.add("How to reset online login credentials");
         listHeaders.add("How to log out");
         listHeaders.add("Support");

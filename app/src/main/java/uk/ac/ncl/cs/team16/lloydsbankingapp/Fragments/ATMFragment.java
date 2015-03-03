@@ -21,6 +21,12 @@ import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 
 public class ATMFragment extends Fragment {
 
+    // TODO: Whole ton of stuff!
+
+    // TODO: API keys, permissions (android studio can do this), just getting a basic map layout to work.
+    // TODO: I think a new branch would be ideal for this (atms/maps branch)
+    // TODO: JSON request for ATM/branch data.
+
     private OnFragmentInteractionListener mListener;
 
     public ATMFragment() {

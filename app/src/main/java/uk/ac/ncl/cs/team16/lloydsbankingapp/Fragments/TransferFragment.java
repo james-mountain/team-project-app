@@ -30,6 +30,8 @@ public class TransferFragment extends Fragment {
         // Required empty public constructor
     }
 
+    // TODO: Add tabs for the different transfers - import from current review fragment?
+    // TODO: JSON request to server with new transfer, with response handling on Android side
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

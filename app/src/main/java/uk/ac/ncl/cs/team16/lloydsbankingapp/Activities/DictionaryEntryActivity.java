@@ -10,6 +10,8 @@ public class DictionaryEntryActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // TODO: Potentially add more information to this activity, it's very blank.
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dictionary_entry);
 

@@ -40,6 +40,14 @@ public class MainFragment extends Fragment {
         return v;
     }
 
+    // TODO: Implement a second step process for the unique passkey(?).
+    // TODO: This is specified on the API outline that was provided.
+    // TODO: Needs to be implemented as another activity perhaps?
+
+    // TODO: Implementation of the two JSON packages that are sent to the server
+    // TODO: Use SHA-256 to generate hash of the password to send FIRST.
+    // TODO: First data is username and hashed password
+    // TODO: Second data is the passkey/uniquekey/identifer ONCE the first data was a success.
     public void listeners(){
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
