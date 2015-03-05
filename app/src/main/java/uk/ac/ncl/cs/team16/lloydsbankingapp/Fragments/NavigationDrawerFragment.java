@@ -10,7 +10,6 @@ package uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
-import android.content.Context;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -25,13 +24,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.adapters.NavigationAdapter;
 
 
 public class NavigationDrawerFragment extends Fragment {
@@ -64,8 +61,6 @@ public class NavigationDrawerFragment extends Fragment {
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
 
-    private CustomAdapter customAdapter;
-
     public NavigationDrawerFragment() {
     }
 
@@ -97,7 +92,7 @@ public class NavigationDrawerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        customAdapter = new CustomAdapter(getActivity());
+        NavigationAdapter customAdapter = new NavigationAdapter(getActivity());
 
         mDrawerListView = (ListView) inflater.inflate(
                 R.layout.fragment_navigation_drawer, container, false);
@@ -280,56 +275,3 @@ public class NavigationDrawerFragment extends Fragment {
 }
 
 
-/**
- * Custom navigation drawer listview adapter
- * @author Aleksander Antoniewicz
- * @version 1.0
- *
- */
-class CustomAdapter extends BaseAdapter{
-
-    private Context context;
-    String[] navDrawerElements;
-    int[] icons= {R.drawable.ic_accounts, R.drawable.ic_reviewpayment, R.drawable.ic_transfer,
-                R.drawable.ic_findatm, R.drawable.ic_dictionary, R.drawable.ic_help};
-
-
-    CustomAdapter(Context context){
-        navDrawerElements = context.getResources().getStringArray(R.array.nav_drawer_elements);
-        this.context = context;
-    }
-
-    @Override
-    public int getCount() {
-        return navDrawerElements.length;
-    }
-
-    @Override
-    public Object getItem(int i) {
-        return navDrawerElements[i];
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
-
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        View row = null;
-        if(view==null){
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            row = inflater.inflate(R.layout.navdrawer_row, viewGroup, false);
-        }
-        else{
-            row = view;
-        }
-
-        TextView titleTV = (TextView) row.findViewById(R.id.nav_drawer_tv);
-        ImageView titleIV = (ImageView) row.findViewById(R.id.nav_drawer_iv);
-
-        titleTV.setText(navDrawerElements[i]);
-        titleIV.setImageResource(icons[i]);
-        return row;
-    }
-}

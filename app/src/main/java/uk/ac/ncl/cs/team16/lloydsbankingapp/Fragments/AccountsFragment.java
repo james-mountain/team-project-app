@@ -22,7 +22,6 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-
 import java.lang.reflect.Field;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -35,27 +34,18 @@ import java.util.Locale;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Transaction;
 
-
 public class AccountsFragment extends Fragment {
 
     private ListView lv;
     private OnFragmentInteractionListener mListener;
-
-    //account owner name
-    private String name = "John";
-
-    //temp balance var
-    private int balance = 120;
-    private GregorianCalendar c;
+    private GregorianCalendar calendar;
 
     //temporarily one transaction list
     private List<Transaction> transactionList;
 
-
     public AccountsFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,7 +55,7 @@ public class AccountsFragment extends Fragment {
         addToList();
         setupMenu();
 
-        c = new GregorianCalendar();
+        calendar = new GregorianCalendar();
 
         View v = inflater.inflate(R.layout.fragment_accounts, container, false);
         lv = (ListView) v.findViewById(R.id.transaction_listview);
@@ -154,13 +144,14 @@ public class AccountsFragment extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View row = super.getView(position, convertView, parent);
-            TextView payee = (TextView) row.findViewById(R.id.payee_name);
-            payee.setText(transactionList.get(position).getPayee());
-            TextView date = (TextView) row.findViewById(R.id.transaction_date);
-            date.setText(transactionList.get(position).getDate());
-            TextView balance = (TextView) row.findViewById(R.id.after_balance);
-            balance.setText("£" + transactionList.get(position).getBalance());
             TextView value = (TextView) row.findViewById(R.id.transaction_value);
+            TextView payee = (TextView) row.findViewById(R.id.payee_name);
+            TextView balance = (TextView) row.findViewById(R.id.after_balance);
+            TextView date = (TextView) row.findViewById(R.id.transaction_date);
+
+            payee.setText(transactionList.get(position).getPayee());
+            date.setText(transactionList.get(position).getDate());
+            balance.setText("£" + transactionList.get(position).getBalance());
             value.setText(transactionList.get(position).getValue());
             return row;
         }
@@ -177,10 +168,13 @@ public class AccountsFragment extends Fragment {
         balanceTV = (TextView) v.findViewById(R.id.balance_tv);
         dateTv = (TextView) v.findViewById(R.id.date_tv);
 
+        String name = "John";
+        int balance = 120;
+
         welcomeTV.setText("Welcome, " + name);
         balanceTV.setText("Current balance: £" + balance);
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.UK);
-        dateTv.setText(df.format(c.getTime()));
+        dateTv.setText(df.format(calendar.getTime()));
     }
 
 
@@ -211,7 +205,7 @@ public class AccountsFragment extends Fragment {
     /**
      * To setup the menu?
      */
-    public void setupMenu() {
+    private void setupMenu() {
         try {
             ViewConfiguration config = ViewConfiguration.get(getActivity());
             Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");

@@ -15,12 +15,12 @@ public class DictionaryEntryActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dictionary_entry);
 
-        Bundle dictionaryEntryContent = getIntent().getExtras();
+        Bundle entryContent = getIntent().getExtras();
 
         TextView textView = (TextView) findViewById(R.id.textEntryView);
         TextView descView = (TextView) findViewById(R.id.textDescView);
-        textView.setText(dictionaryEntryContent.getString("entryName"));
-        descView.setText(dictionaryEntryContent.getString("entryDesc"));
+        textView.setText(entryContent.getString("entryName"));
+        descView.setText(entryContent.getString("entryDesc"));
     }
 
 }

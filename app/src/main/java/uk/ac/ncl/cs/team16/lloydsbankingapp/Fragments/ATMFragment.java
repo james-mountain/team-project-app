@@ -18,7 +18,6 @@ import android.view.ViewGroup;
 
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 
-
 public class ATMFragment extends Fragment {
 
     // TODO: Whole ton of stuff!

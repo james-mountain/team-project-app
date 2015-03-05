@@ -60,7 +60,7 @@ public class HomeActivity extends Activity
         //THIS IS A CAVEMAN APPROACH AND SHALL BE CHANGED BEFORE FINAL SUBMISSION TO NESS
 
         // TODO: Add the gamification fragments to here
-        Fragment fragment = null;
+        Fragment fragment;
         FragmentManager fragmentManager = getFragmentManager();
         switch (position){
             case 0:
@@ -103,7 +103,7 @@ public class HomeActivity extends Activity
     }
 
 
-    public void restoreActionBar() {
+    private void restoreActionBar() {
         ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);

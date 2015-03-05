@@ -24,6 +24,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -34,7 +35,7 @@ import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 
 public class DictionaryFragment extends Fragment {
 
-    private final List<DictionaryEntry> dictionaryEntries = new ArrayList<DictionaryEntry>(); //This is a fixed set for now
+    private final Collection<DictionaryEntry> dictionaryEntries = new ArrayList<DictionaryEntry>(); //This is a fixed set for now
     private OnFragmentInteractionListener mListener;
 
     public DictionaryFragment() {
@@ -91,22 +92,22 @@ public class DictionaryFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View dictionaryView = inflater.inflate(R.layout.fragment_dictionary, container, false);
-        final ListView dictionarySearchResults = (ListView) dictionaryView.findViewById(R.id.dictionarySearchRes);// Set it to the entire dictionary list, initially
+        final ListView searchRsltView = (ListView) dictionaryView.findViewById(R.id.dictionarySearchRes);// Set it to the entire dictionary list, initially
         populateDictionary();
 
-        dictionarySearchResults.setAdapter(new DictionaryEntryAdapter(rebuildDictionary("")));
-        dictionarySearchResults.setOnItemClickListener(new ListView.OnItemClickListener() {
+        searchRsltView.setAdapter(new DictionaryEntryAdapter(rebuildDictionary("")));
+        searchRsltView.setOnItemClickListener(new ListView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent dictionaryEntryIntent = new Intent(getActivity(), DictionaryEntryActivity.class);
+                Intent entryIntent = new Intent(getActivity(), DictionaryEntryActivity.class);
 
                 // Temp way to do this. Dictionary needs to be moved to a resource in the main activity ideally.
 
                 TextView entryTextView = (TextView) view.findViewById(R.id.dictionaryEntryName);
                 TextView entryDescView = (TextView) view.findViewById(R.id.dictionaryEntryDesc);
-                dictionaryEntryIntent.putExtra("entryName", entryTextView.getText());
-                dictionaryEntryIntent.putExtra("entryDesc", entryDescView.getText());
-                startActivity(dictionaryEntryIntent);
+                entryIntent.putExtra("entryName", entryTextView.getText());
+                entryIntent.putExtra("entryDesc", entryDescView.getText());
+                startActivity(entryIntent);
             }
         });
 
@@ -120,7 +121,7 @@ public class DictionaryFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence cs, int i, int i2, int i3) {
                 // Here we actually do the rebuilding of the list, the rebuild dictionary method is called and it regenerates the map to be used with the adapter.
-                dictionarySearchResults.setAdapter(new DictionaryEntryAdapter(rebuildDictionary(searchBar.getText().toString())));
+                searchRsltView.setAdapter(new DictionaryEntryAdapter(rebuildDictionary(searchBar.getText().toString())));
             }
 
             @Override
@@ -165,13 +166,13 @@ public class DictionaryFragment extends Fragment {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            View dictionaryEntryRow = super.getView(position, convertView, parent);
-            TextView dictionaryEntryText = (TextView) dictionaryEntryRow.findViewById(R.id.dictionaryEntryName);
-            TextView dictionaryEntryDescText = (TextView) dictionaryEntryRow.findViewById(R.id.dictionaryEntryDesc);
+            View entryRow = super.getView(position, convertView, parent);
+            TextView entryText = (TextView) entryRow.findViewById(R.id.dictionaryEntryName);
+            TextView entryDesc = (TextView) entryRow.findViewById(R.id.dictionaryEntryDesc);
 
-            dictionaryEntryText.setText(dictionaryEntrySet.get(position).getEntryName());
-            dictionaryEntryDescText.setText(dictionaryEntrySet.get(position).getEntryDescription());
-            return dictionaryEntryRow;
+            entryText.setText(dictionaryEntrySet.get(position).getEntryName());
+            entryDesc.setText(dictionaryEntrySet.get(position).getEntryDescription());
+            return entryRow;
         }
     }
 

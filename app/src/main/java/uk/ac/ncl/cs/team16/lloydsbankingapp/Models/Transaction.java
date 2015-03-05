@@ -9,11 +9,11 @@ public class Transaction{
     private String balance;
     private String value;
 
-    public Transaction(String p, String d, String b, String v){
-        this.payee = p;
-        this.date = d;
-        this.balance = b;
-        this.value = v;
+    public Transaction(String payee, String date, String balance, String value){
+        this.payee = payee;
+        this.date = date;
+        this.balance = balance;
+        this.value = value;
     }
 
     public String getPayee() {

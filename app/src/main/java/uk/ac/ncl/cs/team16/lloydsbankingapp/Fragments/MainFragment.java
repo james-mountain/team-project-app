@@ -48,7 +48,7 @@ public class MainFragment extends Fragment {
     // TODO: Use SHA-256 to generate hash of the password to send FIRST.
     // TODO: First data is username and hashed password
     // TODO: Second data is the passkey/uniquekey/identifer ONCE the first data was a success.
-    public void listeners(){
+    private void listeners(){
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

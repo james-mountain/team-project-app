@@ -145,16 +145,16 @@ public class ReviewFragment extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View paymentRow = super.getView(position, convertView, parent);
-            TextView paymentNumberTextView = (TextView) paymentRow.findViewById(R.id.paymentNumberText);
-            TextView payeeTextView = (TextView) paymentRow.findViewById(R.id.payeeText);
-            TextView payeeDateTextView = (TextView) paymentRow.findViewById(R.id.payeeDateText);
-            DateFormat payeeDateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.UK);
-            TextView paymentAmountText = (TextView) paymentRow.findViewById(R.id.paymentAmountText);
+            TextView pytNumberText = (TextView) paymentRow.findViewById(R.id.paymentNumberText);
+            TextView pytPayeeText = (TextView) paymentRow.findViewById(R.id.payeeText);
+            TextView pytDateText = (TextView) paymentRow.findViewById(R.id.payeeDateText);
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.UK);
+            TextView pytAmountText = (TextView) paymentRow.findViewById(R.id.paymentAmountText);
 
-            paymentNumberTextView.setText("" + paymentArray.get(position).getPaymentNumber());
-            payeeTextView.setText(paymentArray.get(position).getPayee());
-            payeeDateTextView.setText(datePrefix + payeeDateFormat.format(paymentArray.get(position).getDate().getTime()));
-            paymentAmountText.setText("£" + paymentArray.get(position).getAmount());
+            pytNumberText.setText("" + paymentArray.get(position).getPaymentNumber());
+            pytPayeeText.setText(paymentArray.get(position).getPayee());
+            pytDateText.setText(datePrefix + dateFormat.format(paymentArray.get(position).getDate().getTime()));
+            pytAmountText.setText("£" + paymentArray.get(position).getAmount());
             return paymentRow;
         }
     }

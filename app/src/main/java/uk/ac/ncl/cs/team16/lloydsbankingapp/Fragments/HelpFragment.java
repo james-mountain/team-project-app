@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.ExpandableListAdapter;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.adapters.ExpandableListAdapter;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 
 
@@ -33,10 +33,10 @@ public class HelpFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    ExpandableListAdapter listAdapter;
-    ExpandableListView listView;
-    List<String> listHeaders;
-    HashMap<String, List<String>> listItems;
+    private ExpandableListAdapter listAdapter;
+    private ExpandableListView listView;
+    private List<String> listHeaders;
+    private HashMap<String, List<String>> listItems;
 
     public HelpFragment() {
         // Required empty public constructor
