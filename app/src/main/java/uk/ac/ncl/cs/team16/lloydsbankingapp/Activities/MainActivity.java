@@ -1,7 +1,6 @@
 package uk.ac.ncl.cs.team16.lloydsbankingapp.Activities;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -27,7 +26,7 @@ import uk.ac.ncl.cs.team16.lloydsbankingapp.network.VolleySingleton;
 
 public class MainActivity extends Activity implements MainFragment.OnFragmentInteractionListener {
 	private static final String AUTH_URL_BASE = "http://csc2022api.sitedev9.co.uk/authentication";
-	private static final String APPKEY = "FZpQ25vZsV8X1btAn59VgA2Bfe37kXMP";
+	private static final String APPKEY = "xlYzpVTNVr4NWvsSR9WUmkW4kZhMYigz";
 	private String sessionToken = null;
 
 	private String userID = "";

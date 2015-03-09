@@ -63,7 +63,6 @@ public class HomeActivity extends Activity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-
         // update the main content by replacing Fragments
         //THIS IS A CAVEMAN APPROACH AND SHALL BE CHANGED BEFORE FINAL SUBMISSION TO NESS
         Fragment fragment = null;
@@ -108,7 +107,6 @@ public class HomeActivity extends Activity
                 .commit();
     }
 
-
     public void restoreActionBar() {
         ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
@@ -116,6 +114,9 @@ public class HomeActivity extends Activity
         actionBar.setTitle(mTitle);
     }
 
+	public String getSessionID() {
+		return sessionID;
+	}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -130,15 +131,11 @@ public class HomeActivity extends Activity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -146,7 +143,4 @@ public class HomeActivity extends Activity
     public void onFragmentInteraction(Uri uri) {
 
     }
-
-
-
 }
