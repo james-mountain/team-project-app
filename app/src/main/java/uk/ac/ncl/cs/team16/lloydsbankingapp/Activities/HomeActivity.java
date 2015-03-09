@@ -31,15 +31,23 @@ public class HomeActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks, AccountsFragment.OnFragmentInteractionListener,
         ReviewFragment.OnFragmentInteractionListener,  TransferFragment.OnFragmentInteractionListener,
         ATMFragment.OnFragmentInteractionListener,  DictionaryFragment.OnFragmentInteractionListener,
-        HelpFragment.OnFragmentInteractionListener{
+        HelpFragment.OnFragmentInteractionListener {
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
-
-
+	private String sessionID;
     private CharSequence mTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+		Bundle intentExtras = getIntent().getExtras();
+		if (intentExtras.isEmpty()) {
+			finish();
+		}
+		sessionID = intentExtras.getString("session_id");
+		if (sessionID == null) {
+			finish();
+		}
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
