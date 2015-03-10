@@ -3,8 +3,6 @@
     android:layout_height="match_parent"
     tools:context="uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.ReviewFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <TabHost
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -15,12 +13,19 @@
             android:layout_height="fill_parent"
             android:orientation="vertical">
 
-            <TabWidget
-                android:id="@android:id/tabs"
+            <HorizontalScrollView
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:fillViewport="true"
+                android:scrollbars="none"
+                android:id="@+id/horizontalScrollView" >
 
-                </TabWidget>
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:showDividers="none" />
+            </HorizontalScrollView>
 
             <FrameLayout
                 android:id="@android:id/tabcontent"
@@ -39,8 +44,6 @@
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:id="@+id/payeeListView"
-                        android:layout_centerHorizontal="true"
-                        android:layout_alignParentTop="true"
                         android:background="@color/almost_white" />
                 </LinearLayout>
 
@@ -55,8 +58,6 @@
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:id="@+id/standingListView"
-                        android:layout_centerHorizontal="true"
-                        android:layout_alignParentTop="true"
                         android:background="@color/almost_white" />
                 </LinearLayout>
 
@@ -70,11 +71,10 @@
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:id="@+id/debitListView"
-                        android:layout_centerHorizontal="true"
-                        android:layout_alignParentTop="true"
                         android:background="@color/almost_white" />
                 </LinearLayout>
             </FrameLayout>
+
         </LinearLayout>
     </TabHost>
 

@@ -49,6 +49,9 @@ public class SettingsActivity extends PreferenceActivity {
         if (!isSimplePreferences(this)) {
             return;
         }
+
+        // TODO: Agree on some preferences, such as notifications, and implement.
+
         // Add 'general' preferences.
         addPreferencesFromResource(R.xml.pref_general);
     }

@@ -6,7 +6,6 @@
     <string name="action_settings">Settings</string>
     <string name="welcome_message">Welcome, owner!</string>
     <string name="current_balance">Current balance: </string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_dictionary_entry">Dictionary Entry</string>
     <string name="title_drawer_accounts">Accounts</string>
@@ -17,7 +16,6 @@
     <string name="title_drawer_help">Help &amp; Guide</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_example">Example action</string>
 
     <string-array name="nav_drawer_elements">
         <item>Accounts</item>
@@ -36,5 +34,11 @@
     <string name="transfer_amount">Amount</string>
     <string name="transfer_message">Message</string>
     <string name="transfer_review">Review transfer</string>
+    <string name="lloyds_bank_caps">LLOYDS BANK</string>
+    <string name="login">Login</string>
+    <string name="login_helper_userid">Enter your user ID</string>
+    <string name="login_helper_password">Enter your password</string>
+    <string name="image_desc_horselogo">horse logo</string>
+    <string name="search_prefix">Search:</string>
 
 </resources>

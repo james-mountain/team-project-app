@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/imageView"
             android:src="@drawable/horselogo"
-            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/image_desc_horselogo"
             android:minWidth="100dp"
             android:minHeight="100dp"
             android:layout_gravity="center_horizontal" />
@@ -27,9 +27,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="LLOYDS BANK"
+            android:text="@string/lloyds_bank_caps"
             android:id="@+id/companyName"
-            android:layout_centerHorizontal="true"
             android:textSize="32dp"
             android:textColor="@color/lloyds_green"
             android:layout_gravity="center_horizontal" />
@@ -38,11 +37,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Login"
+            android:text="@string/login"
             android:textSize="26dp"
             android:id="@+id/pageDescription"
             android:textColor="@color/lloyds_green"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="45dp"
             android:layout_gravity="center_horizontal" />
 
@@ -52,7 +50,7 @@
             android:inputType="number"
             android:ems="10"
             android:id="@+id/idInput"
-            android:hint="Enter your user ID"
+            android:hint="@string/login_helper_userid"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="45dp" />
 
@@ -62,14 +60,14 @@
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/passwordInput"
-            android:hint="Enter your password"
+            android:hint="@string/login_helper_password"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/login_widget_marginTop" />
 
         <Button
             android:layout_width="@dimen/login_widget_width"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:text="@string/login"
             android:id="@+id/login_button"
             style="@style/button_style"
             android:layout_gravity="center_horizontal"

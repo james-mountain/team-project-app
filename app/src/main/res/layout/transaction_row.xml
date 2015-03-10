@@ -35,7 +35,6 @@
             android:id="@+id/transaction_date"
             android:textSize="@dimen/text_size_medium"
             android:textColor="@android:color/darker_gray"
-            android:layout_below="@id/payee_name"
             android:layout_gravity="bottom"
 
             />

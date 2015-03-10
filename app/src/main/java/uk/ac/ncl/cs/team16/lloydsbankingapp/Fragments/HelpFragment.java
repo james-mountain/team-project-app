@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.ExpandableListAdapter;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.adapters.ExpandableListAdapter;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 
 
@@ -33,10 +33,10 @@ public class HelpFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    ExpandableListAdapter listAdapter;
-    ExpandableListView listView;
-    List<String> listHeaders;
-    HashMap<String, List<String>> listItems;
+    private ExpandableListAdapter listAdapter;
+    private ExpandableListView listView;
+    private List<String> listHeaders;
+    private HashMap<String, List<String>> listItems;
 
     public HelpFragment() {
         // Required empty public constructor
@@ -62,18 +62,20 @@ public class HelpFragment extends Fragment {
         listHeaders = new ArrayList<String>();
         listItems = new HashMap<String, List<String>>();
 
+        // TODO: Import some kind of help content or agree to some fixed content between web/app
+
         listHeaders.add("How to reset online login credentials");
         listHeaders.add("How to log out");
         listHeaders.add("Support");
 
         List<String> reset = new ArrayList<String>();
-        reset.add("For security purposes, you cannot reset your login credentials via this app. " +
-                "If you wish to do this, you will need to speak with your local branch in person. " +
-                "Please note that you may be asked to show ID in store");
+        reset.add("For security reasons, you cannot reset your login credentials using this app.\n\n" +
+                "If you wish to do this, you will need to speak with your local branch in person.\n\n" +
+                "Please note that you may be asked to show ID in store.");
 
         List<String> logOut = new ArrayList<String>();
         logOut.add("To log out, simply use the back button on your device to take the app back " +
-                "to the login screen");
+                "to the login screen.");
 
         List<String> support = new ArrayList<String>();
         support.add("If you have encountered any technical faults with this application or need " +

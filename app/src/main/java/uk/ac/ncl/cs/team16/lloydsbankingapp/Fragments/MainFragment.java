@@ -58,7 +58,10 @@ public class MainFragment extends Fragment {
         return loginView;
     }
 
-    public void listeners(){
+    // TODO: Implement a second step process for the unique passkey(?).
+    // TODO: This is specified on the API outline that was provided.
+    // TODO: Needs to be implemented as another activity perhaps?
+    private void listeners(){
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

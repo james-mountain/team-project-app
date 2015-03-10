@@ -22,7 +22,6 @@ import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 public class TransferFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-    private Spinner accountFromChoice, accountToChoice;
 
     //Temporary account options array
     private String accountNames[] = {"Savers account 9000", "Student spender's"};
@@ -30,21 +29,20 @@ public class TransferFragment extends Fragment {
         // Required empty public constructor
     }
 
+    // TODO: Add tabs for the different transfers - import from current review fragment?
+    // TODO: JSON request to server with new transfer, with response handling on Android side
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_transfer, container, false);
-
-
         //setup the spinners
-        accountFromChoice = (Spinner) v.findViewById(R.id.account_from_choice);
+        Spinner accountFromChoice = (Spinner) v.findViewById(R.id.account_from_choice);
 
-        ArrayAdapter<String> aa = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.spinner_item, accountNames);
-        aa.setDropDownViewResource(R.layout.spinner_item);
-
-        accountFromChoice.setAdapter(aa);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.spinner_item, accountNames);
+        arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
+        accountFromChoice.setAdapter(arrayAdapter);
 
         return v;
     }

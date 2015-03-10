@@ -68,7 +68,8 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/transfer_name_textfield"/>
+            android:id="@+id/transfer_name_textfield"
+            android:inputType="text"/>
 
     </LinearLayout>
 
@@ -92,7 +93,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/transfer_sortcode_textfield"
-            android:maxLength="10"/>
+            android:maxLength="10"
+            android:inputType="text"/>
 
     </LinearLayout>
 
@@ -165,7 +167,8 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/transfer_message_textfield"/>
+            android:id="@+id/transfer_message_textfield"
+            android:inputType="text"/>
 
     </LinearLayout>
 

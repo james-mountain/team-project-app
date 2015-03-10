@@ -35,6 +35,7 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Locale;
 
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Activities.HomeActivity;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Payment;
@@ -105,6 +106,23 @@ public class ReviewFragment extends Fragment {
         networkQueue.add(reviewArrayRequest);
     }
 
+    private void colorTabs(TabHost tabHost) {
+        for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
+            View tabWidgetChild = tabHost.getTabWidget().getChildAt(i);
+            TextView tabWidgetChildText = (TextView) tabWidgetChild.findViewById(android.R.id.title);
+            tabWidgetChild.setBackgroundColor(getResources().getColor(R.color.almost_white));
+            tabWidgetChildText.setTextColor(getResources().getColor(android.R.color.darker_gray));
+        }
+
+        View tabWidgetChild = tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab());
+        TextView tabWidgetChildText = (TextView) tabWidgetChild.findViewById(android.R.id.title);
+        tabWidgetChild.setBackgroundColor(getResources().getColor(R.color.lloyds_green));
+        tabWidgetChildText.setTextColor(getResources().getColor(android.R.color.white));
+    }
+
+    // TODO: Add new payee button. Will require a new activity.
+    // TODO: That payee activity will require JSON request too
+    // TODO: Probably need to add the account spinner, since multiple accounts have different payees
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -114,12 +132,20 @@ public class ReviewFragment extends Fragment {
         standingListView = (ListView) reviewView.findViewById(R.id.standingListView);
         debitListView = (ListView) reviewView.findViewById(R.id.debitListView);
 
-        TabHost tabHost = (TabHost) reviewView.findViewById(R.id.tabHost);
+        final TabHost tabHost = (TabHost) reviewView.findViewById(R.id.tabHost);
         tabHost.setup();
+        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String s) {
+                colorTabs(tabHost);
+            }
+        });
+
         tabHost.addTab(tabHost.newTabSpec("payees").setIndicator("Payees").setContent(R.id.payeeTab));
         tabHost.addTab(tabHost.newTabSpec("standingorders").setIndicator("Standing Orders").setContent(R.id.standingTab));
         tabHost.addTab(tabHost.newTabSpec("directdebits").setIndicator("Direct Debits").setContent(R.id.debitTab));
 
+        colorTabs(tabHost);
         populatePaymentList();
 
         tabHost.setCurrentTab(0);
@@ -150,7 +176,7 @@ public class ReviewFragment extends Fragment {
     }
 
     private class PaymentAdapter extends ArrayAdapter<Payment> {
-        private List<Payment> paymentArray;
+        private final List<Payment> paymentArray;
         private String datePrefix = "";
 
         PaymentAdapter(List<Payment> paymentArray, String datePrefix){
@@ -162,16 +188,16 @@ public class ReviewFragment extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View paymentRow = super.getView(position, convertView, parent);
-            TextView paymentNumberTextView = (TextView) paymentRow.findViewById(R.id.paymentNumberText);
-            TextView payeeTextView = (TextView) paymentRow.findViewById(R.id.payeeText);
-            TextView payeeDateTextView = (TextView) paymentRow.findViewById(R.id.payeeDateText);
-            DateFormat payeeDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            TextView paymentAmountText = (TextView) paymentRow.findViewById(R.id.paymentAmountText);
+            TextView pytNumberText = (TextView) paymentRow.findViewById(R.id.paymentNumberText);
+            TextView pytPayeeText = (TextView) paymentRow.findViewById(R.id.payeeText);
+            TextView pytDateText = (TextView) paymentRow.findViewById(R.id.payeeDateText);
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.UK);
+            TextView pytAmountText = (TextView) paymentRow.findViewById(R.id.paymentAmountText);
 
-            paymentNumberTextView.setText("" + paymentArray.get(position).getPaymentNumber());
-            payeeTextView.setText(paymentArray.get(position).getPayee());
-            payeeDateTextView.setText(datePrefix + payeeDateFormat.format(paymentArray.get(position).getDate().getTime()));
-            paymentAmountText.setText("£" + paymentArray.get(position).getAmount());
+            pytNumberText.setText("" + paymentArray.get(position).getPaymentNumber());
+            pytPayeeText.setText(paymentArray.get(position).getPayee());
+            pytDateText.setText(datePrefix + dateFormat.format(paymentArray.get(position).getDate().getTime()));
+            pytAmountText.setText("£" + paymentArray.get(position).getAmount());
             return paymentRow;
         }
     }

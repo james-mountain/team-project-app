@@ -63,9 +63,11 @@ public class HomeActivity extends Activity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-        // update the main content by replacing Fragments
+        // TODO: update the main content by replacing Fragments
         //THIS IS A CAVEMAN APPROACH AND SHALL BE CHANGED BEFORE FINAL SUBMISSION TO NESS
-        Fragment fragment = null;
+
+        // TODO: Add the gamification fragments to here
+        Fragment fragment;
         FragmentManager fragmentManager = getFragmentManager();
         switch (position){
             case 0:
@@ -107,7 +109,7 @@ public class HomeActivity extends Activity
                 .commit();
     }
 
-    public void restoreActionBar() {
+    private void restoreActionBar() {
         ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
