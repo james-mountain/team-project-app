@@ -24,30 +24,22 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 
-import org.apache.commons.codec.binary.Hex;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
-
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
 
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Activities.HomeActivity;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Payment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.network.AuthHandler;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.JsonArrayPostRequest;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.VolleySingleton;
 
@@ -74,53 +66,18 @@ public class ReviewFragment extends Fragment {
 	}
 
     private void populatePaymentList() {
-		long curTime = new Date().getTime()/1000;
-		int nonce = new Random().nextInt(900000) + 100000;
-
-		Map<String, String> params = new LinkedHashMap<String, String>(); // Preserve order
-		params.put("nonce", String.valueOf(nonce));
-		params.put("timestamp", String.valueOf(curTime));
-
-		String paramString = "";
-		for (String param : params.keySet()) {
-			paramString = paramString + param + "=" + params.get(param) + "&";
-		}
-		paramString = paramString.substring(0, paramString.length()-1); // Remove last ampersand.
-
-		Log.d("paramstring", paramString);
-
-		String signature = null;
-		try {
-			String key = "IgzW60g7VfCvgT8AuZG2tRRgqbx5Cfhj";
-			SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes(), "HmacSHA256");
-
-			Mac mac = Mac.getInstance("HmacSHA256");
-			mac.init(secretKeySpec);
-			byte[] paramStringEncBytes = mac.doFinal(paramString.getBytes());
-
-			signature = new String(Hex.encodeHex(paramStringEncBytes));
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		} catch (InvalidKeyException e) {
-			e.printStackTrace();
-		}
-		Log.d("signature", signature);
-		params.put("signature", signature);
+		Map<String, String> params = AuthHandler.handleAuthentication(null);
 
 		RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
         JsonArrayPostRequest reviewArrayRequest = new JsonArrayPostRequest(reviewURLBase, new JSONObject(params), new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-				Log.d("response", "response!");
-
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject payeeJSONObject = response.getJSONObject(i);
                         String payeeID = payeeJSONObject.getString("PayeeID");
                         String payeeName = payeeJSONObject.getString("PayeeName");
                         String payeeAmount = payeeJSONObject.getString("LastPaymentAmount");
-
-						Log.d("iter", "iteration!");
 
                         payeePayments.add(new Payment(Integer.parseInt(payeeID), payeeName, new GregorianCalendar(2014, 01, 10), payeeAmount));
                     } catch (JSONException e) {
@@ -135,7 +92,6 @@ public class ReviewFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                // oops
 				Log.d("error", error.getMessage());
             }
         }) {
