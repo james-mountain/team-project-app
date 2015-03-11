@@ -7,6 +7,8 @@
 package uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -61,11 +63,6 @@ public class ReviewFragment extends Fragment {
         // Required empty public constructor
     }
 
-	private String obtainSessionID() {
-		HomeActivity mainActivity = (HomeActivity) this.getActivity();
-		return mainActivity.getSessionID();
-	}
-
     private void populatePaymentList() {
 		Map<String, String> params = AuthHandler.handleAuthentication(null);
 
@@ -99,7 +96,7 @@ public class ReviewFragment extends Fragment {
 			@Override
 			public Map<String, String> getHeaders() throws AuthFailureError {
 				HashMap<String, String> headers = new HashMap<String, String>();
-				headers.put("API-SESSION-ID", obtainSessionID());
+				headers.put("API-SESSION-ID", AuthHandler.obtainSessionID(getActivity()));
 				return headers;
 			}
 		};

@@ -1,8 +1,11 @@
 package uk.ac.ncl.cs.team16.lloydsbankingapp.Activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -37,6 +40,7 @@ public class MainActivity extends Activity implements MainFragment.OnFragmentInt
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
 		if (savedInstanceState == null) {
 			MainFragment mf = new MainFragment();
 			getFragmentManager().beginTransaction()
@@ -45,7 +49,14 @@ public class MainActivity extends Activity implements MainFragment.OnFragmentInt
 		}
 	}
 
-	private void getSessionToken() {
+	@Override
+	protected void onStart() {
+		super.onStart();
+
+		getNewSessionToken(); // We get the session token here. Getting it onCreate apparently doesn't work, oh well
+	}
+
+	private void getNewSessionToken() {
 		RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
 		Map<String, String> appKeyParams = new HashMap<String, String>();
 		appKeyParams.put("app_key", APPKEY);
@@ -58,8 +69,6 @@ public class MainActivity extends Activity implements MainFragment.OnFragmentInt
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-
-				requestLogin();
 			}
 		}, new Response.ErrorListener() {
 			@Override
@@ -155,8 +164,11 @@ public class MainActivity extends Activity implements MainFragment.OnFragmentInt
 	private void attemptLogin() {
 		if (fullyAuthToken) { // We use this as a barrier because the method is public.
 			Intent homeIntent = new Intent(this, HomeActivity.class);
-			homeIntent.putExtra("session_id", sessionToken);
 			startActivity(homeIntent);
+
+			String location = "uk.ac.ncl.cs.team16.lloydsbankingapp";
+			SharedPreferences sharedPref = this.getSharedPreferences(location, Context.MODE_PRIVATE);
+			sharedPref.edit().putString(location + ".session", sessionToken).apply(); // This should be secure enough
 		}
 	}
 
@@ -165,6 +177,11 @@ public class MainActivity extends Activity implements MainFragment.OnFragmentInt
 		this.userID = inputUserID;
 		this.password = inputPassword;
 
-		getSessionToken();
+		if (sessionToken == null) {
+			Toast.makeText(getApplicationContext(), "Failed to get a session, please try again", Toast.LENGTH_LONG).show();
+			getNewSessionToken();
+		} else {
+			requestLogin();
+		}
 	}
 }

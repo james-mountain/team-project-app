@@ -34,20 +34,10 @@ public class HomeActivity extends Activity
         HelpFragment.OnFragmentInteractionListener {
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
-	private String sessionID;
     private CharSequence mTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-		Bundle intentExtras = getIntent().getExtras();
-		if (intentExtras.isEmpty()) {
-			finish();
-		}
-		sessionID = intentExtras.getString("session_id");
-		if (sessionID == null) {
-			finish();
-		}
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
@@ -115,10 +105,6 @@ public class HomeActivity extends Activity
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
-
-	public String getSessionID() {
-		return sessionID;
-	}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

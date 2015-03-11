@@ -1,5 +1,7 @@
 package uk.ac.ncl.cs.team16.lloydsbankingapp.network;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import org.apache.commons.codec.binary.Hex;
@@ -56,5 +58,12 @@ public class AuthHandler {
 		params.put("signature", signature);
 
 		return params;
+	}
+
+	public static String obtainSessionID(Context context) {
+		String location = "uk.ac.ncl.cs.team16.lloydsbankingapp";
+		SharedPreferences sharedPref = context.getSharedPreferences(location, Context.MODE_PRIVATE);
+
+		return sharedPref.getString(location + ".session", "SESSIONFAILURE");
 	}
 }
