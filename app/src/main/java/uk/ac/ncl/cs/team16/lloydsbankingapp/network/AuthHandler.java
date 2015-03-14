@@ -23,7 +23,17 @@ import javax.crypto.spec.SecretKeySpec;
  * make use of an authenticated session ID, and require a signature
  */
 public class AuthHandler {
-	public static Map<String, String> handleAuthentication(LinkedHashMap<String, String> params) {
+	private static AuthHandler singleton = null;
+
+	public static AuthHandler getInstance() {
+		if (singleton == null) {
+			singleton = new AuthHandler();
+		}
+
+		return singleton;
+	}
+
+	public Map<String, String> handleAuthentication(LinkedHashMap<String, String> params) {
 		long curTime = new Date().getTime()/1000;
 		int nonce = new Random().nextInt(900000) + 100000;
 
@@ -31,8 +41,8 @@ public class AuthHandler {
 			params = new LinkedHashMap<String, String>();
 		}
 
-		params.put("nonce", String.valueOf(nonce));
 		params.put("timestamp", String.valueOf(curTime));
+		params.put("nonce", String.valueOf(nonce));
 
 		String paramString = "";
 		for (String param : params.keySet()) {
@@ -60,7 +70,7 @@ public class AuthHandler {
 		return params;
 	}
 
-	public static String obtainSessionID(Context context) {
+	public String obtainSessionID(Context context) {
 		String location = "uk.ac.ncl.cs.team16.lloydsbankingapp";
 		SharedPreferences sharedPref = context.getSharedPreferences(location, Context.MODE_PRIVATE);
 

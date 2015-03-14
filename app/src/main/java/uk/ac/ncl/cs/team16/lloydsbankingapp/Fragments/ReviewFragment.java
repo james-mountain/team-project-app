@@ -64,7 +64,8 @@ public class ReviewFragment extends Fragment {
     }
 
     private void populatePaymentList() {
-		Map<String, String> params = AuthHandler.handleAuthentication(null);
+		final AuthHandler authHandler = AuthHandler.getInstance();
+		Map<String, String> params = authHandler.handleAuthentication(null);
 
 		RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
         JsonArrayPostRequest reviewArrayRequest = new JsonArrayPostRequest(reviewURLBase, new JSONObject(params), new Response.Listener<JSONArray>() {
@@ -96,7 +97,7 @@ public class ReviewFragment extends Fragment {
 			@Override
 			public Map<String, String> getHeaders() throws AuthFailureError {
 				HashMap<String, String> headers = new HashMap<String, String>();
-				headers.put("API-SESSION-ID", AuthHandler.obtainSessionID(getActivity()));
+				headers.put("API-SESSION-ID", authHandler.obtainSessionID(getActivity()));
 				return headers;
 			}
 		};
