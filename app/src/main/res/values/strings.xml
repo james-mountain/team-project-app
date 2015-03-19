@@ -40,5 +40,6 @@
     <string name="login_helper_password">Enter your password</string>
     <string name="image_desc_horselogo">horse logo</string>
     <string name="search_prefix">Search:</string>
+    <string name="delete">Delete</string>
 
 </resources>

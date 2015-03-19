@@ -7,24 +7,29 @@
 package uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,11 +40,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Locale;
 
-import uk.ac.ncl.cs.team16.lloydsbankingapp.Activities.HomeActivity;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Payment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.AuthHandler;
@@ -57,20 +62,28 @@ public class ReviewFragment extends Fragment {
     private ListView standingListView;
     private ListView debitListView;
 
-    private static final String reviewURLBase = "http://csc2022api.sitedev9.co.uk/Account/Payee";
+    private static final String REVIEW_URL_BASE = "http://csc2022api.sitedev9.co.uk/account/payee";
 
     public ReviewFragment() {
         // Required empty public constructor
     }
 
-    private void populatePaymentList() {
+	private void reloadAdapters() {
+		paymentsListView.setAdapter(new PaymentAdapter(payeePayments, "Last: "));
+		standingListView.setAdapter(new PaymentAdapter(standingPayments, "Next: "));
+		debitListView.setAdapter(new PaymentAdapter(debitPayments, "Last: "));
+	}
+
+    private void reviewPayeesRequest() {
 		final AuthHandler authHandler = AuthHandler.getInstance();
 		Map<String, String> params = authHandler.handleAuthentication(null);
 
 		RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
-        JsonArrayPostRequest reviewArrayRequest = new JsonArrayPostRequest(reviewURLBase, new JSONObject(params), new Response.Listener<JSONArray>() {
+        JsonArrayPostRequest reviewArrayRequest = new JsonArrayPostRequest(REVIEW_URL_BASE, new JSONObject(params), new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+				payeePayments = new ArrayList<Payment>();
+
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject payeeJSONObject = response.getJSONObject(i);
@@ -84,9 +97,7 @@ public class ReviewFragment extends Fragment {
                     }
                 }
 
-                paymentsListView.setAdapter(new PaymentAdapter(payeePayments, "Last: "));
-                standingListView.setAdapter(new PaymentAdapter(standingPayments, "Next: "));
-                debitListView.setAdapter(new PaymentAdapter(debitPayments, "Last: "));
+				reloadAdapters();
             }
         }, new Response.ErrorListener() {
             @Override
@@ -103,6 +114,44 @@ public class ReviewFragment extends Fragment {
 		};
         networkQueue.add(reviewArrayRequest);
     }
+
+	private void deletePayeeRequest(int payeeID) {
+		final AuthHandler authHandler = AuthHandler.getInstance();
+		LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+		params.put("payeeid", ""+payeeID);
+		authHandler.handleAuthentication(params);
+
+		RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
+		JsonObjectRequest deleteRequest = new JsonObjectRequest(Request.Method.POST, REVIEW_URL_BASE + "/delete", new JSONObject(params), new Response.Listener<JSONObject>() {
+			@Override
+			public void onResponse(JSONObject response) {
+				try {
+					if (response.getString("Status").equals("Success, payee deleted")) { // This is a mouthful to check for, it should just be success
+						Toast.makeText(getActivity(), "Payee deleted.", Toast.LENGTH_LONG).show();
+
+						reviewPayeesRequest(); // This has to be done as a separate request, otherwise more parameters to this method
+					} else {
+						Toast.makeText(getActivity(), "Failed to delete payee.", Toast.LENGTH_LONG).show();
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		}, new Response.ErrorListener() {
+			@Override
+			public void onErrorResponse(VolleyError error) {
+				Log.d("error", error.getMessage());
+			}
+		}) {
+			@Override
+			public Map<String, String> getHeaders() throws AuthFailureError {
+				HashMap<String, String> headers = new HashMap<String, String>();
+				headers.put("API-SESSION-ID", authHandler.obtainSessionID(getActivity()));
+				return headers;
+			}
+		};
+		networkQueue.add(deleteRequest);
+	}
 
     private void colorTabs(TabHost tabHost) {
         for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
@@ -130,6 +179,8 @@ public class ReviewFragment extends Fragment {
         standingListView = (ListView) reviewView.findViewById(R.id.standingListView);
         debitListView = (ListView) reviewView.findViewById(R.id.debitListView);
 
+		registerForContextMenu(paymentsListView);
+
         final TabHost tabHost = (TabHost) reviewView.findViewById(R.id.tabHost);
         tabHost.setup();
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
@@ -144,13 +195,33 @@ public class ReviewFragment extends Fragment {
         tabHost.addTab(tabHost.newTabSpec("directdebits").setIndicator("Direct Debits").setContent(R.id.debitTab));
 
         colorTabs(tabHost);
-        populatePaymentList();
+        reviewPayeesRequest();
 
         tabHost.setCurrentTab(0);
         return reviewView;
     }
 
-    @Override
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo) {
+		super.onCreateContextMenu(menu, view, menuInfo);
+		if (view.getId() == R.id.payeeListView) {
+			MenuInflater menuInflater = getActivity().getMenuInflater();
+			menuInflater.inflate(R.menu.menu_review_item, menu);
+		}
+	}
+
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+		if (item.getItemId() == R.id.delete) {
+			deletePayeeRequest(payeePayments.get(info.position).getPaymentNumber());
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
