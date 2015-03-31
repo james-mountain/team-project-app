@@ -11,9 +11,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:id="@+id/welcome_layout"
-        android:background="@drawable/congruent_pentagon"
-        android:clickable="false"
-        >
+        android:clickable="true"
+        android:background="@color/lloyds_green">
 
         <LinearLayout
             android:orientation="vertical"
@@ -29,7 +28,8 @@
                 style="@style/welcome_screen_style"
                 android:id="@+id/welcome_tv"
                 android:layout_gravity="center"
-                android:padding="@dimen/lower_margin"/>
+                android:padding="@dimen/lower_margin"
+                android:textColor="@color/white"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -38,7 +38,8 @@
                 style="@style/welcome_screen_style"
                 android:id="@+id/balance_tv"
                 android:layout_gravity="center"
-                android:padding="@dimen/lower_margin"/>
+                android:padding="@dimen/lower_margin"
+                android:textColor="@color/white"/>
 
 
             <TextView
@@ -48,7 +49,8 @@
                 style="@style/welcome_screen_style"
                 android:id="@+id/date_tv"
                 android:layout_gravity="center"
-                android:padding="@dimen/lower_margin"/>
+                android:padding="@dimen/lower_margin"
+                android:textColor="@color/white"/>
 
         </LinearLayout>
 
