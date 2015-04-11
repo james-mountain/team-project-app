@@ -22,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
@@ -43,6 +44,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Account;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.AuthHandler;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.JsonArrayPostRequest;
@@ -54,9 +56,11 @@ public class AccountsFragment extends Fragment {
 	private OnFragmentInteractionListener mListener;
 	private GregorianCalendar calendar;
 	private List<Transaction> transactionList;
-	private List<String> accountList;
+	private List<Account> accountList;
+    private List<String> accountNames;
 	private ListView transcationLv;
 	private Spinner spinner;
+    private View overallView;
 
 	private static final String ACCOUNTS_URL_BASE = "http://csc2022api.sitedev9.co.uk/account";
 
@@ -73,40 +77,55 @@ public class AccountsFragment extends Fragment {
 
 		View accountView = inflater.inflate(R.layout.fragment_accounts, container, false);
 		transcationLv = (ListView) accountView.findViewById(R.id.transaction_listview);
-
-		setupWelcomeScreen(accountView);
+        overallView = accountView;
 		setupSpinner();
-		transactionsRequest();
-
 		return accountView;
 	}
 
 	private void assembleSpinner() {
-		ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getActivity(), R.layout.actionbar_spinner_item, accountList);
+		ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getActivity(), R.layout.actionbar_spinner_item, accountNames);
 		spinner.setAdapter(spinnerAdapter);
 		spinnerAdapter.notifyDataSetChanged();
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                setupWelcomeScreen(i);
+                transactionsRequest(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 	}
 
 	private void accountsRequest() {
 		final AuthHandler authHandler = AuthHandler.getInstance();
 		Map<String, String> params = authHandler.handleAuthentication(null);
-
 		RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
 		JsonArrayPostRequest accountsArrayRequest = new JsonArrayPostRequest(ACCOUNTS_URL_BASE + "/summary", new JSONObject(params), new Response.Listener<JSONArray>() {
 			@Override
 			public void onResponse(JSONArray response) {
-				accountList = new ArrayList<String>();
+				accountList = new ArrayList<Account>();
+                accountNames = new ArrayList<String>();
 
 				for (int i = 0; i < response.length(); i++) {
 					try {
 						JSONObject accountJSONObject = response.getJSONObject(i);
-						String accountName = accountJSONObject.getString("AccountName");
+						accountList.add(new Account(accountJSONObject.getString("AccountID"),
+                                accountJSONObject.getString("AccountName"),
+                                        accountJSONObject.getString("AccountType"),
+                                                accountJSONObject.getString("AccountBalance")));
 
-						accountList.add(accountName);
 					} catch (JSONException e) {
 						e.printStackTrace();
 					}
 				}
+
+                for(Account a : accountList){
+                    accountNames.add(a.getName());
+                }
 
 				assembleSpinner();
 			}
@@ -126,7 +145,9 @@ public class AccountsFragment extends Fragment {
 		networkQueue.add(accountsArrayRequest);
 	}
 
-	private void transactionsRequest() {
+
+
+	private void transactionsRequest(int index) {
 		final AuthHandler authHandler = AuthHandler.getInstance();
 		Map<String, String> params = authHandler.handleAuthentication(null);
 
@@ -179,18 +200,6 @@ public class AccountsFragment extends Fragment {
 		spinner = (Spinner) spinnerLayout.findViewById(R.id.spin);
 		getActivity().getActionBar().setCustomView(spinnerLayout);
 
-		spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-			@Override
-			public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> adapterView) {
-
-			}
-		});
-
 		accountsRequest();
 	}
 
@@ -224,19 +233,17 @@ public class AccountsFragment extends Fragment {
 	/**
 	 * Setup the green welcome screen
 	 *
-	 * @param v Accounts fragment xml file
+	 *
 	 */
-	private void setupWelcomeScreen(View v) {
+	private void setupWelcomeScreen(int i) {
 		TextView welcomeTV, balanceTV, dateTv;
-		welcomeTV = (TextView) v.findViewById(R.id.welcome_tv);
-		balanceTV = (TextView) v.findViewById(R.id.balance_tv);
-		dateTv = (TextView) v.findViewById(R.id.date_tv);
 
-		String name = "John";
-		int balance = 120;
+		welcomeTV = (TextView) overallView.findViewById(R.id.welcome_tv);
+		balanceTV = (TextView) overallView.findViewById(R.id.balance_tv);
+		dateTv = (TextView) overallView.findViewById(R.id.date_tv);
 
-		welcomeTV.setText("Welcome, " + name);
-		balanceTV.setText("Current balance: £" + balance);
+		welcomeTV.setText("Herzlich Wilkommen!");
+		balanceTV.setText("Current balance: £" + accountList.get(i).getBalance());
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.UK);
 		dateTv.setText(df.format(calendar.getTime()));
 	}
