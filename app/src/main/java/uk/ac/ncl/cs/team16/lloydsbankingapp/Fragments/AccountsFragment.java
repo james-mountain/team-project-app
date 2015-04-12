@@ -253,7 +253,7 @@ public class AccountsFragment extends Fragment {
 		balanceTV = (TextView) overallView.findViewById(R.id.balance_tv);
 		dateTv = (TextView) overallView.findViewById(R.id.date_tv);
 
-		welcomeTV.setText("Herzlich Wilkommen!");
+		welcomeTV.setText("Welcome");
 		balanceTV.setText("Current balance: £" + accountList.get(i).getBalance());
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy", Locale.UK);
 		dateTv.setText(df.format(calendar.getTime()));
