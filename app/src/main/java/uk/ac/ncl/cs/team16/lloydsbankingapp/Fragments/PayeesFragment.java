@@ -121,12 +121,16 @@ public class PayeesFragment extends Fragment {
 
 	private void deletePayeeRequest(int payeeID) {
 		final AuthHandler authHandler = AuthHandler.getInstance();
+
 		LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
-		params.put("payeeid", ""+payeeID);
+		params.put("payeeid", Integer.toString(payeeID));
+
 		authHandler.handleAuthentication(params);
+		Gson gson = new Gson();
+		String requestString = gson.toJson(params, LinkedHashMap.class);
 
 		RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
-		JsonObjectRequest deleteRequest = new JsonObjectRequest(Request.Method.POST, REVIEW_URL_BASE + "/delete", new JSONObject(params), new Response.Listener<JSONObject>() {
+		JsonObjectRequest deleteRequest = new JsonObjectRequest(Request.Method.POST, REVIEW_URL_BASE + "/delete", requestString, new Response.Listener<JSONObject>() {
 			@Override
 			public void onResponse(JSONObject response) {
 				try {
