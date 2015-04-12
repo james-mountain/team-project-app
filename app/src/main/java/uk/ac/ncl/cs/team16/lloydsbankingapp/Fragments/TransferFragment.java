@@ -39,10 +39,12 @@ public class TransferFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_transfer, container, false);
         //setup the spinners
         Spinner accountFromChoice = (Spinner) v.findViewById(R.id.account_from_choice);
+        Spinner accountToChoice = (Spinner) v.findViewById(R.id.account_to_choice);
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.spinner_item, accountNames);
         arrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         accountFromChoice.setAdapter(arrayAdapter);
+        accountToChoice.setAdapter(arrayAdapter);
 
         return v;
     }

@@ -154,9 +154,10 @@ public class AccountsFragment extends Fragment {
 
 
 	private void transactionsRequest(int index) {
+        String accountID = accountList.get(index).getId();
 		final AuthHandler authHandler = AuthHandler.getInstance();
         LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
-        params.put("accountid", "1");
+        params.put("accountid", accountID);
         authHandler.handleAuthentication(params);
         Gson gson = new Gson();
         String requestString = gson.toJson(params, LinkedHashMap.class);

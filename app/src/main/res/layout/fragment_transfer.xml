@@ -2,9 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.TransferFragment"
-    android:paddingTop="@dimen/activity_horizontal_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:padding="@dimen/activity_horizontal_margin"
     android:background="@color/almost_white">
 
 
@@ -20,7 +18,7 @@
             android:layout_height="wrap_content"
             android:text="@string/transfer_from"
             android:id="@+id/from_text_view"
-            style="@style/welcome_screen_style"/>
+            style="@style/transfer_fragment_style"/>
 
         <Spinner
             android:layout_width="wrap_content"
@@ -35,100 +33,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/to_layout"
-        android:layout_below="@id/from_layout"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:layout_marginBottom="@dimen/half_margin">
+        android:layout_below="@id/from_layout">
 
 
         <TextView
             android:layout_width="@dimen/label_width"
             android:layout_height="wrap_content"
-            android:text="@string/transfer_to"
+            android:text="@string/transfer_from"
             android:id="@+id/to_text_view"
-            style="@style/welcome_screen_style"/>
+            style="@style/transfer_fragment_style"/>
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/account_to_choice"/>
+
 
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/to_layout"
-        android:id="@+id/name_layout"
-        android:layout_marginTop="@dimen/half_margin"
-        android:layout_marginBottom="@dimen/half_margin">
-
-        <TextView
-           android:layout_width="@dimen/label_width"
-           android:layout_height="wrap_content"
-           android:text="@string/transfer_name"
-           android:id="@+id/name"
-           style="@style/welcome_screen_style"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/transfer_name_textfield"
-            android:inputType="text"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/name_layout"
-        android:id="@+id/sortcode_layout"
-        android:layout_marginTop="@dimen/half_margin"
-        android:layout_marginBottom="@dimen/half_margin">
-
-        <TextView
-            android:layout_width="@dimen/label_width"
-            android:layout_height="wrap_content"
-            android:text="@string/transfer_sort"
-            android:id="@+id/sort_code"
-            style="@style/welcome_screen_style"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/transfer_sortcode_textfield"
-            android:maxLength="10"
-            android:inputType="text"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/accountnumber_layout"
-        android:layout_below="@id/sortcode_layout"
-        android:layout_marginTop="@dimen/half_margin"
-        android:layout_marginBottom="@dimen/half_margin">
-
-        <TextView
-            android:layout_width="@dimen/label_width"
-            android:layout_height="wrap_content"
-            android:text="@string/transfer_acc"
-            android:id="@+id/account_number"
-            style="@style/welcome_screen_style"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/transfer_accountnumber_textfield"
-            android:inputType="number"
-            android:maxLines="1"/>
-
-    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/amount_layout"
-        android:layout_below="@id/accountnumber_layout"
+        android:layout_below="@id/to_layout"
         android:layout_marginTop="@dimen/half_margin"
         android:layout_marginBottom="@dimen/half_margin">
 
@@ -137,7 +66,7 @@
             android:layout_height="wrap_content"
             android:text="@string/transfer_amount"
             android:id="@+id/amount"
-            style="@style/welcome_screen_style"/>
+            style="@style/transfer_fragment_style"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -162,7 +91,7 @@
             android:layout_height="wrap_content"
             android:text="@string/transfer_message"
             android:id="@+id/message"
-            style="@style/welcome_screen_style"/>
+            style="@style/transfer_fragment_style"/>
 
         <EditText
             android:layout_width="match_parent"
