@@ -59,8 +59,8 @@ public class AccountsFragment extends Fragment {
 	private OnFragmentInteractionListener mListener;
 	private GregorianCalendar calendar;
 	private List<Transaction> transactionList;
-	private List<Account> accountList;
-    private List<String> accountNames;
+	public static List<Account> accountList;
+    public static List<String> accountNames;
 	private ListView transcationLv;
 	private Spinner spinner;
     private View overallView;

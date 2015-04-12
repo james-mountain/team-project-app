@@ -105,7 +105,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/transfer_review"
-        android:id="@+id/review_transfer_btn"
+        android:id="@+id/transfer_btn"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         style="@style/button_style"/>
