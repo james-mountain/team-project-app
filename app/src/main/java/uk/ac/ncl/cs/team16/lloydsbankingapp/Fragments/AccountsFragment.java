@@ -28,10 +28,12 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONStringer;
 
 import java.lang.reflect.Field;
 import java.text.DateFormat;
@@ -40,6 +42,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -103,8 +106,11 @@ public class AccountsFragment extends Fragment {
 	private void accountsRequest() {
 		final AuthHandler authHandler = AuthHandler.getInstance();
 		Map<String, String> params = authHandler.handleAuthentication(null);
-		RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
-		JsonArrayPostRequest accountsArrayRequest = new JsonArrayPostRequest(ACCOUNTS_URL_BASE + "/summary", new JSONObject(params), new Response.Listener<JSONArray>() {
+        Gson gson = new Gson();
+        String requestString = gson.toJson(params, LinkedHashMap.class);
+
+        RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
+		JsonArrayPostRequest accountsArrayRequest = new JsonArrayPostRequest(ACCOUNTS_URL_BASE + "/summary", requestString, new Response.Listener<JSONArray>() {
 			@Override
 			public void onResponse(JSONArray response) {
 				accountList = new ArrayList<Account>();
@@ -149,10 +155,14 @@ public class AccountsFragment extends Fragment {
 
 	private void transactionsRequest(int index) {
 		final AuthHandler authHandler = AuthHandler.getInstance();
-		Map<String, String> params = authHandler.handleAuthentication(null);
+        LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+        params.put("accountid", "1");
+        authHandler.handleAuthentication(params);
+        Gson gson = new Gson();
+        String requestString = gson.toJson(params, LinkedHashMap.class);
 
 		RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
-		JsonArrayPostRequest transactionsArrayRequest = new JsonArrayPostRequest(ACCOUNTS_URL_BASE + "/transaction", new JSONObject(params), new Response.Listener<JSONArray>() {
+		JsonArrayPostRequest transactionsArrayRequest = new JsonArrayPostRequest(ACCOUNTS_URL_BASE + "/transaction", requestString, new Response.Listener<JSONArray>() {
 			@Override
 			public void onResponse(JSONArray response) {
 				transactionList = new ArrayList<Transaction>();

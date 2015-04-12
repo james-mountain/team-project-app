@@ -30,6 +30,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -78,8 +79,11 @@ public class ReviewFragment extends Fragment {
 		final AuthHandler authHandler = AuthHandler.getInstance();
 		Map<String, String> params = authHandler.handleAuthentication(null);
 
-		RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
-        JsonArrayPostRequest reviewArrayRequest = new JsonArrayPostRequest(REVIEW_URL_BASE, new JSONObject(params), new Response.Listener<JSONArray>() {
+        Gson gson = new Gson();
+        String requestString = gson.toJson(params, LinkedHashMap.class);
+
+        RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
+        JsonArrayPostRequest reviewArrayRequest = new JsonArrayPostRequest(REVIEW_URL_BASE, requestString, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
 				payeePayments = new ArrayList<Payment>();
