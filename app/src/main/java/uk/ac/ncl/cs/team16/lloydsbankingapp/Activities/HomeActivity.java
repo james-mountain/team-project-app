@@ -22,14 +22,14 @@ import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.AccountsFragment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.DictionaryFragment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.HelpFragment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.NavigationDrawerFragment;
-import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.ReviewFragment;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.PayeesFragment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.TransferFragment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 
 
 public class HomeActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks, AccountsFragment.OnFragmentInteractionListener,
-        ReviewFragment.OnFragmentInteractionListener,  TransferFragment.OnFragmentInteractionListener,
+        PayeesFragment.OnFragmentInteractionListener,  TransferFragment.OnFragmentInteractionListener,
         ATMFragment.OnFragmentInteractionListener,  DictionaryFragment.OnFragmentInteractionListener,
         HelpFragment.OnFragmentInteractionListener {
 
@@ -66,7 +66,7 @@ public class HomeActivity extends Activity
                 break;
 
             case 1:
-                fragment = new ReviewFragment();
+                fragment = new PayeesFragment();
                 mTitle = getString(R.string.title_drawer_review_payments);
                 break;
 

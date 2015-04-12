@@ -53,26 +53,26 @@ import uk.ac.ncl.cs.team16.lloydsbankingapp.network.JsonArrayPostRequest;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.VolleySingleton;
 
 
-public class ReviewFragment extends Fragment {
+public class PayeesFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private List<Payment> payeePayments = new ArrayList<Payment>();
     private List<Payment> standingPayments = new ArrayList<Payment>();
     private List<Payment> debitPayments = new ArrayList<Payment>();
     private ListView paymentsListView;
-    private ListView standingListView;
-    private ListView debitListView;
+    //private ListView standingListView;
+    //private ListView debitListView;
 
     private static final String REVIEW_URL_BASE = "http://csc2022api.sitedev9.co.uk/account/payee";
 
-    public ReviewFragment() {
+    public PayeesFragment() {
         // Required empty public constructor
     }
 
 	private void reloadAdapters() {
 		paymentsListView.setAdapter(new PaymentAdapter(payeePayments, "Last: "));
-		standingListView.setAdapter(new PaymentAdapter(standingPayments, "Next: "));
-		debitListView.setAdapter(new PaymentAdapter(debitPayments, "Last: "));
+		//standingListView.setAdapter(new PaymentAdapter(standingPayments, "Next: "));
+		//debitListView.setAdapter(new PaymentAdapter(debitPayments, "Last: "));
 	}
 
     private void reviewPayeesRequest() {
@@ -178,13 +178,14 @@ public class ReviewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View reviewView = inflater.inflate(R.layout.fragment_review, container, false);
+        View reviewView = inflater.inflate(R.layout.fragment_payees, container, false);
         paymentsListView = (ListView) reviewView.findViewById(R.id.payeeListView); // I could implement these as a list, but is it worth it?
-        standingListView = (ListView) reviewView.findViewById(R.id.standingListView);
-        debitListView = (ListView) reviewView.findViewById(R.id.debitListView);
+        //standingListView = (ListView) reviewView.findViewById(R.id.standingListView);
+        //debitListView = (ListView) reviewView.findViewById(R.id.debitListView);
 
 		registerForContextMenu(paymentsListView);
 
+        /*
         final TabHost tabHost = (TabHost) reviewView.findViewById(R.id.tabHost);
         tabHost.setup();
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
@@ -199,9 +200,10 @@ public class ReviewFragment extends Fragment {
         tabHost.addTab(tabHost.newTabSpec("directdebits").setIndicator("Direct Debits").setContent(R.id.debitTab));
 
         colorTabs(tabHost);
+        */
         reviewPayeesRequest();
 
-        tabHost.setCurrentTab(0);
+        //tabHost.setCurrentTab(0);
         return reviewView;
     }
 
