@@ -92,8 +92,7 @@ public class MainActivity extends Activity implements MainFragment.OnFragmentInt
 			@Override
 			public void onResponse(JSONObject response) {
 				try {
-					String status = response.getString("status");
-					if (status.equals("Success")) {
+					if (response.getInt("Status") == 1) {
 						requestAuth();
 					} else {
 						Toast.makeText(getApplicationContext(), "Incorrect username or password.", Toast.LENGTH_LONG).show();
@@ -132,8 +131,7 @@ public class MainActivity extends Activity implements MainFragment.OnFragmentInt
 			@Override
 			public void onResponse(JSONObject response) {
 				try {
-					String status = response.getString("status");
-					if (status.equals("Success")) {
+					if (response.getInt("Status") == 1) {
 						fullyAuthToken = true;
 
 						Toast.makeText(getApplicationContext(), "Login successful.", Toast.LENGTH_LONG).show();

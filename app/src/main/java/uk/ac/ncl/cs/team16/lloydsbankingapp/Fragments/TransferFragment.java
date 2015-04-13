@@ -140,7 +140,7 @@ public class TransferFragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    if (response.getString("Status").equals("Success")) { // This is a mouthful to check for, it should just be success
+                    if (response.getInt("Status") == 1) {
                         Toast.makeText(getActivity(), "Transfered money.", Toast.LENGTH_LONG).show();
 
                     } else {
