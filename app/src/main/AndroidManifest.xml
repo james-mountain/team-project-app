@@ -29,6 +29,11 @@
             android:name=".Activities.DictionaryEntryActivity"
             android:label="@string/title_activity_dictionary_entry" >
         </activity>
+        <activity
+            android:name=".Activities.AddPayeeActivity"
+            android:label="@string/title_activity_add_payee"
+            android:theme="@android:style/Theme.Holo.Light.Dialog.MinWidth">
+        </activity>
     </application>
 
 </manifest>

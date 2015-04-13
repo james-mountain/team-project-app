@@ -7,6 +7,8 @@
 package uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -19,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -46,6 +49,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Locale;
 
+import uk.ac.ncl.cs.team16.lloydsbankingapp.Activities.AddPayeeActivity;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Payment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.AuthHandler;
@@ -188,6 +192,7 @@ public class PayeesFragment extends Fragment {
         //debitListView = (ListView) reviewView.findViewById(R.id.debitListView);
 
 		registerForContextMenu(paymentsListView);
+		addPayeeButtonSetup();
 
         /*
         final TabHost tabHost = (TabHost) reviewView.findViewById(R.id.tabHost);
@@ -210,6 +215,24 @@ public class PayeesFragment extends Fragment {
         //tabHost.setCurrentTab(0);
         return reviewView;
     }
+
+	public void addPayeeButtonSetup() {
+		getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActivity().getActionBar().setDisplayShowCustomEnabled(true);
+
+		LayoutInflater inflator = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View addLayout = inflator.inflate(R.layout.add_payee_layout, null);
+		getActivity().getActionBar().setCustomView(addLayout);
+
+		Button addPayeeButton = (Button) addLayout.findViewById(R.id.addPayeeButton);
+		addPayeeButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				Intent addPayeeIntent = new Intent(getActivity(), AddPayeeActivity.class);
+				startActivity(addPayeeIntent);
+			}
+		});
+	}
 
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo) {

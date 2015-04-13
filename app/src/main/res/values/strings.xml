@@ -8,6 +8,7 @@
     <string name="current_balance">Current balance: </string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_dictionary_entry">Dictionary Entry</string>
+    <string name="title_activity_add_payee">Add Payee</string>
     <string name="title_drawer_accounts">Accounts</string>
     <string name="title_drawer_review_payments">Payees</string>
     <string name="title_drawer_transfer">Transfer Money</string>
@@ -47,5 +48,9 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_payee_confirm">Add New Payee</string>
+    <string name="account_number">Account No.</string>
+    <string name="sort_code">Sort Code</string>
+    <string name="description">Description</string>
 
 </resources>
