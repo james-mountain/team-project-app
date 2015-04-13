@@ -20,7 +20,7 @@ public class NavigationAdapter extends BaseAdapter {
     private Context context;
     private String[] navDrawerElements;
     private int[] icons= {R.drawable.ic_accounts, R.drawable.ic_reviewpayment, R.drawable.ic_transfer,
-                R.drawable.ic_findatm, R.drawable.ic_dictionary, R.drawable.ic_help};
+                R.drawable.ic_findatm, R.drawable.ic_dictionary, R.drawable.ic_help, R.drawable.gift};
 
     public NavigationAdapter(Context context){
         navDrawerElements = context.getResources().getStringArray(R.array.nav_drawer_elements);

@@ -16,6 +16,7 @@
     <string name="title_drawer_help">Help &amp; Guide</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_drawer_gamification">Collect points</string>
 
     <string-array name="nav_drawer_elements">
         <item>Accounts</item>
@@ -24,6 +25,8 @@
         <item>Find a Branch/ATM</item>
         <item>Dictionary &amp; Terms</item>
         <item>Help &amp; Guide</item>
+        <item>Collect points</item>
+
     </string-array>
 
     <string name="transfer_from">From</string>
@@ -41,5 +44,8 @@
     <string name="image_desc_horselogo">horse logo</string>
     <string name="search_prefix">Search:</string>
     <string name="delete">Delete</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

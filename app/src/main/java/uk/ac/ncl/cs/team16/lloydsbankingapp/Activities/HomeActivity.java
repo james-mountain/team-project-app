@@ -6,20 +6,21 @@
 
 package uk.ac.ncl.cs.team16.lloydsbankingapp.Activities;
 
-import android.app.Activity;
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v4.widget.DrawerLayout;
 
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.ATMFragment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.AccountsFragment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.DictionaryFragment;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.GamificationFragment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.HelpFragment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.NavigationDrawerFragment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.PayeesFragment;
@@ -88,6 +89,11 @@ public class HomeActivity extends Activity
             case 5:
                 fragment = new HelpFragment();
                 mTitle = getString(R.string.title_drawer_help);
+                break;
+
+            case 6:
+                fragment = new GamificationFragment();
+                mTitle = getString(R.string.title_drawer_gamification);
                 break;
             default:
                 mTitle = getString(R.string.title_drawer_accounts);
