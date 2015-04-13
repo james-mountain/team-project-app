@@ -70,17 +70,17 @@ public class AddPayeeActivity extends Activity {
 		JsonObjectRequest deleteRequest = new JsonObjectRequest(Request.Method.POST, REVIEW_URL_BASE + "/add", requestString, new Response.Listener<JSONObject>() {
 			@Override
 			public void onResponse(JSONObject response) {
-				//try {
-					//if (response.getString("Status").equals("Success, payee created with ID: ")) { // This is a mouthful to check for, it should just be success
+				try {
+					if (response.getInt("Status") == 1) {
 						Toast.makeText(getApplicationContext(), "New payee added.", Toast.LENGTH_LONG).show();
 
-						finalisePayeeAdd(); // Finish up, close the activity and refresh payees
-					//} else {
-					//	Toast.makeText(getApplicationContext(), "Failed to add new payee.", Toast.LENGTH_LONG).show();
-					//}
-				//} catch (JSONException e) {
-				//	e.printStackTrace();
-				//}
+						finalisePayeeAdd();
+					} else {
+						Toast.makeText(getApplicationContext(), "Failed to add new payee.", Toast.LENGTH_LONG).show();
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
 			}
 		}, new Response.ErrorListener() {
 			@Override

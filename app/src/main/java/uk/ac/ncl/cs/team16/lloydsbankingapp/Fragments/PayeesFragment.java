@@ -138,7 +138,7 @@ public class PayeesFragment extends Fragment {
 			@Override
 			public void onResponse(JSONObject response) {
 				try {
-					if (response.getString("Status").equals("Success, payee deleted")) { // This is a mouthful to check for, it should just be success
+					if (response.getInt("Status") == 1) {
 						Toast.makeText(getActivity(), "Payee deleted.", Toast.LENGTH_LONG).show();
 
 						reviewPayeesRequest(); // This has to be done as a separate request, otherwise more parameters to this method
@@ -178,10 +178,6 @@ public class PayeesFragment extends Fragment {
         tabWidgetChild.setBackgroundColor(getResources().getColor(R.color.lloyds_green));
         tabWidgetChildText.setTextColor(getResources().getColor(android.R.color.white));
     }
-
-    // TODO: Add new payee button. Will require a new activity.
-    // TODO: That payee activity will require JSON request too
-    // TODO: Probably need to add the account spinner, since multiple accounts have different payees
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -267,6 +263,8 @@ public class PayeesFragment extends Fragment {
 
     @Override
     public void onDetach() {
+		getActivity().getActionBar().setDisplayHomeAsUpEnabled(false);
+		getActivity().getActionBar().setDisplayShowCustomEnabled(false);
         super.onDetach();
         mListener = null;
     }
