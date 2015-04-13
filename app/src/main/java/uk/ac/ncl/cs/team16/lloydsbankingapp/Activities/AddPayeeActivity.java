@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.PayeesFragment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.AuthHandler;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.VolleySingleton;
@@ -50,7 +51,7 @@ public class AddPayeeActivity extends Activity {
     }
 
 	private void finalisePayeeAdd() {
-		// payees refresh
+		PayeesFragment.payeesContext.reviewPayeesRequest();
 		finish();
 	}
 

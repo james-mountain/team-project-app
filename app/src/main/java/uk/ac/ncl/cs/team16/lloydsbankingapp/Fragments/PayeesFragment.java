@@ -66,6 +66,7 @@ public class PayeesFragment extends Fragment {
     private ListView paymentsListView;
     //private ListView standingListView;
     //private ListView debitListView;
+	public static PayeesFragment payeesContext;
 
     private static final String REVIEW_URL_BASE = "http://csc2022api.sitedev9.co.uk/account/payee";
 
@@ -79,7 +80,7 @@ public class PayeesFragment extends Fragment {
 		//debitListView.setAdapter(new PaymentAdapter(debitPayments, "Last: "));
 	}
 
-    private void reviewPayeesRequest() {
+    public void reviewPayeesRequest() {
 		final AuthHandler authHandler = AuthHandler.getInstance();
 		Map<String, String> params = authHandler.handleAuthentication(null);
 
@@ -182,6 +183,8 @@ public class PayeesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+		payeesContext = this;
+
         View reviewView = inflater.inflate(R.layout.fragment_payees, container, false);
         paymentsListView = (ListView) reviewView.findViewById(R.id.payeeListView); // I could implement these as a list, but is it worth it?
         //standingListView = (ListView) reviewView.findViewById(R.id.standingListView);
