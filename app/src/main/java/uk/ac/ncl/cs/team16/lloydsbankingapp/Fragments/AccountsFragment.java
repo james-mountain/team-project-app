@@ -22,7 +22,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
@@ -33,7 +32,6 @@ import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONStringer;
 
 import java.lang.reflect.Field;
 import java.text.DateFormat;
@@ -156,8 +154,10 @@ public class AccountsFragment extends Fragment {
 	private void transactionsRequest(int index) {
         String accountID = accountList.get(index).getId();
 		final AuthHandler authHandler = AuthHandler.getInstance();
+
         LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
         params.put("accountid", accountID);
+
         authHandler.handleAuthentication(params);
         Gson gson = new Gson();
         String requestString = gson.toJson(params, LinkedHashMap.class);
@@ -174,8 +174,9 @@ public class AccountsFragment extends Fragment {
 						String transAmount = transactionObject.getString("TransAmout");
 						JSONObject transDateObject = transactionObject.getJSONObject("TransDate");
 						String transDate = transDateObject.getString("date");
+						String accountBalance = transactionObject.getString("AccountBalance");
 
-						transactionList.add(new Transaction(transDesc, transDate, "1000", transAmount));
+						transactionList.add(new Transaction(transDesc, transDate, accountBalance, transAmount));
 					} catch (JSONException e) {
 						e.printStackTrace();
 					}
@@ -235,7 +236,7 @@ public class AccountsFragment extends Fragment {
 
 			payee.setText(transactionList.get(position).getPayee());
 			date.setText(transactionList.get(position).getDate());
-			balance.setText("£" + transactionList.get(position).getBalance());
+			balance.setText(transactionList.get(position).getBalance() + " GBP");
 			value.setText(transactionList.get(position).getValue());
 			return row;
 		}
