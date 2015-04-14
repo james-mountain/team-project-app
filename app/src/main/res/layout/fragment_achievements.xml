@@ -1,13 +1,52 @@
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.AchievementsFragment"
-    android:background="@color/almost_white">
+    android:background="@color/almost_white"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/generic_listview_padding">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/generic_listview_height">
 
-</FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Points: "
+            android:id="@+id/pointsTextView"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/text_size_large" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="500"
+            android:layout_toRightOf="@+id/pointsTextView"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/text_size_large" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Target Achievements"
+        android:textSize="@dimen/text_size_large"
+        android:layout_centerVertical="true"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/achievementsListView" >
+
+
+
+    </ListView>
+
+
+
+
+</LinearLayout>
