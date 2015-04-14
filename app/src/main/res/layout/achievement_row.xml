@@ -19,9 +19,9 @@
             android:paddingBottom="@dimen/generic_listview_padding"
             android:orientation="horizontal">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="1dp"
-                android:layout_weight="0.9"
+                android:layout_weight="0.79"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
@@ -29,6 +29,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Achievement Name"
+                    android:layout_marginBottom="@dimen/half_margin"
                     android:textSize="@dimen/text_size_medium"
                     android:id="@+id/achievementName"/>
 
@@ -39,17 +40,38 @@
                     android:textSize="@dimen/text_size_very_small"
                     android:textColor="@android:color/darker_gray"
                     android:id="@+id/achievementDescription"
-                    android:layout_gravity="bottom"/>
+                    android:layout_below="@+id/achievementName"
+                    android:layout_gravity="bottom" />
 
-            </LinearLayout>
+            </RelativeLayout>
 
-            <TextView
+            <RelativeLayout
                 android:layout_width="1dp"
-                android:layout_weight="0.1"
+                android:layout_weight="0.21"
                 android:layout_height="match_parent"
-                android:id="@+id/achievementValue"
-                android:text="10"
-                android:textSize="@dimen/text_size_medium" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Value"
+                    android:layout_marginBottom="@dimen/half_margin"
+                    android:textSize="@dimen/text_size_medium"
+                    android:id="@+id/achievementValueLabel"
+                    android:layout_centerHorizontal="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10pts"
+                    android:textSize="@dimen/text_size_very_small"
+                    android:textColor="@android:color/darker_gray"
+                    android:id="@+id/achievementValue"
+                    android:layout_below="@+id/achievementValueLabel"
+                    android:layout_gravity="bottom"
+                    android:layout_centerHorizontal="true" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 

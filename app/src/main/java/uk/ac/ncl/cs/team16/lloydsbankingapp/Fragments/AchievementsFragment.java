@@ -45,7 +45,8 @@ public class AchievementsFragment extends Fragment {
     public void populateAchievementsList() {
 
         achievements.add(new Achievement("Login Regularly (weekly)", "Login at least once on five different days, each week", 10));
-        achievements.add(new Achievement("Login Regularly (monthly)", "Obtain the weekly regular login award, four times in a row", 60));
+        achievements.add(new Achievement("Login Regularly (monthly)", "Obtain the weekly regular login award, four weeks in a row", 60));
+        achievements.add(new Achievement("Make spending cuts", "This month, spending cuts in entertainment are suggested to ensure more money comes in than out", 20));
     }
 
     private class AchievementAdapter extends ArrayAdapter<Achievement> {
@@ -63,9 +64,11 @@ public class AchievementsFragment extends Fragment {
             View entryRow = super.getView(position, convertView, parent);
             TextView entryName = (TextView) entryRow.findViewById(R.id.achievementName);
             TextView entryDesc = (TextView) entryRow.findViewById(R.id.achievementDescription);
+            TextView entryValue = (TextView) entryRow.findViewById(R.id.achievementValue);
 
             entryName.setText(achievementSet.get(position).getName());
             entryDesc.setText(achievementSet.get(position).getDescription());
+            entryValue.setText(achievementSet.get(position).getPoints() + "pts");
             return entryRow;
         }
     }
