@@ -20,7 +20,7 @@
             android:orientation="horizontal">
 
             <RelativeLayout
-                android:layout_width="1dp"
+                android:layout_width="0dp"
                 android:layout_weight="0.79"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -46,7 +46,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="1dp"
+                android:layout_width="0dp"
                 android:layout_weight="0.21"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -64,11 +64,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="10pts"
-                    android:textSize="@dimen/text_size_very_small"
+                    android:textSize="@dimen/text_size_small"
                     android:textColor="@android:color/darker_gray"
                     android:id="@+id/achievementValue"
                     android:layout_below="@+id/achievementValueLabel"
-                    android:layout_gravity="bottom"
                     android:layout_centerHorizontal="true" />
 
             </RelativeLayout>
@@ -76,9 +75,5 @@
         </LinearLayout>
 
     </FrameLayout>
-
-
-
-
 
 </LinearLayout>
