@@ -103,6 +103,8 @@ public class HomeActivity extends Activity
         fragmentManager.beginTransaction()
                 .replace(R.id.container, fragment)
                 .commit();
+
+		restoreActionBar();
     }
 
     private void restoreActionBar() {
@@ -117,7 +119,6 @@ public class HomeActivity extends Activity
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
 
             getMenuInflater().inflate(R.menu.home, menu);
-            restoreActionBar();
             return true;
         }
         return super.onCreateOptionsMenu(menu);
