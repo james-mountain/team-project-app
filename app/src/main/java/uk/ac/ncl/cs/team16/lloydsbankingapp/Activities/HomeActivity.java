@@ -20,7 +20,7 @@ import android.view.MenuItem;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.ATMFragment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.AccountsFragment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.DictionaryFragment;
-import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.GamificationFragment;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.AchievementsFragment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.HelpFragment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.NavigationDrawerFragment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.PayeesFragment;
@@ -92,7 +92,7 @@ public class HomeActivity extends Activity
                 break;
 
             case 6:
-                fragment = new GamificationFragment();
+                fragment = new AchievementsFragment();
                 mTitle = getString(R.string.title_drawer_gamification);
                 break;
             default:

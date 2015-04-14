@@ -12,10 +12,10 @@ import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class GamificationFragment extends Fragment {
+public class AchievementsFragment extends Fragment {
 
 
-    public GamificationFragment() {
+    public AchievementsFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class GamificationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_gamification, container, false);
+        return inflater.inflate(R.layout.fragment_achievements, container, false);
     }
 
 

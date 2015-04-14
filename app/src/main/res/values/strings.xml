@@ -17,7 +17,7 @@
     <string name="title_drawer_help">Help &amp; Guide</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="title_drawer_gamification">Collect points</string>
+    <string name="title_drawer_gamification">Achievements</string>
 
     <string-array name="nav_drawer_elements">
         <item>Accounts</item>
@@ -26,7 +26,7 @@
         <item>Find a Branch/ATM</item>
         <item>Dictionary &amp; Terms</item>
         <item>Help &amp; Guide</item>
-        <item>Collect points</item>
+        <item>Achievements</item>
 
     </string-array>
 
