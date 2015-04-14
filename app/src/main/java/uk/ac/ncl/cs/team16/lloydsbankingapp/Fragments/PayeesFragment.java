@@ -7,6 +7,7 @@
 package uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments;
 
 import android.app.Activity;
+import android.app.ActionBar.LayoutParams;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,6 +15,7 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -220,8 +223,9 @@ public class PayeesFragment extends Fragment {
 		getActivity().getActionBar().setDisplayShowCustomEnabled(true);
 
 		LayoutInflater inflator = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		LayoutParams layoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, Gravity.RIGHT | Gravity.CENTER_VERTICAL);
 		View addLayout = inflator.inflate(R.layout.add_payee_layout, null);
-		getActivity().getActionBar().setCustomView(addLayout);
+		getActivity().getActionBar().setCustomView(addLayout, layoutParams);
 
 		Button addPayeeButton = (Button) addLayout.findViewById(R.id.addPayeeButton);
 		addPayeeButton.setOnClickListener(new View.OnClickListener() {
