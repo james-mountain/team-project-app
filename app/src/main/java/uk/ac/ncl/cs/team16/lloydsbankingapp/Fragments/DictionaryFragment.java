@@ -51,7 +51,7 @@ public class DictionaryFragment extends Fragment {
         for (DictionaryEntry entry : dictionaryEntries) {
             String entryName = entry.getEntryName();
             int searchLength = Math.min(searchPattern.length(), entryName.length()); // Failure to define this can result in a null pointer exception
-            if (!searchPattern.equals("")) { // A dictionary search of sorts, like a RadixSort
+            if (!searchPattern.isEmpty()) { // A dictionary search of sorts, like a RadixSort
                 if (!searchPattern.toLowerCase().equals(entryName.toLowerCase().substring(0, searchLength))) {
                     continue;
                 }
@@ -152,7 +152,6 @@ public class DictionaryFragment extends Fragment {
     }
 
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }
 

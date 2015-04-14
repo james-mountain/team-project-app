@@ -18,12 +18,11 @@ public class VolleySingleton {
     }
 
     public static VolleySingleton getInstance(){
-
-        if(sInstance == null)
-            sInstance = new VolleySingleton();
+        if(sInstance == null) {
+			sInstance = new VolleySingleton();
+		}
 
         return sInstance;
-
     }
 
     public RequestQueue getRequestQueue(){

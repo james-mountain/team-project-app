@@ -2,7 +2,6 @@ package uk.ac.ncl.cs.team16.lloydsbankingapp.Activities;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,9 +11,7 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,6 +23,7 @@ import java.util.Map;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.PayeesFragment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.AuthHandler;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.network.DefaultErrorListener;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.VolleySingleton;
 
 public class AddPayeeActivity extends Activity {
@@ -63,9 +61,7 @@ public class AddPayeeActivity extends Activity {
 		params.put("sortcode", sortcode);
 		params.put("account_no", accountno);
 
-		authHandler.handleAuthentication(params);
-		Gson gson = new Gson();
-		String requestString = gson.toJson(params, LinkedHashMap.class);
+		String requestString = authHandler.handleAuthentication(params);
 
 		RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
 		JsonObjectRequest deleteRequest = new JsonObjectRequest(Request.Method.POST, REVIEW_URL_BASE + "/add", requestString, new Response.Listener<JSONObject>() {
@@ -80,15 +76,10 @@ public class AddPayeeActivity extends Activity {
 						Toast.makeText(getApplicationContext(), "Failed to add new payee.", Toast.LENGTH_LONG).show();
 					}
 				} catch (JSONException e) {
-					e.printStackTrace();
+
 				}
 			}
-		}, new Response.ErrorListener() {
-			@Override
-			public void onErrorResponse(VolleyError error) {
-				Log.d("error", error.getMessage());
-			}
-		}) {
+		}, new DefaultErrorListener()) {
 			@Override
 			public Map<String, String> getHeaders() throws AuthFailureError {
 				HashMap<String, String> headers = new HashMap<String, String>();

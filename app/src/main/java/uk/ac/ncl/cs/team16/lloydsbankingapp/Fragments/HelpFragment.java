@@ -14,12 +14,13 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import uk.ac.ncl.cs.team16.lloydsbankingapp.adapters.ExpandableListAdapter;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.adapters.HelpExpandableListAdapter;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 
 
@@ -33,8 +34,6 @@ public class HelpFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private ExpandableListAdapter listAdapter;
-    private ExpandableListView listView;
     private List<String> listHeaders;
     private HashMap<String, List<String>> listItems;
 
@@ -42,16 +41,14 @@ public class HelpFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View helpView = inflater.inflate(R.layout.fragment_help, container, false);
 
-        listView = (ExpandableListView) helpView.findViewById(R.id.helpListView);
         prepareListData();
-        listAdapter = new ExpandableListAdapter(getActivity(), listItems, listHeaders);
+		ExpandableListAdapter listAdapter = new HelpExpandableListAdapter(getActivity(), listItems, listHeaders);
+		ExpandableListView listView = (ExpandableListView) helpView.findViewById(R.id.helpListView);
         listView.setAdapter(listAdapter);
 
         return helpView;
@@ -103,9 +100,7 @@ public class HelpFragment extends Fragment {
         mListener = null;
     }
 
-
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }
 

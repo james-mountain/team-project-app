@@ -39,7 +39,7 @@
         <TextView
             android:layout_width="@dimen/label_width"
             android:layout_height="wrap_content"
-            android:text="@string/transfer_from"
+            android:text="@string/transfer_to"
             android:id="@+id/to_text_view"
             style="@style/transfer_fragment_style"/>
 

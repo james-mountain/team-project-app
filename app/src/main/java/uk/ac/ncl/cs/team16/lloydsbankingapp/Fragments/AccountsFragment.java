@@ -12,7 +12,6 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -26,8 +25,6 @@ import android.widget.TextView;
 import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,6 +45,7 @@ import java.util.Map;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Account;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.AuthHandler;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.network.DefaultErrorListener;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.JsonArrayPostRequest;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.VolleySingleton;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Transaction;
@@ -103,9 +101,9 @@ public class AccountsFragment extends Fragment {
 
 	private void accountsRequest() {
 		final AuthHandler authHandler = AuthHandler.getInstance();
-		Map<String, String> params = authHandler.handleAuthentication(null);
-        Gson gson = new Gson();
-        String requestString = gson.toJson(params, LinkedHashMap.class);
+
+		LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+		String requestString = authHandler.handleAuthentication(params);
 
         RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
 		JsonArrayPostRequest accountsArrayRequest = new JsonArrayPostRequest(ACCOUNTS_URL_BASE + "/summary", requestString, new Response.Listener<JSONArray>() {
@@ -118,27 +116,20 @@ public class AccountsFragment extends Fragment {
 					try {
 						JSONObject accountJSONObject = response.getJSONObject(i);
 						accountList.add(new Account(accountJSONObject.getString("AccountID"),
-                                accountJSONObject.getString("AccountName"),
-                                        accountJSONObject.getString("AccountType"),
-                                                accountJSONObject.getString("AccountBalance")));
-
+                       	 	accountJSONObject.getString("AccountName"),
+                        	accountJSONObject.getString("AccountType"),
+                        	accountJSONObject.getString("AccountBalance")));
 					} catch (JSONException e) {
-						e.printStackTrace();
+
 					}
 				}
 
                 for(Account a : accountList){
                     accountNames.add(a.getName());
                 }
-
 				assembleSpinner();
 			}
-		}, new Response.ErrorListener() {
-			@Override
-			public void onErrorResponse(VolleyError error) {
-				Log.d("error", error.getMessage());
-			}
-		}) {
+		}, new DefaultErrorListener()) {
 			@Override
 			public Map<String, String> getHeaders() throws AuthFailureError {
 				HashMap<String, String> headers = new HashMap<String, String>();
@@ -149,8 +140,6 @@ public class AccountsFragment extends Fragment {
 		networkQueue.add(accountsArrayRequest);
 	}
 
-
-
 	private void transactionsRequest(int index) {
         String accountID = accountList.get(index).getId();
 		final AuthHandler authHandler = AuthHandler.getInstance();
@@ -158,12 +147,10 @@ public class AccountsFragment extends Fragment {
         LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
         params.put("accountid", accountID);
 
-        authHandler.handleAuthentication(params);
-        Gson gson = new Gson();
-        String requestString = gson.toJson(params, LinkedHashMap.class);
+        String requestString = authHandler.handleAuthentication(params);
 
 		RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
-		JsonArrayPostRequest transactionsArrayRequest = new JsonArrayPostRequest(ACCOUNTS_URL_BASE + "/transaction", requestString, new Response.Listener<JSONArray>() {
+		JsonArrayPostRequest transArrayRequest = new JsonArrayPostRequest(ACCOUNTS_URL_BASE + "/transaction", requestString, new Response.Listener<JSONArray>() {
 			@Override
 			public void onResponse(JSONArray response) {
 				transactionList = new ArrayList<Transaction>();
@@ -178,18 +165,13 @@ public class AccountsFragment extends Fragment {
 
 						transactionList.add(new Transaction(transDesc, transDate, accountBalance, transAmount));
 					} catch (JSONException e) {
-						e.printStackTrace();
+
 					}
 				}
 
 				transcationLv.setAdapter(new TransactionAdapter());
 			}
-		}, new Response.ErrorListener() {
-			@Override
-			public void onErrorResponse(VolleyError error) {
-				Log.d("error", error.getMessage());
-			}
-		}) {
+		}, new DefaultErrorListener()) {
 			@Override
 			public Map<String, String> getHeaders() throws AuthFailureError {
 				HashMap<String, String> headers = new HashMap<String, String>();
@@ -197,7 +179,7 @@ public class AccountsFragment extends Fragment {
 				return headers;
 			}
 		};
-		networkQueue.add(transactionsArrayRequest);
+		networkQueue.add(transArrayRequest);
 	}
 
 	/**
@@ -299,7 +281,6 @@ public class AccountsFragment extends Fragment {
 
 	//
 	public interface OnFragmentInteractionListener {
-		// TODO: Update argument type and name
 		public void onFragmentInteraction(Uri uri);
 	}
 }

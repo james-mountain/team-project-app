@@ -26,7 +26,7 @@ public class Payment {
         return payee;
     }
 
-    public Calendar getDate() { return date; }
+    public Calendar getDate() { return (Calendar) date.clone(); }
 
     public String getAmount() {
         return amount;

@@ -14,13 +14,13 @@ import android.graphics.Typeface;
 /**
  * Created by Roy on 18/02/2015.
  */
-public class ExpandableListAdapter extends BaseExpandableListAdapter{
+public class HelpExpandableListAdapter extends BaseExpandableListAdapter{
 
     private Context context;
     private HashMap<String, List<String>> listDataItems;
     private List<String> listDataHeaders;
 
-    public ExpandableListAdapter(Context context, HashMap<String, List<String>> listDataItems, List<String> listDataHeaders) {
+    public HelpExpandableListAdapter(Context context, HashMap<String, List<String>> listDataItems, List<String> listDataHeaders) {
 
         this.context = context;
         this.listDataItems = listDataItems;

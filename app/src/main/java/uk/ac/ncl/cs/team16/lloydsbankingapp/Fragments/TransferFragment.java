@@ -6,12 +6,10 @@
 
 package uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,25 +24,18 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.google.gson.Gson;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Account;
-import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Transaction;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.AuthHandler;
-import uk.ac.ncl.cs.team16.lloydsbankingapp.network.JsonArrayPostRequest;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.network.DefaultErrorListener;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.VolleySingleton;
 
 
@@ -57,13 +48,11 @@ public class TransferFragment extends Fragment {
     private String amount;
 
     private TextView amountTV;
-    //Temporary account options array
     public TransferFragment() {
         // Required empty public constructor
     }
 
     // TODO: Add tabs for the different transfers - import from current review fragment?
-    // TODO: JSON request to server with new transfer, with response handling on Android side
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -101,7 +90,6 @@ public class TransferFragment extends Fragment {
             }
         });
 
-
         accountToChoice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -114,10 +102,8 @@ public class TransferFragment extends Fragment {
             }
         });
 
-
         return v;
     }
-
 
     private void transferMoney() {
         String fromAccount = AccountsFragment.accountList.get(from).getId();
@@ -130,10 +116,7 @@ public class TransferFragment extends Fragment {
         params.put("to_account", toAccount);
         params.put("amount", amount);
 
-        authHandler.handleAuthentication(params);
-        Gson gson = new Gson();
-        String requestString = gson.toJson(params, LinkedHashMap.class);
-        Log.d("JSONRequest:", requestString);
+		String requestString = authHandler.handleAuthentication(params);
 
         RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
         JsonObjectRequest transferRequest = new JsonObjectRequest(Request.Method.POST, ACCOUNTS_URL_BASE, requestString, new Response.Listener<JSONObject>() {
@@ -142,21 +125,14 @@ public class TransferFragment extends Fragment {
                 try {
                     if (response.getInt("Status") == 1) {
                         Toast.makeText(getActivity(), "Transfered money.", Toast.LENGTH_LONG).show();
-
                     } else {
                         Toast.makeText(getActivity(), "Failed.", Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
-                    e.printStackTrace();
+
                 }
             }
-        }
-            , new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("error", error.getMessage());
-            }
-        }) {
+        }, new DefaultErrorListener()) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
@@ -167,10 +143,6 @@ public class TransferFragment extends Fragment {
         networkQueue.add(transferRequest);
     }
 
-
-
-
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -194,10 +166,7 @@ public class TransferFragment extends Fragment {
         mListener = null;
     }
 
-
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }
-
 }

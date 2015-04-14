@@ -2,15 +2,16 @@ package uk.ac.ncl.cs.team16.lloydsbankingapp.network;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
+
+import com.google.gson.Gson;
 
 import org.apache.commons.codec.binary.Hex;
 
 import java.security.InvalidKeyException;
+import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Random;
 
 import javax.crypto.Mac;
@@ -33,13 +34,9 @@ public class AuthHandler {
 		return singleton;
 	}
 
-	public Map<String, String> handleAuthentication(LinkedHashMap<String, String> params) {
+	public String handleAuthentication(LinkedHashMap<String, String> params) {
 		long curTime = new Date().getTime()/1000;
 		int nonce = new Random().nextInt(900000) + 100000;
-
-		if (params == null) { // Not all calls to the auth handler will have params
-			params = new LinkedHashMap<String, String>();
-		}
 
 		params.put("timestamp", String.valueOf(curTime));
 		params.put("nonce", String.valueOf(nonce));
@@ -53,7 +50,7 @@ public class AuthHandler {
 		String signature = null;
 		try {
 			String key = "IgzW60g7VfCvgT8AuZG2tRRgqbx5Cfhj";
-			SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes(), "HmacSHA256");
+			Key secretKeySpec = new SecretKeySpec(key.getBytes(), "HmacSHA256");
 
 			Mac mac = Mac.getInstance("HmacSHA256");
 			mac.init(secretKeySpec);
@@ -61,13 +58,13 @@ public class AuthHandler {
 
 			signature = new String(Hex.encodeHex(paramStringEncBytes));
 		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
 		} catch (InvalidKeyException e) {
-			e.printStackTrace();
 		}
+
 		params.put("signature", signature);
 
-		return params;
+		Gson gson = new Gson();
+		return gson.toJson(params, LinkedHashMap.class);
 	}
 
 	public String obtainSessionID(Context context) {

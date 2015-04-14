@@ -29,7 +29,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/lloyds_bank_caps"
             android:id="@+id/companyName"
-            android:textSize="32dp"
+            android:textSize="32sp"
             android:textColor="@color/lloyds_green"
             android:layout_gravity="center_horizontal" />
 
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/login"
-            android:textSize="26dp"
+            android:textSize="26sp"
             android:id="@+id/pageDescription"
             android:textColor="@color/lloyds_green"
             android:layout_marginTop="45dp"

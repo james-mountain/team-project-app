@@ -33,8 +33,8 @@
     <string name="transfer_from">From</string>
     <string name="transfer_to">To</string>
     <string name="transfer_name">Name</string>
-    <string name="transfer_sort">Sort code</string>
-    <string name="transfer_acc">Account no.</string>
+    <string name="account_number">Account No.</string>
+    <string name="sort_code">Sort Code</string>
     <string name="transfer_amount">Amount</string>
     <string name="transfer_message">Message</string>
     <string name="transfer_review">Review transfer</string>
@@ -49,8 +49,6 @@
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_payee_confirm">Add New Payee</string>
-    <string name="account_number">Account No.</string>
-    <string name="sort_code">Sort Code</string>
     <string name="description">Description</string>
 
 </resources>

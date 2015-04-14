@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -25,6 +24,7 @@ import java.util.Map;
 
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.MainFragment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.network.DefaultErrorListener;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.VolleySingleton;
 
 public class MainActivity extends Activity implements MainFragment.OnFragmentInteractionListener {
@@ -67,7 +67,7 @@ public class MainActivity extends Activity implements MainFragment.OnFragmentInt
 				try {
 					sessionToken = response.getString("session_id");
 				} catch (JSONException e) {
-					e.printStackTrace();
+
 				}
 			}
 		}, new Response.ErrorListener() {
@@ -98,15 +98,10 @@ public class MainActivity extends Activity implements MainFragment.OnFragmentInt
 						Toast.makeText(getApplicationContext(), "Incorrect username or password.", Toast.LENGTH_LONG).show();
 					}
 				} catch (JSONException e) {
-					e.printStackTrace();
+
 				}
 			}
-		}, new Response.ErrorListener() {
-			@Override
-			public void onErrorResponse(VolleyError error) {
-				// oops, error handling can be sorted later.
-			}
-		}) {
+		}, new DefaultErrorListener()) {
 			@Override
 			public Map<String, String> getHeaders() throws AuthFailureError {
 				HashMap<String, String> headers = new HashMap<String, String>();
@@ -140,15 +135,10 @@ public class MainActivity extends Activity implements MainFragment.OnFragmentInt
 						Toast.makeText(getApplicationContext(), "Incorrect memorable word.", Toast.LENGTH_LONG).show();
 					}
 				} catch (JSONException e) {
-					e.printStackTrace();
+
 				}
 			}
-		}, new Response.ErrorListener() {
-			@Override
-			public void onErrorResponse(VolleyError error) {
-				// oops, error handling can be sorted later.
-			}
-		}) {
+		}, new DefaultErrorListener()) {
 			@Override
 			public Map<String, String> getHeaders() throws AuthFailureError {
 				HashMap<String, String> headers = new HashMap<String, String>();
