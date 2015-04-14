@@ -31,8 +31,8 @@ public class AchievementsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        final View achievementsView = inflater.inflate(R.layout.fragment_achievements, container, false);
-        final ListView achievementsListView = (ListView) achievementsView.findViewById(R.id.achievementsListView);
+        View achievementsView = inflater.inflate(R.layout.fragment_achievements, container, false);
+        ListView achievementsListView = (ListView) achievementsView.findViewById(R.id.achievementsListView);
 
         populateAchievementsList();
 
@@ -44,6 +44,7 @@ public class AchievementsFragment extends Fragment {
 
     public void populateAchievementsList() {
 
+        //Creates the achievements and adds them to the achievements list
         achievements.add(new Achievement("Login Regularly (weekly)", "Login at least once on five different days, each week", 10));
         achievements.add(new Achievement("Login Regularly (monthly)", "Obtain the weekly regular login award, four weeks in a row", 60));
         achievements.add(new Achievement("Make spending cuts", "This month, spending cuts in entertainment are suggested to ensure more money comes in than out", 20));
@@ -51,7 +52,7 @@ public class AchievementsFragment extends Fragment {
 
     private class AchievementAdapter extends ArrayAdapter<Achievement> {
 
-        private final List<Achievement> achievementSet;
+        private List<Achievement> achievementSet;
 
         AchievementAdapter(List<Achievement> achievementSet){
             super(getActivity(), R.layout.achievement_row, R.id.achievementName, achievementSet);
@@ -61,6 +62,7 @@ public class AchievementsFragment extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
+            //Connects each detail of the achievement object with the relevant section of the achievement row
             View entryRow = super.getView(position, convertView, parent);
             TextView entryName = (TextView) entryRow.findViewById(R.id.achievementName);
             TextView entryDesc = (TextView) entryRow.findViewById(R.id.achievementDescription);
