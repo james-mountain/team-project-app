@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    style="@style/listview_style" >
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/achievements_listview_height"
+        android:paddingLeft="@dimen/generic_listview_padding"
+        android:paddingRight="@dimen/generic_listview_padding">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingTop="@dimen/generic_listview_padding"
+            android:paddingBottom="@dimen/generic_listview_padding"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_weight="0.9"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Achievement Name"
+                    android:textSize="@dimen/text_size_medium"
+                    android:id="@+id/achievementName"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Achievement description"
+                    android:textSize="@dimen/text_size_very_small"
+                    android:textColor="@android:color/darker_gray"
+                    android:id="@+id/achievementDescription"
+                    android:layout_gravity="bottom"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="1dp"
+                android:layout_weight="0.1"
+                android:layout_height="match_parent"
+                android:id="@+id/achievementValue"
+                android:text="10"
+                android:textSize="@dimen/text_size_medium" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+
+
+
+</LinearLayout>

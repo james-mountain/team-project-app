@@ -5,17 +5,20 @@
     android:layout_height="match_parent"
     tools:context="uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.AchievementsFragment"
     android:background="@color/almost_white"
-    android:orientation="vertical"
-    android:paddingLeft="@dimen/generic_listview_padding">
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/generic_listview_height">
+        android:layout_height="@dimen/generic_listview_height"
+        android:background="@color/lloyds_green"
+        android:paddingLeft="@dimen/generic_listview_padding"
+        android:paddingRight="@dimen/generic_listview_padding">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Points: "
+            android:textColor="@color/white"
             android:id="@+id/pointsTextView"
             android:layout_centerVertical="true"
             android:textSize="@dimen/text_size_large" />
@@ -24,6 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="500"
+            android:textColor="@color/white"
             android:layout_toRightOf="@+id/pointsTextView"
             android:layout_centerVertical="true"
             android:textSize="@dimen/text_size_large" />
@@ -35,7 +39,11 @@
         android:layout_height="wrap_content"
         android:text="Target Achievements"
         android:textSize="@dimen/text_size_large"
-        android:layout_centerVertical="true"/>
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/generic_listview_padding"
+        android:paddingRight="@dimen/generic_listview_padding"/>
 
     <ListView
         android:layout_width="match_parent"

@@ -11,10 +11,12 @@
     <dimen name="lower_margin">4dp</dimen>
     <dimen name="label_width">100dp</dimen>
     <dimen name="text_size_small">16sp</dimen>
+    <dimen name="text_size_very_small">14sp</dimen>
     <dimen name="login_widget_width">260dp</dimen>
     <dimen name="login_widget_marginLeft">60dp</dimen>
     <dimen name="login_widget_marginTop">20dp</dimen>
     <dimen name="generic_listview_height">72dp</dimen>
+    <dimen name="achievements_listview_height">120dp</dimen>
     <dimen name="generic_listview_padding">16dp</dimen>
 
 </resources>
