@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
@@ -36,9 +37,20 @@ public class AchievementsFragment extends Fragment {
 
         populateAchievementsList();
 
+        //Apply the achievements list to the interface
         achievementsListView.setAdapter(new AchievementAdapter(achievements));
 
-        // Inflate the layout for this fragment
+        //set onclick listener for the button leading to the rewards shop fragment
+        Button button = (Button) achievementsView.findViewById(R.id.buttonToShop);
+
+        button.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+
+
+            }
+        });
+
         return achievementsView;
     }
 
@@ -54,6 +66,7 @@ public class AchievementsFragment extends Fragment {
 
         private List<Achievement> achievementSet;
 
+        //Adapter constructor
         AchievementAdapter(List<Achievement> achievementSet){
             super(getActivity(), R.layout.row_achievement, R.id.achievementName, achievementSet);
             this.achievementSet = achievementSet;

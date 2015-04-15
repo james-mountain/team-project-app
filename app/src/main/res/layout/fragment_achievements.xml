@@ -18,7 +18,7 @@
             android:background="@color/lloyds_green"
             android:paddingLeft="@dimen/generic_listview_padding"
             android:paddingRight="@dimen/generic_listview_padding"
-            android:layout_weight="0.75">
+            android:layout_weight="0.72">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -43,14 +43,14 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.25"
+            android:layout_weight="0.28"
             android:background="@color/lloyds_green"
             android:paddingLeft="10dp">
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Points Shop"
+                android:text="Rewards Shop"
                 android:layout_centerVertical="true"
                 android:textSize="@dimen/text_size_large"
                 android:textColor="@color/white"
