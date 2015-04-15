@@ -55,7 +55,7 @@ public class AchievementsFragment extends Fragment {
         private List<Achievement> achievementSet;
 
         AchievementAdapter(List<Achievement> achievementSet){
-            super(getActivity(), R.layout.achievement_row, R.id.achievementName, achievementSet);
+            super(getActivity(), R.layout.row_achievement, R.id.achievementName, achievementSet);
             this.achievementSet = achievementSet;
         }
 

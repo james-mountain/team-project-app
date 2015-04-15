@@ -24,6 +24,7 @@ import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.PayeesFragment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.AuthHandler;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.DefaultErrorListener;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.network.JsonCustomObjectRequest;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.VolleySingleton;
 
 public class AddPayeeActivity extends Activity {
@@ -64,7 +65,7 @@ public class AddPayeeActivity extends Activity {
 		String requestString = authHandler.handleAuthentication(params);
 
 		RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
-		JsonObjectRequest deleteRequest = new JsonObjectRequest(Request.Method.POST, REVIEW_URL_BASE + "/add", requestString, new Response.Listener<JSONObject>() {
+		JsonCustomObjectRequest deleteRequest = new JsonCustomObjectRequest(REVIEW_URL_BASE + "/add", requestString, new Response.Listener<JSONObject>() {
 			@Override
 			public void onResponse(JSONObject response) {
 				try {
@@ -79,14 +80,7 @@ public class AddPayeeActivity extends Activity {
 
 				}
 			}
-		}, new DefaultErrorListener()) {
-			@Override
-			public Map<String, String> getHeaders() throws AuthFailureError {
-				HashMap<String, String> headers = new HashMap<String, String>();
-				headers.put("API-SESSION-ID", authHandler.obtainSessionID(getApplicationContext()));
-				return headers;
-			}
-		};
+		}, new DefaultErrorListener());
 		networkQueue.add(deleteRequest);
 	}
 

@@ -1,5 +1,6 @@
 package uk.ac.ncl.cs.team16.lloydsbankingapp.network;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Response;
@@ -10,6 +11,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by James Mountain on 09/03/2015.
@@ -31,5 +34,12 @@ public class JsonArrayPostRequest extends JsonRequest<JSONArray> {
 		} catch (JSONException je) {
 			return Response.error(new ParseError(je));
 		}
+	}
+
+	public Map<String, String> getHeaders() throws AuthFailureError {
+		AuthHandler authHandler = AuthHandler.getInstance();
+		HashMap<String, String> headers = new HashMap<String, String>();
+		headers.put("API-SESSION-ID", authHandler.obtainSessionID());
+		return headers;
 	}
 }

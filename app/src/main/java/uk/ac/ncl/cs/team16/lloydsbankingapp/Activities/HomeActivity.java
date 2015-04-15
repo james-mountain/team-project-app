@@ -26,7 +26,7 @@ import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.NavigationDrawerFragment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.PayeesFragment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments.TransferFragment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
-
+import uk.ac.ncl.cs.team16.lloydsbankingapp.network.AuthHandler;
 
 public class HomeActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks, AccountsFragment.OnFragmentInteractionListener,
@@ -40,6 +40,9 @@ public class HomeActivity extends Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+		AuthHandler authHandler = AuthHandler.getInstance();
+		authHandler.setPrefContext(getApplicationContext());
+
         setContentView(R.layout.activity_home);
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)

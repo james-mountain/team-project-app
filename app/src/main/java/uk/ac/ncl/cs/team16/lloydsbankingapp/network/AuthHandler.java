@@ -25,6 +25,7 @@ import javax.crypto.spec.SecretKeySpec;
  */
 public class AuthHandler {
 	private static AuthHandler singleton = null;
+	private Context prefContext;
 
 	public static AuthHandler getInstance() {
 		if (singleton == null) {
@@ -32,6 +33,10 @@ public class AuthHandler {
 		}
 
 		return singleton;
+	}
+
+	public void setPrefContext(Context context) {
+		prefContext = context;
 	}
 
 	public String handleAuthentication(LinkedHashMap<String, String> params) {
@@ -67,9 +72,9 @@ public class AuthHandler {
 		return gson.toJson(params, LinkedHashMap.class);
 	}
 
-	public String obtainSessionID(Context context) {
+	public String obtainSessionID() {
 		String location = "uk.ac.ncl.cs.team16.lloydsbankingapp";
-		SharedPreferences sharedPref = context.getSharedPreferences(location, Context.MODE_PRIVATE);
+		SharedPreferences sharedPref = prefContext.getSharedPreferences(location, Context.MODE_PRIVATE);
 
 		return sharedPref.getString(location + ".session", "SESSIONFAILURE");
 	}

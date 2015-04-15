@@ -129,14 +129,7 @@ public class AccountsFragment extends Fragment {
                 }
 				assembleSpinner();
 			}
-		}, new DefaultErrorListener()) {
-			@Override
-			public Map<String, String> getHeaders() throws AuthFailureError {
-				HashMap<String, String> headers = new HashMap<String, String>();
-				headers.put("API-SESSION-ID", authHandler.obtainSessionID(getActivity()));
-				return headers;
-			}
-		};
+		}, new DefaultErrorListener());
 		networkQueue.add(accountsArrayRequest);
 	}
 
@@ -171,14 +164,7 @@ public class AccountsFragment extends Fragment {
 
 				transcationLv.setAdapter(new TransactionAdapter());
 			}
-		}, new DefaultErrorListener()) {
-			@Override
-			public Map<String, String> getHeaders() throws AuthFailureError {
-				HashMap<String, String> headers = new HashMap<String, String>();
-				headers.put("API-SESSION-ID", authHandler.obtainSessionID(getActivity()));
-				return headers;
-			}
-		};
+		}, new DefaultErrorListener());
 		networkQueue.add(transArrayRequest);
 	}
 
@@ -205,7 +191,7 @@ public class AccountsFragment extends Fragment {
 	 */
 	class TransactionAdapter extends ArrayAdapter<Transaction> {
 		TransactionAdapter() {
-			super(getActivity(), R.layout.transaction_row, R.id.payee_name, transactionList);
+			super(getActivity(), R.layout.row_transaction, R.id.payee_name, transactionList);
 		}
 
 		@Override

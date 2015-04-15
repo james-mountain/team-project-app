@@ -54,6 +54,7 @@ import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.AuthHandler;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.DefaultErrorListener;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.JsonArrayPostRequest;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.network.JsonCustomObjectRequest;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.VolleySingleton;
 
 
@@ -107,14 +108,7 @@ public class PayeesFragment extends Fragment {
 
 				reloadAdapters();
             }
-        }, new DefaultErrorListener()) {
-			@Override
-			public Map<String, String> getHeaders() throws AuthFailureError {
-				HashMap<String, String> headers = new HashMap<String, String>();
-				headers.put("API-SESSION-ID", authHandler.obtainSessionID(getActivity()));
-				return headers;
-			}
-		};
+        }, new DefaultErrorListener());
         networkQueue.add(reviewArrayRequest);
     }
 
@@ -127,7 +121,7 @@ public class PayeesFragment extends Fragment {
 		String requestString = authHandler.handleAuthentication(params);
 
 		RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
-		JsonObjectRequest deleteRequest = new JsonObjectRequest(Request.Method.POST, REVIEW_URL_BASE + "/delete", requestString, new Response.Listener<JSONObject>() {
+		JsonCustomObjectRequest deleteRequest = new JsonCustomObjectRequest(REVIEW_URL_BASE + "/delete", requestString, new Response.Listener<JSONObject>() {
 			@Override
 			public void onResponse(JSONObject response) {
 				try {
@@ -141,14 +135,7 @@ public class PayeesFragment extends Fragment {
 
 				}
 			}
-		}, new DefaultErrorListener()) {
-			@Override
-			public Map<String, String> getHeaders() throws AuthFailureError {
-				HashMap<String, String> headers = new HashMap<String, String>();
-				headers.put("API-SESSION-ID", authHandler.obtainSessionID(getActivity()));
-				return headers;
-			}
-		};
+		}, new DefaultErrorListener());
 		networkQueue.add(deleteRequest);
 	}
 
@@ -207,7 +194,7 @@ public class PayeesFragment extends Fragment {
 
 		LayoutInflater inflator = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		LayoutParams layoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, Gravity.RIGHT | Gravity.CENTER_VERTICAL);
-		View addLayout = inflator.inflate(R.layout.add_payee_layout, null);
+		View addLayout = inflator.inflate(R.layout.actionbar_add_payee, null);
 		getActivity().getActionBar().setCustomView(addLayout, layoutParams);
 
 		Button addPayeeButton = (Button) addLayout.findViewById(R.id.addPayeeButton);
@@ -268,7 +255,7 @@ public class PayeesFragment extends Fragment {
         private final List<Payment> paymentArray;
 
         PaymentAdapter(List<Payment> paymentArray){
-            super(getActivity(), R.layout.payment_row, R.id.paymentNumberText, paymentArray);
+            super(getActivity(), R.layout.row_payment, R.id.paymentNumberText, paymentArray);
             this.paymentArray = paymentArray;
         }
 

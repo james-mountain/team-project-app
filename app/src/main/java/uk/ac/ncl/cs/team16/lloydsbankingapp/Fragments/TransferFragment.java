@@ -36,6 +36,7 @@ import java.util.Map;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.AuthHandler;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.DefaultErrorListener;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.network.JsonCustomObjectRequest;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.VolleySingleton;
 
 
@@ -119,7 +120,7 @@ public class TransferFragment extends Fragment {
 		String requestString = authHandler.handleAuthentication(params);
 
         RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
-        JsonObjectRequest transferRequest = new JsonObjectRequest(Request.Method.POST, ACCOUNTS_URL_BASE, requestString, new Response.Listener<JSONObject>() {
+        JsonCustomObjectRequest transferRequest = new JsonCustomObjectRequest(ACCOUNTS_URL_BASE, requestString, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
@@ -132,14 +133,7 @@ public class TransferFragment extends Fragment {
 
                 }
             }
-        }, new DefaultErrorListener()) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("API-SESSION-ID", authHandler.obtainSessionID(getActivity()));
-                return headers;
-            }
-        };
+        }, new DefaultErrorListener());
         networkQueue.add(transferRequest);
     }
 

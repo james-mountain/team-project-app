@@ -159,7 +159,7 @@ public class DictionaryFragment extends Fragment {
         private final List<DictionaryEntry> dictionaryEntrySet;
 
         DictionaryEntryAdapter(List<DictionaryEntry> dictionaryEntrySet){
-            super(getActivity(), R.layout.dictionary_row, R.id.dictionaryEntryName, dictionaryEntrySet);
+            super(getActivity(), R.layout.row_dictionary, R.id.dictionaryEntryName, dictionaryEntrySet);
             this.dictionaryEntrySet = dictionaryEntrySet;
         }
 
