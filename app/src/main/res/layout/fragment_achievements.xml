@@ -14,7 +14,7 @@
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="@dimen/generic_listview_height"
+            android:layout_height="match_parent"
             android:background="@color/lloyds_green"
             android:paddingLeft="@dimen/generic_listview_padding"
             android:paddingRight="@dimen/generic_listview_padding"
