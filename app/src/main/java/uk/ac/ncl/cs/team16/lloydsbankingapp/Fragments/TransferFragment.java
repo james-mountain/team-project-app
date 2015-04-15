@@ -20,18 +20,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.AuthHandler;
@@ -42,7 +37,7 @@ import uk.ac.ncl.cs.team16.lloydsbankingapp.network.VolleySingleton;
 
 public class TransferFragment extends Fragment {
 
-    private static final String ACCOUNTS_URL_BASE = "http://csc2022api.sitedev9.co.uk/money/transfer";
+    private static final String ACCOUNTS_URL_BASE = "http://csc2022api.sitedev9.co.uk/money";
     private OnFragmentInteractionListener mListener;
     private int from = -1;
     private int to = -1;
@@ -108,7 +103,7 @@ public class TransferFragment extends Fragment {
 
     private void transferMoney() {
         String fromAccount = AccountsFragment.accountList.get(from).getId();
-        String toAccount = AccountsFragment.accountList.get(to).getId();
+        final String toAccount = AccountsFragment.accountList.get(to).getId();
 
         final AuthHandler authHandler = AuthHandler.getInstance();
 
@@ -120,12 +115,12 @@ public class TransferFragment extends Fragment {
 		String requestString = authHandler.handleAuthentication(params);
 
         RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
-        JsonCustomObjectRequest transferRequest = new JsonCustomObjectRequest(ACCOUNTS_URL_BASE, requestString, new Response.Listener<JSONObject>() {
+        JsonCustomObjectRequest transferRequest = new JsonCustomObjectRequest(ACCOUNTS_URL_BASE + "/transfer", requestString, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
                     if (response.getInt("Status") == 1) {
-                        Toast.makeText(getActivity(), "Transfered money.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "Transfered money to " + toAccount + ".", Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(getActivity(), "Failed.", Toast.LENGTH_LONG).show();
                     }
@@ -136,6 +131,74 @@ public class TransferFragment extends Fragment {
         }, new DefaultErrorListener());
         networkQueue.add(transferRequest);
     }
+
+	private void payPayeeRequest() {
+		String fromAccount = AccountsFragment.accountList.get(from).getId();
+		String payeeId = "32";
+		String paymentReference = "Test Payee Pay";
+
+		final AuthHandler authHandler = AuthHandler.getInstance();
+
+		LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+		params.put("from_account", fromAccount);
+		params.put("payeeid", payeeId);
+		params.put("reference", paymentReference);
+		params.put("amount", amount);
+
+		String requestString = authHandler.handleAuthentication(params);
+
+		RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
+		JsonCustomObjectRequest payPayeeRequest = new JsonCustomObjectRequest(ACCOUNTS_URL_BASE + "/pay/payee", requestString, new Response.Listener<JSONObject>() {
+			@Override
+			public void onResponse(JSONObject response) {
+				try {
+					if (response.getInt("Status") == 1) {
+						Toast.makeText(getActivity(), "Transfered money to payee.", Toast.LENGTH_LONG).show();
+					} else {
+						Toast.makeText(getActivity(), "Failed.", Toast.LENGTH_LONG).show();
+					}
+				} catch (JSONException e) {
+
+				}
+			}
+		}, new DefaultErrorListener());
+		networkQueue.add(payPayeeRequest);
+	}
+
+	private void payAccountRequest() {
+		String fromAccount = AccountsFragment.accountList.get(from).getId();
+		String sortCode = "3312432";
+		final String accountNo = "42325266";
+		String paymentReference = "Test Account Pay";
+
+		final AuthHandler authHandler = AuthHandler.getInstance();
+
+		LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+		params.put("from_account", fromAccount);
+		params.put("sort_code", sortCode);
+		params.put("account_no", accountNo);
+		params.put("reference", paymentReference);
+		params.put("amount", amount);
+
+		String requestString = authHandler.handleAuthentication(params);
+
+		RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
+		JsonCustomObjectRequest payPayeeRequest = new JsonCustomObjectRequest(ACCOUNTS_URL_BASE + "/pay/payee", requestString, new Response.Listener<JSONObject>() {
+			@Override
+			public void onResponse(JSONObject response) {
+				try {
+					if (response.getInt("Status") == 1) {
+						Toast.makeText(getActivity(), "Transfered money to account no. " + accountNo + ".", Toast.LENGTH_LONG).show();
+					} else {
+						Toast.makeText(getActivity(), "Failed.", Toast.LENGTH_LONG).show();
+					}
+				} catch (JSONException e) {
+
+				}
+			}
+		}, new DefaultErrorListener());
+		networkQueue.add(payPayeeRequest);
+	}
 
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
