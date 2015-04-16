@@ -51,5 +51,8 @@
     <string name="add_payee_confirm">Add New Payee</string>
     <string name="description">Description</string>
     <string name="pay_payee_make">Pay Payee</string>
+    <string name="pay_account_make">Pay Account</string>
+    <string name="transfer_payee">Payee</string>
+    <string name="payment_reference">Reference</string>
 
 </resources>
