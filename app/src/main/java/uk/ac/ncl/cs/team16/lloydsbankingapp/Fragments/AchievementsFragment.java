@@ -14,13 +14,28 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Activities.ShopActivity;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Transaction;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Achievement;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.network.AuthHandler;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.network.DefaultErrorListener;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.network.JsonArrayPostRequest;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.network.JsonCustomObjectRequest;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.network.VolleySingleton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,6 +43,8 @@ import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Achievement;
 public class AchievementsFragment extends Fragment {
 
     private List<Achievement> achievements = new ArrayList<Achievement>();
+    private static final String REWARDS_URL_BASE = "http://csc2022api.sitedev9.co.uk/rewards";
+    private TextView pointsTV;
 
     public AchievementsFragment() {
         // Required empty public constructor
@@ -39,11 +56,13 @@ public class AchievementsFragment extends Fragment {
 
         View achievementsView = inflater.inflate(R.layout.fragment_achievements, container, false);
         ListView achievementsListView = (ListView) achievementsView.findViewById(R.id.achievementsListView);
+        pointsTV = (TextView) achievementsView.findViewById(R.id.pointsTextView);
         setHasOptionsMenu(true);
         populateAchievementsList();
 
         //Apply the achievements list to the interface
         achievementsListView.setAdapter(new AchievementAdapter(achievements));
+
 
         //set onclick listener for the button leading to the rewards shop fragment
         Button button = (Button) achievementsView.findViewById(R.id.buttonToShop);
@@ -112,5 +131,29 @@ public class AchievementsFragment extends Fragment {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    private void deletePayeeRequest(int payeeID) {
+        final AuthHandler authHandler = AuthHandler.getInstance();
+        LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+        String requestString = authHandler.handleAuthentication(params);
+        RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
+
+        JsonCustomObjectRequest deleteRequest = new JsonCustomObjectRequest(REWARDS_URL_BASE + "/points", requestString, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    if (response.getInt("Status") == 1) {
+
+                    } else {
+                        Toast.makeText(getActivity(), "Failed to delete payee.", Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+
+                }
+            }
+        }, new DefaultErrorListener());
+        networkQueue.add(deleteRequest);
     }
 }
