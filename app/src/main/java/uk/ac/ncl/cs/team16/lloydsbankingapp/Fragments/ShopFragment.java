@@ -35,10 +35,10 @@ public class ShopFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        View achievementsView = inflater.inflate(R.layout.fragment_achievements, container, false);
+        View rewardsView = inflater.inflate(R.layout.fragment_shop, container, false);
 
-        ListView yourRewardsView = (ListView) achievementsView.findViewById(R.id.yourRewardsListView);
-        ListView availableRewardsView = (ListView) achievementsView.findViewById(R.id.availableRewardsListView);
+        ListView yourRewardsView = (ListView) rewardsView.findViewById(R.id.yourRewardsListView);
+        ListView availableRewardsView = (ListView) rewardsView.findViewById(R.id.availableRewardsListView);
 
         populateAvailableRewards();
         populateYourRewards();
@@ -47,7 +47,7 @@ public class ShopFragment extends Fragment {
         yourRewardsView.setAdapter(new RewardAdapter(yourRewards));
         availableRewardsView.setAdapter(new RewardAdapter(availableRewards));
 
-        return achievementsView;
+        return rewardsView;
     }
 
     private void populateYourRewards() {
