@@ -51,13 +51,13 @@ public class ShopFragment extends Fragment {
 
     private void populateYourRewards() {
 
-        yourRewards.add(new Reward("Tesco Voucher - £20","5asdf0923klj42".toUpperCase(),1500));
+        yourRewards.add(new Reward("Tesco Voucher - 20","5asdf0923klj42".toUpperCase(),1500));
     }
 
     private void populateAvailableRewards() {
 
 
-        availableRewards.add(new Reward("Tesco Voucher - £20","",1000));
+        availableRewards.add(new Reward("Tesco Voucher - 20","",1000));
         availableRewards.add(new Reward("2 small pizzas for 1 at Dominoes","",2000));
     }
 

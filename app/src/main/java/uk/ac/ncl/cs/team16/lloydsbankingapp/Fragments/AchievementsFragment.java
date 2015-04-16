@@ -45,18 +45,6 @@ public class AchievementsFragment extends Fragment {
         //Apply the achievements list to the interface
         achievementsListView.setAdapter(new AchievementAdapter(achievements));
 
-        //set onclick listener for the button leading to the rewards shop fragment
-        Button button = (Button) achievementsView.findViewById(R.id.buttonToShop);
-
-        button.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View view) {
-
-
-            }
-        });
-
-
         return achievementsView;
     }
 
