@@ -13,7 +13,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Achievement;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Reward;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 
