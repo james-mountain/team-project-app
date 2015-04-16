@@ -19,6 +19,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_drawer_gamification">Achievements</string>
     <string name="action_shop">Shop</string>
+    <string name="action_add_payee">Add</string>
+
 
     <string-array name="nav_drawer_elements">
         <item>Accounts</item>

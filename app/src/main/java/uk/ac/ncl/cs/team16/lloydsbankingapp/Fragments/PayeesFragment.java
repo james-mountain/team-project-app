@@ -6,25 +6,20 @@
 
 package uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments;
 
-import android.app.Activity;
-import android.app.ActionBar.LayoutParams;
-import android.content.Context;
+
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.ContextMenu;
-import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,7 +50,6 @@ import uk.ac.ncl.cs.team16.lloydsbankingapp.network.VolleySingleton;
 
 public class PayeesFragment extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
     private List<Payment> payeePayments = new ArrayList<Payment>();
     private ListView paymentsListView;
 	public static PayeesFragment payeesContext;
@@ -137,30 +131,13 @@ public class PayeesFragment extends Fragment {
         paymentsListView = (ListView) reviewView.findViewById(R.id.payeeListView); // I could implement these as a list, but is it worth it?
 
 		registerForContextMenu(paymentsListView);
-		addPayeeButtonSetup();
         reviewPayeesRequest();
+        setHasOptionsMenu(true);
+
 
         return reviewView;
     }
 
-	public void addPayeeButtonSetup() {
-		getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
-		getActivity().getActionBar().setDisplayShowCustomEnabled(true);
-
-		LayoutInflater inflator = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		LayoutParams layoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, Gravity.RIGHT | Gravity.CENTER_VERTICAL);
-		View addLayout = inflator.inflate(R.layout.actionbar_add_payee, null);
-		getActivity().getActionBar().setCustomView(addLayout, layoutParams);
-
-		Button addPayeeButton = (Button) addLayout.findViewById(R.id.addPayeeButton);
-		addPayeeButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				Intent addPayeeIntent = new Intent(getActivity(), AddPayeeActivity.class);
-				startActivity(addPayeeIntent);
-			}
-		});
-	}
 
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo) {
@@ -182,29 +159,16 @@ public class PayeesFragment extends Fragment {
 		return false;
 	}
 
-	@Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
+
 
     @Override
     public void onDetach() {
 		getActivity().getActionBar().setDisplayHomeAsUpEnabled(false);
 		getActivity().getActionBar().setDisplayShowCustomEnabled(false);
         super.onDetach();
-        mListener = null;
     }
 
 
-    public interface OnFragmentInteractionListener {
-        public void onFragmentInteraction(Uri uri);
-    }
 
     private class PaymentAdapter extends ArrayAdapter<Payment> {
         private final List<Payment> paymentArray;
@@ -229,5 +193,24 @@ public class PayeesFragment extends Fragment {
             pytAmountText.setText("£" + paymentArray.get(position).getAmount());
             return paymentRow;
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_payees, menu);
+        super.onCreateOptionsMenu(menu,inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_add_payee) {
+            Intent addPayeeIntent = new Intent(getActivity(), AddPayeeActivity.class);
+            startActivity(addPayeeIntent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

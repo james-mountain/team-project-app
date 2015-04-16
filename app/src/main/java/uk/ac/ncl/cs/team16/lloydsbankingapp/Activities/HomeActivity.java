@@ -30,7 +30,7 @@ import uk.ac.ncl.cs.team16.lloydsbankingapp.network.AuthHandler;
 
 public class HomeActivity extends Activity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks, AccountsFragment.OnFragmentInteractionListener,
-        PayeesFragment.OnFragmentInteractionListener,  TransferFragment.OnFragmentInteractionListener,
+        TransferFragment.OnFragmentInteractionListener,
         ATMFragment.OnFragmentInteractionListener,  DictionaryFragment.OnFragmentInteractionListener,
         HelpFragment.OnFragmentInteractionListener {
 
