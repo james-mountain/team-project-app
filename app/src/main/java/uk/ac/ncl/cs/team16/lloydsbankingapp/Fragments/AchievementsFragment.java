@@ -4,13 +4,13 @@ package uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
@@ -19,7 +19,6 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,12 +27,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Activities.ShopActivity;
-import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Transaction;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Achievement;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.AuthHandler;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.DefaultErrorListener;
-import uk.ac.ncl.cs.team16.lloydsbankingapp.network.JsonArrayPostRequest;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.JsonCustomObjectRequest;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.VolleySingleton;
 
@@ -56,23 +53,13 @@ public class AchievementsFragment extends Fragment {
 
         View achievementsView = inflater.inflate(R.layout.fragment_achievements, container, false);
         ListView achievementsListView = (ListView) achievementsView.findViewById(R.id.achievementsListView);
+        pointsTV = (TextView) achievementsView.findViewById(R.id.points_tv);
         setHasOptionsMenu(true);
         populateAchievementsList();
 
         //Apply the achievements list to the interface
         achievementsListView.setAdapter(new AchievementAdapter(achievements));
-
-        //set onclick listener for the button leading to the rewards shop fragment
-        Button button = (Button) achievementsView.findViewById(R.id.buttonToShop);
-
-        button.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View view) {
-
-
-            }
-        });
-
+        fetchPointsRequest();
 
         return achievementsView;
     }
@@ -132,7 +119,7 @@ public class AchievementsFragment extends Fragment {
     }
 
 
-    private void deletePayeeRequest(int payeeID) {
+    private void fetchPointsRequest() {
         final AuthHandler authHandler = AuthHandler.getInstance();
         LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
         String requestString = authHandler.handleAuthentication(params);
@@ -142,16 +129,18 @@ public class AchievementsFragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    if (response.getInt("Status") == 1) {
-
+                    if (response.getInt("status") == 1) {
+                        pointsTV.setText(response.getString("points"));
                     } else {
-                        Toast.makeText(getActivity(), "Failed to delete payee.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "Failed to fetch points", Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
-
+                    Log.d("JSON parsing problem: ", e.getMessage());
                 }
             }
         }, new DefaultErrorListener());
         networkQueue.add(deleteRequest);
     }
+
+
 }
