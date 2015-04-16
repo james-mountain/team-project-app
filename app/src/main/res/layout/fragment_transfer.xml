@@ -35,6 +35,260 @@
                 android:layout_height="fill_parent">
 
                 <RelativeLayout
+                    android:id="@+id/payaccounttab"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pacc_from_layout"
+                        android:padding="8dp"
+                        android:focusableInTouchMode="false"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true">
+
+                        <TextView
+                            style="@style/transfer_fragment_style"
+                            android:layout_width="@dimen/label_width"
+                            android:layout_height="wrap_content"
+                            android:text="@string/transfer_from"
+                            android:id="@+id/pacc_from_tv" />
+
+                        <Spinner
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/pacc_from_choice" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pacc_sort_layout"
+                        android:padding="8dp"
+                        android:layout_below="@+id/pacc_from_layout"
+                        android:layout_alignLeft="@+id/pacc_from_layout">
+
+                        <TextView
+                            style="@style/transfer_fragment_style"
+                            android:layout_width="@dimen/label_width"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sort_code"
+                            android:id="@+id/pacc_sort_tv" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/pacc_sort_field"
+                            android:inputType="numberDecimal"
+                            android:maxLines="1" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pacc_acc_layout"
+                        android:padding="8dp"
+                        android:layout_below="@+id/pacc_sort_layout"
+                        android:layout_centerHorizontal="true">
+
+                        <TextView
+                            style="@style/transfer_fragment_style"
+                            android:layout_width="@dimen/label_width"
+                            android:layout_height="wrap_content"
+                            android:text="@string/account_number"
+                            android:id="@+id/pacc_acc_tv" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/pacc_acc_field"
+                            android:inputType="numberDecimal"
+                            android:maxLines="1" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pacc_ref_layout"
+                        android:padding="8dp"
+                        android:layout_below="@+id/pacc_acc_layout"
+                        android:layout_centerHorizontal="true">
+
+                        <TextView
+                            style="@style/transfer_fragment_style"
+                            android:layout_width="@dimen/label_width"
+                            android:layout_height="wrap_content"
+                            android:text="@string/payment_reference"
+                            android:id="@+id/pacc_ref_tv" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/pacc_ref_field"
+                            android:inputType="text" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/pacc_amount_layout"
+                        android:padding="8dp"
+                        android:layout_below="@+id/pacc_ref_layout"
+                        android:layout_centerHorizontal="true" >
+
+                        <TextView
+                            style="@style/transfer_fragment_style"
+                            android:layout_width="@dimen/label_width"
+                            android:layout_height="wrap_content"
+                            android:text="@string/transfer_amount"
+                            android:id="@+id/pacc_amount_tv" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/pacc_amount_field"
+                            android:inputType="text" />
+                    </LinearLayout>
+
+                    <Button
+                        style="@style/button_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pay_account_make"
+                        android:id="@+id/pacc_btn"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="0dp"
+                        android:layout_alignParentTop="false"
+                        android:layout_marginTop="0dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/paypayeetab"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ppayee_from_layout"
+                        android:padding="8dp"
+                        android:focusableInTouchMode="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="0dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="0dp">
+
+                        <TextView
+                            style="@style/transfer_fragment_style"
+                            android:layout_width="@dimen/label_width"
+                            android:layout_height="wrap_content"
+                            android:text="@string/transfer_from"
+                            android:id="@+id/ppayee_from_tv" />
+
+                        <Spinner
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ppayee_from_choice" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ppayee_payee_layout"
+                        android:padding="8dp"
+                        android:layout_below="@+id/ppayee_from_layout"
+                        android:layout_alignParentLeft="true">
+
+                        <TextView
+                            style="@style/transfer_fragment_style"
+                            android:layout_width="@dimen/label_width"
+                            android:layout_height="wrap_content"
+                            android:text="@string/transfer_payee"
+                            android:id="@+id/ppayee_payee_tv" />
+
+                        <Spinner
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ppayee_payee_choice" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ppayee_ref_layout"
+                        android:padding="8dp"
+                        android:layout_below="@+id/ppayee_payee_layout"
+                        android:layout_alignParentLeft="true">
+
+                        <TextView
+                            style="@style/transfer_fragment_style"
+                            android:layout_width="@dimen/label_width"
+                            android:layout_height="wrap_content"
+                            android:text="@string/payment_reference"
+                            android:id="@+id/ppayee_ref_tv" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ppayee_ref_field"
+                            android:maxLines="1"
+                            android:inputType="text" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ppayee_amount_layout"
+                        android:padding="8dp"
+                        android:layout_below="@+id/ppayee_ref_layout"
+                        android:layout_alignParentRight="true">
+
+                        <TextView
+                            style="@style/transfer_fragment_style"
+                            android:layout_width="@dimen/label_width"
+                            android:layout_height="wrap_content"
+                            android:text="@string/transfer_amount"
+                            android:id="@+id/ppayee_amount_tv" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/ppayee_amount_field"
+                            android:inputType="numberDecimal" />
+                    </LinearLayout>
+
+                    <Button
+                        style="@style/button_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pay_payee_make"
+                        android:id="@+id/ppayee_btn"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="0dp"
+                        android:layout_alignParentTop="false"
+                        android:layout_marginTop="0dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
                     android:id="@+id/transfertab"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
@@ -122,135 +376,6 @@
                         android:layout_marginLeft="0dp" />
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:id="@+id/paypayeetab"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/ppayee_from_layout"
-                        android:padding="8dp"
-                        android:focusableInTouchMode="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="0dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginTop="0dp">
-
-                        <TextView
-                            style="@style/transfer_fragment_style"
-                            android:layout_width="@dimen/label_width"
-                            android:layout_height="wrap_content"
-                            android:text="@string/transfer_from"
-                            android:id="@+id/ppayee_from_tv" />
-
-                        <Spinner
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/ppayee_from_choice" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/ppayee_payee_layout"
-                        android:padding="8dp"
-                        android:layout_alignParentLeft="false"
-                        android:layout_marginLeft="0dp"
-                        android:layout_alignParentTop="false"
-                        android:layout_marginTop="0dp"
-                        android:layout_below="@+id/ppayee_from_layout">
-
-                        <TextView
-                            style="@style/transfer_fragment_style"
-                            android:layout_width="@dimen/label_width"
-                            android:layout_height="wrap_content"
-                            android:text="@string/transfer_to"
-                            android:id="@+id/ppayee_payee_tv" />
-
-                        <Spinner
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/ppayee_payee_choice" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/ppayee_ref_layout"
-                        android:padding="8dp"
-                        android:layout_below="@+id/ppayee_payee_layout"
-                        android:layout_marginLeft="0dp"
-                        android:layout_alignParentTop="false"
-                        android:layout_marginTop="0dp">
-
-                        <TextView
-                            style="@style/transfer_fragment_style"
-                            android:layout_width="@dimen/label_width"
-                            android:layout_height="wrap_content"
-                            android:text="@string/transfer_amount"
-                            android:id="@+id/ppayee_ref_tv" />
-
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/ppayee_ref_field"
-                            android:inputType="numberDecimal"
-                            android:maxLines="1" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/ppayee_amount_layout"
-                        android:padding="8dp"
-                        android:layout_below="@+id/ppayee_ref_layout"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="0dp"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginTop="0dp">
-
-                        <TextView
-                            style="@style/transfer_fragment_style"
-                            android:layout_width="@dimen/label_width"
-                            android:layout_height="wrap_content"
-                            android:text="@string/transfer_message"
-                            android:id="@+id/ppayee_amount_tv" />
-
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/ppayee_amount_field"
-                            android:inputType="text" />
-                    </LinearLayout>
-
-                    <Button
-                        style="@style/button_style"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/pay_payee_make"
-                        android:id="@+id/ppayee_btn"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_marginLeft="0dp"
-                        android:layout_alignParentTop="false"
-                        android:layout_marginTop="0dp" />
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:id="@+id/payaccounttab"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:orientation="vertical"></LinearLayout>
             </FrameLayout>
         </LinearLayout>
     </TabHost>

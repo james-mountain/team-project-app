@@ -56,13 +56,11 @@ public class AchievementsFragment extends Fragment {
 
         View achievementsView = inflater.inflate(R.layout.fragment_achievements, container, false);
         ListView achievementsListView = (ListView) achievementsView.findViewById(R.id.achievementsListView);
-        pointsTV = (TextView) achievementsView.findViewById(R.id.pointsTextView);
         setHasOptionsMenu(true);
         populateAchievementsList();
 
         //Apply the achievements list to the interface
         achievementsListView.setAdapter(new AchievementAdapter(achievements));
-
 
         //set onclick listener for the button leading to the rewards shop fragment
         Button button = (Button) achievementsView.findViewById(R.id.buttonToShop);

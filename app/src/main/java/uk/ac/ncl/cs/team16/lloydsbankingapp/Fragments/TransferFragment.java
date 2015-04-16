@@ -10,10 +10,10 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -24,25 +24,29 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.LinkedHashMap;
 
+import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Payment;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.AuthHandler;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.DefaultErrorListener;
+import uk.ac.ncl.cs.team16.lloydsbankingapp.network.JsonArrayPostRequest;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.JsonCustomObjectRequest;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.VolleySingleton;
 
 public class TransferFragment extends Fragment {
 
     private static final String ACCOUNTS_URL_BASE = "http://csc2022api.sitedev9.co.uk/money";
+    private static final String REVIEW_URL_BASE = "http://csc2022api.sitedev9.co.uk/account/payee";
     private OnFragmentInteractionListener mListener;
-    private int from = -1;
-    private int to = -1;
-    private String amount;
-    private TextView amountTV;
+    private ArrayList<Payment> payees;
+    private Spinner ppayeePayeeChoice;
 
     public TransferFragment() {
         // Required empty public constructor
@@ -62,18 +66,8 @@ public class TransferFragment extends Fragment {
         tabWidgetChildText.setTextColor(getResources().getColor(android.R.color.white));
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        View v = inflater.inflate(R.layout.fragment_transfer, container, false);
-        //setup the spinners
-        final Spinner accountFromChoice = (Spinner) v.findViewById(R.id.transfer_from_choice);
-        final Spinner accountToChoice = (Spinner) v.findViewById(R.id.transfer_to_choice);
-
-        Button transferButton = (Button) v.findViewById(R.id.transfer_btn);
-
-        final TabHost tabHost = (TabHost) v.findViewById(R.id.tabHost);
+    private void setupTabs(View transferView) {
+        final TabHost tabHost = (TabHost) transferView.findViewById(R.id.tabHost);
         tabHost.setup();
         tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
@@ -88,52 +82,126 @@ public class TransferFragment extends Fragment {
         colorTabs(tabHost);
 
         tabHost.setCurrentTab(0);
+    }
 
-        amountTV = (TextView) v.findViewById(R.id.transfer_amount_field);
+    private void payeesRequest() {
+        AuthHandler authHandler = AuthHandler.getInstance();
+
+        LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
+        String requestString = authHandler.handleAuthentication(params);
+
+        RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
+        JsonArrayPostRequest reviewArrayRequest = new JsonArrayPostRequest(REVIEW_URL_BASE, requestString, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                payees = new ArrayList<Payment>();
+                ArrayList<String> payeesString = new ArrayList<String>();
+
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        JSONObject payeeJSONObject = response.getJSONObject(i);
+                        String payeeID = payeeJSONObject.getString("PayeeID");
+                        String payeeName = payeeJSONObject.getString("PayeeName");
+                        String payeeAmount = payeeJSONObject.getString("LastPaymentAmount");
+
+                        payees.add(new Payment(Integer.parseInt(payeeID), payeeName, new GregorianCalendar(2014, 01, 10), payeeAmount));
+                        payeesString.add(payeeName);
+                    } catch (JSONException e) {
+
+                    }
+                }
+
+                ppayeePayeeChoice.setAdapter(new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.spinner_item, payeesString));
+            }
+        }, new DefaultErrorListener());
+        networkQueue.add(reviewArrayRequest);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        View transferView = inflater.inflate(R.layout.fragment_transfer, container, false);
+
+        Button transferButton = (Button) transferView.findViewById(R.id.transfer_btn);
+        Button payPayeeButton = (Button) transferView.findViewById(R.id.ppayee_btn);
+        Button payAccountButton = (Button) transferView.findViewById(R.id.pacc_btn);
+
+        setupTabs(transferView);
+
+        final Spinner accountFromChoice = (Spinner) transferView.findViewById(R.id.transfer_from_choice);
+        final Spinner accountToChoice = (Spinner) transferView.findViewById(R.id.transfer_to_choice);
+        final Spinner ppayeeFromChoice = (Spinner) transferView.findViewById(R.id.ppayee_from_choice);
+        ppayeePayeeChoice = (Spinner) transferView.findViewById(R.id.ppayee_payee_choice);
+        final Spinner paccFromChoice = (Spinner) transferView.findViewById(R.id.pacc_from_choice);
+
+        ArrayAdapter<String> fromAccountAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.spinner_item, AccountsFragment.accountNames);
+        accountFromChoice.setAdapter(fromAccountAdapter);
+        accountToChoice.setAdapter(fromAccountAdapter);
+        ppayeeFromChoice.setAdapter(fromAccountAdapter);
+        paccFromChoice.setAdapter(fromAccountAdapter);
+
+        payeesRequest();
+
+        final TextView transferAmountField = (TextView) transferView.findViewById(R.id.transfer_amount_field);
+
+        final TextView ppayeeRefField = (TextView) transferView.findViewById(R.id.ppayee_ref_field);
+        final TextView ppayeeAmountField = (TextView) transferView.findViewById(R.id.ppayee_amount_field);
+
+        final TextView paccSortField = (TextView) transferView.findViewById(R.id.pacc_sort_field);
+        final TextView paccAccField = (TextView) transferView.findViewById(R.id.pacc_acc_field);
+        final TextView paccRefField = (TextView) transferView.findViewById(R.id.pacc_ref_field);
+        final TextView paccAmountField = (TextView) transferView.findViewById(R.id.pacc_amount_field);
 
         transferButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                amount = amountTV.getText().toString();
-                transferMoney();
+                int fromAccountPos = accountFromChoice.getSelectedItemPosition();
+                int toAccountPos = accountToChoice.getSelectedItemPosition();
+
+                String fromAccount = AccountsFragment.accountList.get(fromAccountPos).getId();
+                String toAccount = AccountsFragment.accountList.get(toAccountPos).getId();
+                String transferAmount = transferAmountField.getText().toString();
+
+                transferMoney(fromAccount, toAccount, transferAmount);
             }
         });
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(), R.layout.spinner_item, AccountsFragment.accountNames);
-        accountFromChoice.setAdapter(arrayAdapter);
-        accountToChoice.setAdapter(arrayAdapter);
-
-        accountFromChoice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        payPayeeButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                from = i;
-            }
+            public void onClick(View view) {
+                int fromAccountPos = ppayeeFromChoice.getSelectedItemPosition();
+                int payeePos = ppayeePayeeChoice.getSelectedItemPosition();
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
+                String fromAccount = AccountsFragment.accountList.get(fromAccountPos).getId();
+                String payee = Integer.toString(payees.get(payeePos).getPaymentNumber());
+                String reference = ppayeeRefField.getText().toString();
+                String transferAmount = ppayeeAmountField.getText().toString();
 
-        accountToChoice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                to = i;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
+                payPayeeRequest(fromAccount, payee, reference, transferAmount);
             }
         });
 
-        return v;
+        payAccountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int fromAccountPos = paccFromChoice.getSelectedItemPosition();
+
+                String fromAccount = AccountsFragment.accountList.get(fromAccountPos).getId();
+                String sortCode = paccSortField.getText().toString();
+                String accountNo = paccAccField.getText().toString();
+                String reference = paccRefField.getText().toString();
+                String transferAmount = paccAmountField.getText().toString();
+
+                payAccountRequest(fromAccount, sortCode, accountNo, reference, transferAmount);
+            }
+        });
+
+        return transferView;
     }
 
-    private void transferMoney() {
-        String fromAccount = AccountsFragment.accountList.get(from).getId();
-        final String toAccount = AccountsFragment.accountList.get(to).getId();
-
-        final AuthHandler authHandler = AuthHandler.getInstance();
+    private void transferMoney(String fromAccount, String toAccount, String amount) {
+        AuthHandler authHandler = AuthHandler.getInstance();
 
         LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
         params.put("from_account", fromAccount);
@@ -148,7 +216,7 @@ public class TransferFragment extends Fragment {
             public void onResponse(JSONObject response) {
                 try {
                     if (response.getInt("Status") == 1) {
-                        Toast.makeText(getActivity(), "Transfered money to " + toAccount + ".", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "Transfered money.", Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(getActivity(), "Failed.", Toast.LENGTH_LONG).show();
                     }
@@ -160,18 +228,19 @@ public class TransferFragment extends Fragment {
         networkQueue.add(transferRequest);
     }
 
-	private void payPayeeRequest() {
-		String fromAccount = AccountsFragment.accountList.get(from).getId();
-		String payeeId = "32";
-		String paymentReference = "Test Payee Pay";
-
-		final AuthHandler authHandler = AuthHandler.getInstance();
+	private void payPayeeRequest(String fromAccount, String payee, String reference, String amount) {
+		AuthHandler authHandler = AuthHandler.getInstance();
 
 		LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
 		params.put("from_account", fromAccount);
-		params.put("payeeid", payeeId);
-		params.put("reference", paymentReference);
+		params.put("payeeid", payee);
+		params.put("reference", reference);
 		params.put("amount", amount);
+
+        Log.d("from_account", fromAccount);
+        Log.d("payeeid", payee);
+        Log.d("reference", reference);
+        Log.d("amount", amount);
 
 		String requestString = authHandler.handleAuthentication(params);
 
@@ -186,42 +255,37 @@ public class TransferFragment extends Fragment {
 						Toast.makeText(getActivity(), "Failed.", Toast.LENGTH_LONG).show();
 					}
 				} catch (JSONException e) {
-
+                    e.printStackTrace();
 				}
 			}
 		}, new DefaultErrorListener());
 		networkQueue.add(payPayeeRequest);
 	}
 
-	private void payAccountRequest() {
-		String fromAccount = AccountsFragment.accountList.get(from).getId();
-		String sortCode = "3312432";
-		final String accountNo = "42325266";
-		String paymentReference = "Test Account Pay";
-
-		final AuthHandler authHandler = AuthHandler.getInstance();
+	private void payAccountRequest(String account, String sortCode, String accountNo, String reference, String amount) {
+		AuthHandler authHandler = AuthHandler.getInstance();
 
 		LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
-		params.put("from_account", fromAccount);
+		params.put("from_account", account);
 		params.put("sort_code", sortCode);
 		params.put("account_no", accountNo);
-		params.put("reference", paymentReference);
+		params.put("reference", reference);
 		params.put("amount", amount);
 
 		String requestString = authHandler.handleAuthentication(params);
 
 		RequestQueue networkQueue = VolleySingleton.getInstance().getRequestQueue();
-		JsonCustomObjectRequest payPayeeRequest = new JsonCustomObjectRequest(ACCOUNTS_URL_BASE + "/pay/payee", requestString, new Response.Listener<JSONObject>() {
+		JsonCustomObjectRequest payPayeeRequest = new JsonCustomObjectRequest(ACCOUNTS_URL_BASE + "/pay/account", requestString, new Response.Listener<JSONObject>() {
 			@Override
 			public void onResponse(JSONObject response) {
 				try {
 					if (response.getInt("Status") == 1) {
-						Toast.makeText(getActivity(), "Transfered money to account no. " + accountNo + ".", Toast.LENGTH_LONG).show();
-					} else {
+						Toast.makeText(getActivity(), "Transfered money to account.", Toast.LENGTH_LONG).show();
+                    } else {
 						Toast.makeText(getActivity(), "Failed.", Toast.LENGTH_LONG).show();
 					}
 				} catch (JSONException e) {
-
+                    Log.d("ERROR", e.getMessage());
 				}
 			}
 		}, new DefaultErrorListener());
