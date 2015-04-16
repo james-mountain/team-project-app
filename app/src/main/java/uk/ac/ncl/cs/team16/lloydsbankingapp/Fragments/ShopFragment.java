@@ -24,6 +24,7 @@ public class ShopFragment extends Fragment {
     private List<Reward> yourRewards = new ArrayList<Reward>();
     private List<Reward> availableRewards = new ArrayList<Reward>();
     private int pointsBalance = 0;
+    private final String pound = "\u00A3";
 
     public ShopFragment() {
         // Required empty public constructor
@@ -51,14 +52,13 @@ public class ShopFragment extends Fragment {
 
     private void populateYourRewards() {
 
-        yourRewards.add(new Reward("Tesco Voucher - 20","5asdf0923klj42".toUpperCase(),1500));
+        yourRewards.add(new Reward("Tesco Voucher - " + pound +"20","5asdf0923klj42".toUpperCase(),1500));
     }
 
     private void populateAvailableRewards() {
 
-
-        availableRewards.add(new Reward("Tesco Voucher - 20","",1000));
-        availableRewards.add(new Reward("2 small pizzas for 1 at Dominoes","",2000));
+        availableRewards.add(new Reward("Tesco Voucher - " + pound + "20","**************",1000));
+        availableRewards.add(new Reward("2 small pizzas for 1 at Dominoes","**************",2000));
     }
 
     private class RewardAdapter extends ArrayAdapter<Reward> {
