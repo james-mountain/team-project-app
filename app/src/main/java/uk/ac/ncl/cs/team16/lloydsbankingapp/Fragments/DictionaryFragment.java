@@ -71,20 +71,39 @@ public class DictionaryFragment extends Fragment {
         return searchEntryResults;
     }
 
-    // Some temp entries, backend data of the dictionary will be pulled in here, if the backend is going to be used with dictionary.
     /*
     Add all the entries to the list of entries to be used by the dictionary.
      */
 
     // TODO: Change this to accomodate new dictionary content that will be on the backend
     private void populateDictionary() {
-        dictionaryEntries.add(new DictionaryEntry("Interest", "Interest is a payment by the bank for your deposit."));
-        dictionaryEntries.add(new DictionaryEntry("Overdraft", "An extra amount of available money below £0. This is not unlimited."));
-        dictionaryEntries.add(new DictionaryEntry("Standing Order", "A set payment (usually with a timescale), which is setup by you."));
-        dictionaryEntries.add(new DictionaryEntry("Student Loan", "A sum of money that is paid to the bank holder by the government in order to pay for student expenses."));
-        dictionaryEntries.add(new DictionaryEntry("Statement", "A set of transactions put into a summary over a time period, normally one month."));
-        dictionaryEntries.add(new DictionaryEntry("ATM", "A machine to provide an interface to get banking services, via ones card."));
-        dictionaryEntries.add(new DictionaryEntry("Available Balance", "Calculated value which will take into account not only your balance but your overdraft."));
+        dictionaryEntries.add(new DictionaryEntry("Accrued Interest", "Interest that has been earned but not yet paid."));
+        dictionaryEntries.add(new DictionaryEntry("Annual Percentage Rate", "The cost of credit on a yearly basis, expressed as a percentage."));
+        dictionaryEntries.add(new DictionaryEntry("Available Balance", "The balance of an account less any hold, uncollected funds, and restrictions against the account."));
+        dictionaryEntries.add(new DictionaryEntry("Balance Transfer", "The process of moving an outstanding balance from one credit card to another. This is usually done to obtain a lower interest rate on the outstanding balance. Transfers are sometimes subjected to a Balance Transfer Fee."));
+        dictionaryEntries.add(new DictionaryEntry("Bank Statement", "Periodically the bank provides a statement of a customer's deposit account. It shows all deposits made, all checks paid, and other debits posted during the period (usually one month), as well as the current balance."));
+        dictionaryEntries.add(new DictionaryEntry("Billing Date", "The month, date, and year when a periodic or monthly statement is generated. Calculations have been performed for appropriate finance charges, minimum payment due, and new balance."));
+        dictionaryEntries.add(new DictionaryEntry("Current Account", "An account at a bank or building society from which money may be drawn on demand."));
+		dictionaryEntries.add(new DictionaryEntry("Debit", "A debit may be an account entry representing money you owe a lender or money that has been taken from your deposit account."));
+		dictionaryEntries.add(new DictionaryEntry("Debit Card", "A debit card allows the account owner to access their funds electronically. Debit cards may be used to obtain cash from automated teller machines or purchase goods or services using point-of-sale systems. The use of a debit card involves immediate debiting and crediting of consumers' accounts."));
+		dictionaryEntries.add(new DictionaryEntry("Electronic Banking", "A service that allows an account holder to obtain account information and manage certain banking transactions through a personal computer via the financial institution's Web site on the Internet. (This is also known as Internet or online banking.)"));
+		dictionaryEntries.add(new DictionaryEntry("Electronic Funds Transfer", "The transfer of money between accounts by consumer electronic systems-such as automated teller machines (ATMs) and electronic payment of bills-rather than by check or cash. (Wire transfers, checks, drafts, and paper instruments do not fall into this category.)"));
+		dictionaryEntries.add(new DictionaryEntry("Inactive Account", "An account that has little or no activity; neither deposits nor withdrawals having been posted to the account for a significant period of time."));
+		dictionaryEntries.add(new DictionaryEntry("Insufficient Funds", "When a depositor's checking account balance is inadequate to pay a check presented for payment."));
+		dictionaryEntries.add(new DictionaryEntry("Interest", "The term interest is used to describe the cost of using money, a right, share, or title in property."));
+		dictionaryEntries.add(new DictionaryEntry("Interest Rate", "The amount paid by a borrower to a lender in exchange for the use of the lender's money for a certain period of time. Interest is paid on loans or on debt instruments, such as notes or bonds, either at regular intervals or as part of a lump sum payment when the issue matures."));
+		dictionaryEntries.add(new DictionaryEntry("Online Banking", "A service that allows an account holder to obtain account information and manage certain banking transactions through a personal computer via the financial institution's web site on the Internet. (This is also known as Internet or electronic banking.)"));
+		dictionaryEntries.add(new DictionaryEntry("Overdraft", "When the amount of money withdrawn from a bank account is greater than the amount actually available in the account, the excess is known as an overdraft, and the account is said to be overdrawn."));
+		dictionaryEntries.add(new DictionaryEntry("Overdraw", "To write a check for an amount that exceeds the amount on deposit in the account."));
+		dictionaryEntries.add(new DictionaryEntry("Payee", "The person or organization to whom a check, draft, or note is made payable."));
+		dictionaryEntries.add(new DictionaryEntry("Payor", "The person or organization who pays."));
+		dictionaryEntries.add(new DictionaryEntry("Personal Identification Number", "Generally a four-character number or word, the PIN is the secret code given to credit or debit cardholders enabling them to access their accounts. The code is either randomly assigned by the bank or selected by the customer. It is intended to prevent unauthorized use of the card while accessing a financial service terminal."));
+		dictionaryEntries.add(new DictionaryEntry("Previous Balance", "The cardholder's account balance as of the previous billing statement."));
+		dictionaryEntries.add(new DictionaryEntry("Refund", "An amount paid back because of an overpayment or because of the return of an item previously sold."));
+		dictionaryEntries.add(new DictionaryEntry("Savings Account", "A deposit account at a bank or savings and loan which pays interest, but cannot be withdrawn by check writing."));
+		dictionaryEntries.add(new DictionaryEntry("Service Charge", "A charge assessed by a depository institution for processing transactions and maintaining accounts."));
+		dictionaryEntries.add(new DictionaryEntry("Statement", "A summary of all transactions that occurred over the preceding month and could be associated with a deposit account or a credit card account."));
+		dictionaryEntries.add(new DictionaryEntry("Student Loan", "Loans made, insured, or guaranteed under any program authorized by the Higher Education Act. Loan funds are used by the borrower for education purposes."));
     }
 
     @Override

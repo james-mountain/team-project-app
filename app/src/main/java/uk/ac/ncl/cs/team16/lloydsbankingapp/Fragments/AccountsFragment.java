@@ -22,7 +22,6 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 
@@ -36,11 +35,9 @@ import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Account;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
