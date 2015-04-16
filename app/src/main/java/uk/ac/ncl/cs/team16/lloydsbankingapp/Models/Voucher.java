@@ -6,12 +6,20 @@ package uk.ac.ncl.cs.team16.lloydsbankingapp.Models;
 public class Voucher {
 
     private String name;
+    private String code = "********";
     private int id, cost;
 
-    public Voucher(String name, int cost, int id) {
+    public Voucher(String name,int cost, int id) {
         this.name = name;
         this.cost = cost;
         this.id = id;
+    }
+
+    public Voucher(String name, String code, int cost, int id) {
+        this.name = name;
+        this.cost = cost;
+        this.id = id;
+        this.code = code;
     }
 
     public int getId() {
@@ -38,4 +46,8 @@ public class Voucher {
     public void setCost(int cost) {
         this.cost = cost;
     }
+
+    public void setCode(String code) {this.code = code; }
+
+    public String getCode() {return code; }
 }

@@ -71,10 +71,6 @@ public class ShopFragment extends Fragment {
         return rewardsView;
     }
 
-
-
-
-
     private void fetchVouchers() {
         final AuthHandler authHandler = AuthHandler.getInstance();
         LinkedHashMap<String, String> params = new LinkedHashMap<String, String>();
@@ -88,7 +84,7 @@ public class ShopFragment extends Fragment {
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject object = response.getJSONObject(i);
-                        vouchers.add(new Voucher(object.getString("VoucherName"), object.getInt("VoucherCost"), object.getInt("VoucherID")));
+                        vouchers.add(new Voucher(object.getString("VoucherName"), object.getString("VoucherCode"), object.getInt("VoucherCost"), object.getInt("VoucherID")));
                     } catch (JSONException e) {
                         Toast.makeText(getActivity().getApplicationContext(), "Can't fetch available vouchers.", Toast.LENGTH_LONG).show();
                         Log.d("Vouchers exception: ", e.getMessage());
@@ -149,7 +145,7 @@ public class ShopFragment extends Fragment {
     }
 
 
-    class VouchersAdapter extends ArrayAdapter<Voucher> {
+    private class VouchersAdapter extends ArrayAdapter<Voucher> {
         VouchersAdapter(List<Voucher> voucherList) {
             super(getActivity(), R.layout.row_reward, R.id.rewardName, voucherList);
         }
@@ -159,9 +155,11 @@ public class ShopFragment extends Fragment {
             View row = super.getView(position, convertView, parent);
             TextView name = (TextView) row.findViewById(R.id.rewardName);
             TextView cost = (TextView) row.findViewById(R.id.rewardCost);
+            TextView code = (TextView) row.findViewById(R.id.rewardCode);
 
             name.setText(getItem(position).getName());
             cost.setText(Integer.toString(getItem(position).getCost()));
+            code.setText(getItem(position).getCode());
 
             return row;
         }
