@@ -2,8 +2,12 @@ package uk.ac.ncl.cs.team16.lloydsbankingapp.Fragments;
 
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -14,6 +18,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.ac.ncl.cs.team16.lloydsbankingapp.Activities.ShopActivity;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.R;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.Models.Achievement;
 
@@ -34,7 +39,7 @@ public class AchievementsFragment extends Fragment {
 
         View achievementsView = inflater.inflate(R.layout.fragment_achievements, container, false);
         ListView achievementsListView = (ListView) achievementsView.findViewById(R.id.achievementsListView);
-
+        setHasOptionsMenu(true);
         populateAchievementsList();
 
         //Apply the achievements list to the interface
@@ -51,10 +56,11 @@ public class AchievementsFragment extends Fragment {
             }
         });
 
+
         return achievementsView;
     }
 
-    public void populateAchievementsList() {
+    private void populateAchievementsList() {
 
         //Creates the achievements and adds them to the achievements list
         achievements.add(new Achievement("Login Regularly (weekly)", "Login at least once on five different days, each week", 10));
@@ -86,5 +92,25 @@ public class AchievementsFragment extends Fragment {
             entryValue.setText(achievementSet.get(position).getPoints() + "pts");
             return entryRow;
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_shop, menu);
+        super.onCreateOptionsMenu(menu,inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_shop) {
+            Intent addPayeeIntent = new Intent(getActivity(), ShopActivity.class);
+            startActivity(addPayeeIntent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

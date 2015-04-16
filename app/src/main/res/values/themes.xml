@@ -3,7 +3,7 @@
 
         <!-- the theme applied to the application or activity -->
         <style name="CustomTheme"
-            parent="@android:style/Theme.Holo.Light.DarkActionBar">
+            parent="@android:style/Theme.Holo.Light">
             <item name="android:actionBarStyle">@style/CustomTheme.MyActionBar</item>
             <item name="android:actionBarWidgetTheme">@style/CustomTheme.PopupMenu</item>
             <item name="android:actionOverflowButtonStyle">@style/CustomTheme.Overflow</item>
@@ -21,6 +21,7 @@
         <item name="android:titleTextStyle">@style/CustomTheme.MyActionBar.ActionBarText</item>
 
     </style>
+
 
     <style name="CustomTheme.MyActionBar.ActionBarText" parent="@android:style/TextAppearance">
         <item name="android:textColor">@color/black</item>
