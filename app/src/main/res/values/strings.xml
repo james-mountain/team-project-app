@@ -18,6 +18,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_drawer_gamification">Achievements</string>
+    <string name="action_shop">Shop</string>
 
     <string-array name="nav_drawer_elements">
         <item>Accounts</item>
@@ -51,5 +52,6 @@
     <string name="add_payee_confirm">Add New Payee</string>
     <string name="description">Description</string>
     <string name="pay_payee_make">Pay Payee</string>
+    <string name="title_activity_shop">ShopActivity</string>
 
 </resources>

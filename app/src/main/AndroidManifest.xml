@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="uk.ac.ncl.cs.team16.lloydsbankingapp" >
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".Models.LbgApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/CustomTheme">
+        android:theme="@style/CustomTheme" >
         <activity
             android:name=".Activities.MainActivity"
             android:label="@string/app_name" >
@@ -32,7 +34,11 @@
         <activity
             android:name=".Activities.AddPayeeActivity"
             android:label="@string/title_activity_add_payee"
-            android:theme="@android:style/Theme.Holo.Light.Dialog.MinWidth">
+            android:theme="@android:style/Theme.Holo.Light.Dialog.MinWidth" >
+        </activity>
+        <activity
+            android:name=".Activities.ShopActivity"
+            android:label="@string/title_activity_shop" >
         </activity>
     </application>
 
