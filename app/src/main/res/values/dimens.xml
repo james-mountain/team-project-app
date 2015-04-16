@@ -17,6 +17,7 @@
     <dimen name="login_widget_marginTop">20dp</dimen>
     <dimen name="generic_listview_height">72dp</dimen>
     <dimen name="achievements_listview_height">114dp</dimen>
+    <dimen name="reward_listview_height">82dp</dimen>
     <dimen name="generic_listview_padding">16dp</dimen>
 
 </resources>

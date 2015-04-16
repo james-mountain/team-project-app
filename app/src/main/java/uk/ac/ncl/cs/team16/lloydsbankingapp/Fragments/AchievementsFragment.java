@@ -54,7 +54,7 @@ public class AchievementsFragment extends Fragment {
         return achievementsView;
     }
 
-    public void populateAchievementsList() {
+    private void populateAchievementsList() {
 
         //Creates the achievements and adds them to the achievements list
         achievements.add(new Achievement("Login Regularly (weekly)", "Login at least once on five different days, each week", 10));
