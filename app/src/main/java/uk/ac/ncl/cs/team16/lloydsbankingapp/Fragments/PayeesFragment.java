@@ -57,11 +57,7 @@ public class PayeesFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private List<Payment> payeePayments = new ArrayList<Payment>();
-    private List<Payment> standingPayments = new ArrayList<Payment>();
-    private List<Payment> debitPayments = new ArrayList<Payment>();
     private ListView paymentsListView;
-    //private ListView standingListView;
-    //private ListView debitListView;
 	public static PayeesFragment payeesContext;
 
     private static final String REVIEW_URL_BASE = "http://csc2022api.sitedev9.co.uk/account/payee";
@@ -72,8 +68,6 @@ public class PayeesFragment extends Fragment {
 
 	private void reloadAdapters() {
 		paymentsListView.setAdapter(new PaymentAdapter(payeePayments));
-		//standingListView.setAdapter(new PaymentAdapter(standingPayments, "Next: "));
-		//debitListView.setAdapter(new PaymentAdapter(debitPayments, "Last: "));
 	}
 
     public void reviewPayeesRequest() {
@@ -134,20 +128,6 @@ public class PayeesFragment extends Fragment {
 		networkQueue.add(deleteRequest);
 	}
 
-    private void colorTabs(TabHost tabHost) {
-        for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
-            View tabWidgetChild = tabHost.getTabWidget().getChildAt(i);
-            TextView tabWidgetChildText = (TextView) tabWidgetChild.findViewById(android.R.id.title);
-            tabWidgetChild.setBackgroundColor(getResources().getColor(R.color.almost_white));
-            tabWidgetChildText.setTextColor(getResources().getColor(android.R.color.darker_gray));
-        }
-
-        View tabWidgetChild = tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab());
-        TextView tabWidgetChildText = (TextView) tabWidgetChild.findViewById(android.R.id.title);
-        tabWidgetChild.setBackgroundColor(getResources().getColor(R.color.lloyds_green));
-        tabWidgetChildText.setTextColor(getResources().getColor(android.R.color.white));
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -155,31 +135,11 @@ public class PayeesFragment extends Fragment {
 
         View reviewView = inflater.inflate(R.layout.fragment_payees, container, false);
         paymentsListView = (ListView) reviewView.findViewById(R.id.payeeListView); // I could implement these as a list, but is it worth it?
-        //standingListView = (ListView) reviewView.findViewById(R.id.standingListView);
-        //debitListView = (ListView) reviewView.findViewById(R.id.debitListView);
 
 		registerForContextMenu(paymentsListView);
 		addPayeeButtonSetup();
-
-        /*
-        final TabHost tabHost = (TabHost) reviewView.findViewById(R.id.tabHost);
-        tabHost.setup();
-        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
-            @Override
-            public void onTabChanged(String s) {
-                colorTabs(tabHost);
-            }
-        });
-
-        tabHost.addTab(tabHost.newTabSpec("payees").setIndicator("Payees").setContent(R.id.payeeTab));
-        tabHost.addTab(tabHost.newTabSpec("standingorders").setIndicator("Standing Orders").setContent(R.id.standingTab));
-        tabHost.addTab(tabHost.newTabSpec("directdebits").setIndicator("Direct Debits").setContent(R.id.debitTab));
-
-        colorTabs(tabHost);
-        */
         reviewPayeesRequest();
 
-        //tabHost.setCurrentTab(0);
         return reviewView;
     }
 

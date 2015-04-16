@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +35,6 @@ import uk.ac.ncl.cs.team16.lloydsbankingapp.network.DefaultErrorListener;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.JsonCustomObjectRequest;
 import uk.ac.ncl.cs.team16.lloydsbankingapp.network.VolleySingleton;
 
-
 public class TransferFragment extends Fragment {
 
     private static final String ACCOUNTS_URL_BASE = "http://csc2022api.sitedev9.co.uk/money";
@@ -42,13 +42,25 @@ public class TransferFragment extends Fragment {
     private int from = -1;
     private int to = -1;
     private String amount;
-
     private TextView amountTV;
+
     public TransferFragment() {
         // Required empty public constructor
     }
 
-    // TODO: Add tabs for the different transfers - import from current review fragment?
+    private void colorTabs(TabHost tabHost) {
+        for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
+            View tabWidgetChild = tabHost.getTabWidget().getChildAt(i);
+            TextView tabWidgetChildText = (TextView) tabWidgetChild.findViewById(android.R.id.title);
+            tabWidgetChild.setBackgroundColor(getResources().getColor(R.color.almost_white));
+            tabWidgetChildText.setTextColor(getResources().getColor(android.R.color.darker_gray));
+        }
+
+        View tabWidgetChild = tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab());
+        TextView tabWidgetChildText = (TextView) tabWidgetChild.findViewById(android.R.id.title);
+        tabWidgetChild.setBackgroundColor(getResources().getColor(R.color.lloyds_green));
+        tabWidgetChildText.setTextColor(getResources().getColor(android.R.color.white));
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,12 +68,28 @@ public class TransferFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_transfer, container, false);
         //setup the spinners
-        final Spinner accountFromChoice = (Spinner) v.findViewById(R.id.account_from_choice);
-        final Spinner accountToChoice = (Spinner) v.findViewById(R.id.account_to_choice);
+        final Spinner accountFromChoice = (Spinner) v.findViewById(R.id.transfer_from_choice);
+        final Spinner accountToChoice = (Spinner) v.findViewById(R.id.transfer_to_choice);
 
         Button transferButton = (Button) v.findViewById(R.id.transfer_btn);
 
-        amountTV = (TextView) v.findViewById(R.id.transfer_amount_textfield);
+        final TabHost tabHost = (TabHost) v.findViewById(R.id.tabHost);
+        tabHost.setup();
+        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String s) {
+                colorTabs(tabHost);
+            }
+        });
+
+        tabHost.addTab(tabHost.newTabSpec("transfer").setIndicator("Transfer Money").setContent(R.id.transfertab));
+        tabHost.addTab(tabHost.newTabSpec("paypayee").setIndicator("Pay Payee").setContent(R.id.paypayeetab));
+        tabHost.addTab(tabHost.newTabSpec("payaccount").setIndicator("Pay Account").setContent(R.id.payaccounttab));
+        colorTabs(tabHost);
+
+        tabHost.setCurrentTab(0);
+
+        amountTV = (TextView) v.findViewById(R.id.transfer_amount_field);
 
         transferButton.setOnClickListener(new View.OnClickListener() {
             @Override

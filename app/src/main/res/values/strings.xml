@@ -50,5 +50,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_payee_confirm">Add New Payee</string>
     <string name="description">Description</string>
+    <string name="pay_payee_make">Pay Payee</string>
 
 </resources>
