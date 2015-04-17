@@ -148,7 +148,7 @@ public class AccountsFragment extends Fragment {
 					try {
 						JSONObject transactionObject = response.getJSONObject(i);
 						String transDesc = transactionObject.getString("TransDesc");
-						String transAmount = transactionObject.getString("TransAmout");
+						String transAmount = transactionObject.getString("TransAmount");
 						JSONObject transDateObject = transactionObject.getJSONObject("TransDate");
 						String transDate = transDateObject.getString("date");
 						String accountBalance = transactionObject.getString("AccountBalance");
