@@ -129,7 +129,7 @@ public class MainActivity extends Activity implements MainFragment.OnFragmentInt
 					if (response.getInt("Status") == 1) {
 						fullyAuthToken = true;
 
-						Toast.makeText(getApplicationContext(), "Login successful.", Toast.LENGTH_LONG).show();
+
 						attemptLogin();
 					} else {
 						Toast.makeText(getApplicationContext(), "Incorrect memorable word.", Toast.LENGTH_LONG).show();
