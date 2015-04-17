@@ -127,10 +127,10 @@ public class MainActivity extends Activity implements MainFragment.OnFragmentInt
 			public void onResponse(JSONObject response) {
 				try {
 					if (response.getInt("Status") == 1) {
+
 						fullyAuthToken = true;
-
-
 						attemptLogin();
+
 					} else {
 						Toast.makeText(getApplicationContext(), "Incorrect memorable word.", Toast.LENGTH_LONG).show();
 					}
